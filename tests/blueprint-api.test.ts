@@ -12,172 +12,205 @@ import type {
     Question
 } from "../src/types/question.js";
 
+function makeQuestion(
+    id: string,
+    cognitiveLevel:
+        Question["cognitiveLevel"],
+    difficulty:
+        NonNullable<
+            Question["difficulty"]
+        > = "easy"
+): Question {
+
+    return {
+        questionId:
+            id,
+
+        version: 1,
+
+        status:
+            "published",
+
+        phase:
+            "B",
+
+        grade:
+            3,
+
+        subject:
+            "Al-Qur'an Hadis",
+
+        element:
+            "Al-Qur'an",
+
+        curriculumId:
+            "KM-MADRASAH",
+
+        cpId:
+            "CP-TEST",
+
+        cpText:
+            "CP test",
+
+        tpId:
+            "TP-TEST",
+
+        tpText:
+            "TP test",
+
+        materialScope:
+            "Surah Al-Fatihah",
+
+        indicator:
+            "Indikator test",
+
+        sklReferences:
+            [],
+
+        contentStandardReferences:
+            [],
+
+        assessment: {
+            purpose:
+                "formative",
+
+            domains: [
+                "knowledge"
+            ],
+
+            evidence:
+                "Evidence test"
+        },
+
+        cognitiveLevel,
+
+        cld: [
+            {
+                dimension:
+                    "21CLD-KC",
+
+                level:
+                    1,
+
+                evidence:
+                    "Evidence CLD"
+            }
+        ],
+
+        kbc: {
+            primary:
+                "KBC-C01",
+
+            values: [
+                "syukur"
+            ],
+
+            evidence:
+                "Evidence KBC"
+        },
+
+        questionType:
+            "MCQ",
+
+        stem:
+            `Soal ${id}`,
+
+        options: [
+            {
+                id:
+                    "A",
+
+                text:
+                    "Pilihan A"
+            },
+            {
+                id:
+                    "B",
+
+                text:
+                    "Pilihan B"
+            }
+        ],
+
+        answer:
+            "B",
+
+        explanation:
+            "Penjelasan",
+
+        difficulty,
+
+        tags:
+            ["test"],
+
+        qualityControl: {
+            contentValidity:
+                "pending",
+
+            constructValidity:
+                "pending",
+
+            languageQuality:
+                "pending",
+
+            biasCheck:
+                "pending"
+        },
+
+        createdAt:
+            "2026-01-01T00:00:00.000Z",
+
+        updatedAt:
+            "2026-01-01T00:00:00.000Z"
+    };
+}
+
 describe(
     "Blueprint API contract",
     () => {
 
-        const question:
-            Question = {
-            questionId:
-                "TEST-BLUEPRINT-001",
-
-            version: 1,
-
-            status:
-                "draft",
-
-            phase:
-                "B",
-
-            grade:
-                3,
-
-            subject:
-                "Al-Qur'an Hadis",
-
-            element:
-                "Al-Qur'an",
-
-            curriculumId:
-                "KM-MADRASAH",
-
-            cpId:
-                "CP-TEST",
-
-            cpText:
-                "CP test",
-
-            tpId:
-                "TP-TEST",
-
-            tpText:
-                "TP test",
-
-            materialScope:
-                "Surah Al-Fatihah",
-
-            indicator:
-                "Indikator test",
-
-            sklReferences:
-                [],
-
-            contentStandardReferences:
-                [],
-
-            assessment: {
-                purpose:
-                    "formative",
-
-                domains: [
-                    "knowledge"
-                ],
-
-                evidence:
-                    "Evidence test"
-            },
-
-            cognitiveLevel:
-                "C3",
-
-            cld: [
-                {
-                    dimension:
-                        "21CLD-KC",
-
-                    level:
-                        1,
-
-                    evidence:
-                        "Evidence CLD"
-                }
-            ],
-
-            kbc: {
-                primary:
-                    "KBC-C01",
-
-                values: [
-                    "syukur"
-                ],
-
-                evidence:
-                    "Evidence KBC"
-            },
-
-            questionType:
-                "MCQ",
-
-            stem:
-                "Soal test?",
-
-            options: [
-                {
-                    id:
-                        "A",
-
-                    text:
-                        "Pilihan A"
-                },
-
-                {
-                    id:
-                        "B",
-
-                    text:
-                        "Pilihan B"
-                }
-            ],
-
-            answer:
-                "B",
-
-            explanation:
-                "Penjelasan",
-
-            difficulty:
-                "easy",
-
-            tags:
-                ["test"],
-
-            qualityControl: {
-                contentValidity:
-                    "pending",
-
-                constructValidity:
-                    "pending",
-
-                languageQuality:
-                    "pending",
-
-                biasCheck:
-                    "pending"
-            },
-
-            createdAt:
-                "2026-01-01T00:00:00.000Z",
-
-            updatedAt:
-                "2026-01-01T00:00:00.000Z"
-        };
-
         it(
-            "generates blueprint result",
+            "generates a complete blueprint with all requested distributions",
             () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3",
+                        "easy"
+                    ),
+
+                    makeQuestion(
+                        "Q2",
+                        "C3",
+                        "easy"
+                    ),
+
+                    makeQuestion(
+                        "Q3",
+                        "C4",
+                        "medium"
+                    ),
+
+                    makeQuestion(
+                        "Q4",
+                        "C4",
+                        "medium"
+                    )
+                ];
 
                 const engine =
                     new BlueprintEngineV2();
 
                 const result =
                     engine.build(
-                        [question],
+                        questions,
                         {
                             blueprintId:
                                 "BP-TEST-001",
 
                             count:
-                                1,
+                                4,
 
                             phase:
                                 "B",
@@ -190,27 +223,33 @@ describe(
 
                             cognitive: {
                                 C3:
-                                    1
+                                    2,
+
+                                C4:
+                                    2
                             },
 
                             questionTypes: {
                                 MCQ:
-                                    1
+                                    4
                             },
 
                             difficulty: {
                                 easy:
-                                    1
+                                    2,
+
+                                medium:
+                                    2
                             },
 
                             cld: {
                                 "21CLD-KC":
-                                    1
+                                    4
                             },
 
                             kbc: {
                                 "KBC-C01":
-                                    1
+                                    4
                             }
                         }
                     );
@@ -218,7 +257,7 @@ describe(
                 expect(
                     result.selected
                 ).toHaveLength(
-                    1
+                    4
                 );
 
                 expect(
@@ -228,27 +267,45 @@ describe(
                 );
 
                 expect(
+                    result.shortages
+                ).toHaveLength(
+                    0
+                );
+
+                expect(
                     result.fulfilled.total
                 ).toBe(
-                    1
+                    4
                 );
 
                 expect(
                     result.fulfilled.cognitive.C3
                 ).toBe(
-                    1
+                    2
+                );
+
+                expect(
+                    result.fulfilled.cognitive.C4
+                ).toBe(
+                    2
                 );
 
                 expect(
                     result.fulfilled.questionTypes.MCQ
                 ).toBe(
-                    1
+                    4
                 );
 
                 expect(
                     result.fulfilled.difficulty.easy
                 ).toBe(
-                    1
+                    2
+                );
+
+                expect(
+                    result.fulfilled.difficulty.medium
+                ).toBe(
+                    2
                 );
 
                 expect(
@@ -256,7 +313,7 @@ describe(
                     "21CLD-KC"
                     ]
                 ).toBe(
-                    1
+                    4
                 );
 
                 expect(
@@ -264,20 +321,21 @@ describe(
                     "KBC-C01"
                     ]
                 ).toBe(
-                    1
-                );
-
-                expect(
-                    result.shortages
-                ).toHaveLength(
-                    0
+                    4
                 );
             }
         );
 
         it(
-            "reports shortages",
+            "reports shortages when the requested blueprint cannot be fulfilled",
             () => {
+
+                const question =
+                    makeQuestion(
+                        "Q1",
+                        "C3",
+                        "easy"
+                    );
 
                 const engine =
                     new BlueprintEngineV2();
@@ -317,6 +375,12 @@ describe(
                 );
 
                 expect(
+                    result.selected
+                ).toHaveLength(
+                    1
+                );
+
+                expect(
                     result.shortages.length
                 ).toBeGreaterThan(
                     0
@@ -326,6 +390,231 @@ describe(
                     result.warnings.length
                 ).toBeGreaterThan(
                     0
+                );
+            }
+        );
+
+        it(
+            "produces the same selection order with the same seed",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q2",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q3",
+                        "C4"
+                    ),
+
+                    makeQuestion(
+                        "Q4",
+                        "C4"
+                    )
+                ];
+
+                const engine =
+                    new BlueprintEngineV2();
+
+                const blueprint = {
+                    count:
+                        4,
+
+                    phase:
+                        "B",
+
+                    grade:
+                        3,
+
+                    subject:
+                        "Al-Qur'an Hadis",
+
+                    randomize:
+                        true,
+
+                    seed:
+                        "seed-2026"
+                };
+
+                const first =
+                    engine.build(
+                        questions,
+                        blueprint
+                    );
+
+                const second =
+                    engine.build(
+                        questions,
+                        blueprint
+                    );
+
+                expect(
+                    first.selected.map(
+                        question =>
+                            question.questionId
+                    )
+                ).toEqual(
+                    second.selected.map(
+                        question =>
+                            question.questionId
+                    )
+                );
+            }
+        );
+
+        it(
+            "supports non-randomized selection",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q2",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q3",
+                        "C4"
+                    )
+                ];
+
+                const engine =
+                    new BlueprintEngineV2();
+
+                const result =
+                    engine.build(
+                        questions,
+                        {
+                            count:
+                                3,
+
+                            phase:
+                                "B",
+
+                            grade:
+                                3,
+
+                            subject:
+                                "Al-Qur'an Hadis",
+
+                            randomize:
+                                false
+                        }
+                    );
+
+                expect(
+                    result.selected.map(
+                        question =>
+                            question.questionId
+                    )
+                ).toEqual([
+                    "Q1",
+                    "Q2",
+                    "Q3"
+                ]);
+            }
+        );
+
+        it(
+            "rejects distributions exceeding the requested count",
+            () => {
+
+                const engine =
+                    new BlueprintEngineV2();
+
+                expect(
+                    () =>
+                        engine.build(
+                            [
+                                makeQuestion(
+                                    "Q1",
+                                    "C3"
+                                )
+                            ],
+                            {
+                                count:
+                                    2,
+
+                                cognitive: {
+                                    C3:
+                                        3
+                                }
+                            }
+                        )
+                ).toThrow(
+                    "Total distribution 'cognitive' (3) tidak boleh melebihi count (2)."
+                );
+            }
+        );
+
+        it(
+            "does not modify the original question pool when randomizing",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q2",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q3",
+                        "C4"
+                    ),
+
+                    makeQuestion(
+                        "Q4",
+                        "C4"
+                    )
+                ];
+
+                const originalIds =
+                    questions.map(
+                        question =>
+                            question.questionId
+                    );
+
+                const engine =
+                    new BlueprintEngineV2();
+
+                engine.build(
+                    questions,
+                    {
+                        count:
+                            4,
+
+                        randomize:
+                            true,
+
+                        seed:
+                            "immutable-pool-test"
+                    }
+                );
+
+                expect(
+                    questions.map(
+                        question =>
+                            question.questionId
+                    )
+                ).toEqual(
+                    originalIds
                 );
             }
         );
