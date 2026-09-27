@@ -16,6 +16,16 @@ export interface WorksheetQuestion {
 
     element: string;
 
+    curriculumId?: string;
+
+    cpId?: string;
+
+    cpText?: string;
+
+    tpId?: string;
+
+    tpText?: string;
+
     materialScope: string;
 
     indicator: string;
@@ -93,6 +103,7 @@ export function serializeWorksheet(
 ): WorksheetPackage {
 
     return {
+
         worksheetId:
             options?.worksheetId ??
             generateWorksheetId(),
@@ -117,6 +128,7 @@ export function serializeWorksheet(
                     question,
                     index
                 ) => ({
+
                     questionId:
                         question.questionId,
 
@@ -134,6 +146,21 @@ export function serializeWorksheet(
 
                     element:
                         question.element,
+
+                    curriculumId:
+                        question.curriculumId,
+
+                    cpId:
+                        question.cpId,
+
+                    cpText:
+                        question.cpText,
+
+                    tpId:
+                        question.tpId,
+
+                    tpText:
+                        question.tpText,
 
                     materialScope:
                         question.materialScope,
@@ -178,6 +205,7 @@ export function serializeAnswerKey(
 ): AnswerKeyPackage {
 
     return {
+
         worksheetId,
 
         generatedAt:
@@ -191,12 +219,14 @@ export function serializeAnswerKey(
                         question.answer ===
                         undefined
                     ) {
+
                         throw new Error(
                             `Question '${question.questionId}' tidak memiliki answer.`
                         );
                     }
 
                     return {
+
                         questionId:
                             question.questionId,
 

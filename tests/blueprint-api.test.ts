@@ -229,6 +229,36 @@ describe(
                 );
 
                 expect(
+                    question.curriculumId
+                ).toBe(
+                    "KM-MADRASAH"
+                );
+
+                expect(
+                    question.cpId
+                ).toBe(
+                    "CP-TEST"
+                );
+
+                expect(
+                    question.cpText
+                ).toBe(
+                    "CP test"
+                );
+
+                expect(
+                    question.tpId
+                ).toBe(
+                    "TP-TEST"
+                );
+
+                expect(
+                    question.tpText
+                ).toBe(
+                    "TP test"
+                );
+
+                expect(
                     question.cognitiveLevel
                 ).toBe(
                     "C4"
