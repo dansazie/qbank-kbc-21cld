@@ -1,5 +1,6 @@
 import { QuestionService } from "../services/question.service.js";
 import { BlueprintEngine } from "../engine/blueprint.engine.js";
+import { generateLibrary } from "./library.js";
 
 const service = new QuestionService();
 const command = process.argv[2];
@@ -38,6 +39,8 @@ switch (command) {
         process.exit(
             invalid > 0 ? 1 : 0
         );
+
+        break;
     }
 
     case "stats": {
@@ -53,25 +56,31 @@ switch (command) {
     }
 
     case "blueprint": {
-        const questions = service.getAll();
+        const questions =
+            service.getAll();
 
-        const engine = new BlueprintEngine();
+        const engine =
+            new BlueprintEngine();
 
-        const result = engine.build(
-            questions,
-            {
-                phase: "B",
-                subject: "Al-Qur'an Hadis",
-                count: 10,
+        const result =
+            engine.build(
+                questions,
+                {
+                    phase: "B",
 
-                cognitive: {
-                    C1: 2,
-                    C2: 3,
-                    C3: 3,
-                    C4: 2
+                    subject:
+                        "Al-Qur'an Hadis",
+
+                    count: 10,
+
+                    cognitive: {
+                        C1: 2,
+                        C2: 3,
+                        C3: 3,
+                        C4: 2
+                    }
                 }
-            }
-        );
+            );
 
         console.log(
             JSON.stringify(
@@ -80,6 +89,12 @@ switch (command) {
                 2
             )
         );
+
+        break;
+    }
+
+    case "library": {
+        generateLibrary();
 
         break;
     }
@@ -93,6 +108,9 @@ Commands:
   npm run validate
   npm run stats
   npm run blueprint
-    `);
+  npm run library
+        `);
+
+        break;
     }
 }

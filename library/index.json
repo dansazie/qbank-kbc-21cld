@@ -1,0 +1,20 @@
+{
+  "name": "QBank KBC × 21CLD",
+  "version": "1.0.0",
+  "generatedAt": "2026-09-27T06:00:17.203Z",
+  "questionCount": 1,
+  "paths": {
+    "allQuestions": "questions.json",
+    "questionById": "questions/{questionId}.json",
+    "subjects": "subjects/{subject}.json",
+    "metadata": "metadata.json"
+  },
+  "subjects": [
+    {
+      "id": "al-qur-an-hadis",
+      "label": "Al-Qur'an Hadis",
+      "count": 1,
+      "path": "subjects/al-qur-an-hadis.json"
+    }
+  ]
+}

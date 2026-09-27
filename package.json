@@ -14,7 +14,8 @@
         "stats": "tsx src/cli/index.ts stats",
         "blueprint": "tsx src/cli/index.ts blueprint",
         "api": "tsx src/api/server.ts",
-        "check": "npm run build && npm test && npm run validate && npm run stats"
+        "check": "npm run build && npm test && npm run validate && npm run stats",
+        "library": "tsx src/cli/index.ts library"
     },
     "devDependencies": {
         "@types/node": "^22.10.0",
