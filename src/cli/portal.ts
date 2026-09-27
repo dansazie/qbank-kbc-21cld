@@ -22,7 +22,7 @@ const configs: PortalConfig[] = [
         worksheetId: "PORTAL-KBC-001",
         title: "Latihan KBC",
         subject: "Al-Qur'an Hadis",
-        count: 1
+        count: 10
     }
 ];
 

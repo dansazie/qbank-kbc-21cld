@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000020",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah Al-Falaq",
+  "indicator": "Peserta didik dapat menjelaskan arti ayat dalam Surah Al-Falaq.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih arti ayat yang tepat berdasarkan pemahamannya."
+  },
+  "cognitiveLevel": "C2",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menggunakan pengetahuan untuk memahami isi ayat."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik memahami pentingnya berlindung dari kegelapan yang menjadi tempat bahaya."
+  },
+  "questionType": "MCQ",
+  "stem": "Arti ayat 'wa min syarri gāsiqin idzā waqab' dalam Surah Al-Falaq adalah memohon perlindungan dari…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Kegelapan malam ketika gelap gulita"
+    },
+    {
+      "id": "B",
+      "text": "Panasnya sinar matahari siang hari"
+    },
+    {
+      "id": "C",
+      "text": "Hujan yang turun sangat deras"
+    },
+    {
+      "id": "D",
+      "text": "Angin kencang pada musim badai"
+    }
+  ],
+  "answer": "A",
+  "explanation": "Al-ghasiq berarti kegelapan malam dan waqab berarti gelap gulita. Kita berlindung kepada Allah dari bahaya yang tersembunyi dalam kegelapan malam.",
+  "difficulty": "easy",
+  "tags": [
+    "Al-Falaq",
+    "arti ayat"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

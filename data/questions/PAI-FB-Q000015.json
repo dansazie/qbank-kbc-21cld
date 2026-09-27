@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000015",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah An-Nas",
+  "indicator": "Peserta didik dapat menerapkan pesan Surah An-Nas dalam situasi sehari-hari.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+  },
+  "cognitiveLevel": "C3",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menerapkan pengetahuan untuk memilih sikap yang tepat."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik menunjukkan kebiasaan memohon perlindungan kepada Allah saat menghadapi godaan keburukan."
+  },
+  "questionType": "MCQ",
+  "stem": "Ketika ada teman mengajakmu berbuat nakal dan hatimu tergoda, tindakan yang sesuai dengan pesan Surah An-Nas adalah…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Mengikuti ajakannya agar tidak dibilang penakut"
+    },
+    {
+      "id": "B",
+      "text": "Memohon perlindungan kepada Allah dari bisikan setan lalu menolak ajakan tersebut"
+    },
+    {
+      "id": "C",
+      "text": " diam saja tetapi ikut melihat mereka berbuat nakal"
+    },
+    {
+      "id": "D",
+      "text": "Menyalahkan teman di depan banyak orang"
+    }
+  ],
+  "answer": "B",
+  "explanation": "Surah An-Nas mengajarkan untuk berlindung kepada Allah dari kejahatan setan yang membisikkan keburukan, sehingga kita kuat menolak ajakan berbuat maksiat.",
+  "difficulty": "medium",
+  "tags": [
+    "An-Nas",
+    "penerapan"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

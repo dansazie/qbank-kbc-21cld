@@ -1,7 +1,7 @@
 {
   "worksheetId": "PORTAL-KBC-001",
   "title": "Latihan KBC",
-  "generatedAt": "2026-09-27T08:37:56.756Z",
+  "generatedAt": "2026-09-27T14:19:05.825Z",
   "instructions": "Kerjakan dengan teliti.",
   "questions": [
     {
@@ -67,6 +67,474 @@
         "syukur",
         "al-fatihah",
         "akhlak"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000003",
+      "number": 2,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat mengenali Surah Al-Fatihah sebagai surah yang dipelajari.",
+      "cognitiveLevel": "C1",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik mengenal Al-Fatihah sebagai sarana memohon petunjuk dan bentuk syukur kepada Allah."
+      },
+      "questionType": "MCQ",
+      "stem": "Surah pertama dalam Al-Qur'an yang terdiri atas tujuh ayat dan dibaca pada setiap rakaat salat adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Surah An-Nas"
+        },
+        {
+          "id": "B",
+          "text": "Surah Al-Fatihah"
+        },
+        {
+          "id": "C",
+          "text": "Surah Al-Ikhlas"
+        },
+        {
+          "id": "D",
+          "text": "Surah Al-Kautsar"
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "Al-Fatihah",
+        "surah pembuka"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000004",
+      "number": 3,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah Al-Fatihah.",
+      "cognitiveLevel": "C1",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik menunjukkan keakraban dengan Surah Al-Fatihah sebagai sarana bersyukur atas petunjuk Allah."
+      },
+      "questionType": "MCQ",
+      "stem": "Jumlah ayat Surah Al-Fatihah adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lima ayat"
+        },
+        {
+          "id": "B",
+          "text": "Enam ayat"
+        },
+        {
+          "id": "C",
+          "text": "Tujuh ayat"
+        },
+        {
+          "id": "D",
+          "text": "Delapan ayat"
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "Al-Fatihah",
+        "jumlah ayat"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000005",
+      "number": 4,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat memahami makna nama Allah dalam Surah Al-Fatihah.",
+      "cognitiveLevel": "C2",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik memahami kasih sayang Allah sebagai nikmat yang patut disyukuri."
+      },
+      "questionType": "MCQ",
+      "stem": "Makna 'ar-Rahman ar-Rahim' pada Surah Al-Fatihah adalah Allah yang…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Maha Pengasih dan Maha Penyayang"
+        },
+        {
+          "id": "B",
+          "text": "Maha Tinggi dan Maha Agung"
+        },
+        {
+          "id": "C",
+          "text": "Maha Melihat dan Maha Mendengar"
+        },
+        {
+          "id": "D",
+          "text": "Maha Kuasa dan Maha Perkasa"
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "Al-Fatihah",
+        "arti ayat"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000006",
+      "number": 5,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat menjelaskan arti ayat dalam Surah Al-Fatihah.",
+      "cognitiveLevel": "C2",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menggunakan pengetahuan untuk memahami isi ayat."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik memahami arti hanya beribadah dan memohon pertolongan kepada Allah."
+      },
+      "questionType": "MCQ",
+      "stem": "Arti ayat 'iyyāka na'budu wa iyyāka nasta'īn' dalam Surah Al-Fatihah adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Segala puji bagi Allah, Tuhan seluruh alam"
+        },
+        {
+          "id": "B",
+          "text": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan"
+        },
+        {
+          "id": "C",
+          "text": "Tunjukilah kami jalan yang lurus"
+        },
+        {
+          "id": "D",
+          "text": "Raja pada hari pembalasan"
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "Al-Fatihah",
+        "arti ayat"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000007",
+      "number": 6,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat mengenali pesan pokok Surah Al-Fatihah.",
+      "cognitiveLevel": "C2",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik memahami Al-Fatihah sebagai doa memohon petunjuk dari Allah."
+      },
+      "questionType": "MCQ",
+      "stem": "Pesan pokok Surah Al-Fatihah adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Perintah berzikir pada waktu pagi dan sore"
+        },
+        {
+          "id": "B",
+          "text": "Kisah para nabi terdahulu"
+        },
+        {
+          "id": "C",
+          "text": "Doa memuji Allah dan memohon petunjuk jalan yang lurus"
+        },
+        {
+          "id": "D",
+          "text": "Peringatan tentang azab neraka"
+        }
+      ],
+      "difficulty": "medium",
+      "tags": [
+        "Al-Fatihah",
+        "pesan pokok"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000008",
+      "number": 7,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat menerapkan pesan pokok Surah Al-Fatihah dalam kehidupan sehari-hari.",
+      "cognitiveLevel": "C3",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menerapkan pengetahuan untuk mengambil keputusan dalam situasi nyata."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik menunjukkan kebiasaan memohon petunjuk kepada Allah saat menghadapi pilihan."
+      },
+      "questionType": "MCQ",
+      "stem": "Saat merasa bingung memilih jalan yang baik, sikap yang sesuai dengan pesan Surah Al-Fatihah adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Membiarkan kebingungan itu tanpa melakukan apa-apa"
+        },
+        {
+          "id": "B",
+          "text": "Mengikuti ajakan teman tanpa berpikir"
+        },
+        {
+          "id": "C",
+          "text": "Berdoa memohon petunjuk kepada Allah seperti dalam Al-Fatihah"
+        },
+        {
+          "id": "D",
+          "text": "Menyalahkan orang lain atas kebingungannya"
+        }
+      ],
+      "difficulty": "medium",
+      "tags": [
+        "Al-Fatihah",
+        "penerapan"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000009",
+      "number": 8,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat menjelaskan makna ungkapan dalam Surah Al-Fatihah.",
+      "cognitiveLevel": "C2",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik mengenal golongan yang diberi nikmat Allah sebagai teladan dalam hidup."
+      },
+      "questionType": "MCQ",
+      "stem": "Kelompok yang dimaksud 'orang-orang yang Engkau beri nikmat' (an'amta 'alaihim) dalam Surah Al-Fatihah adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Orang-orang yang dimurkai Allah"
+        },
+        {
+          "id": "B",
+          "text": "Para nabi, orang-orang yang benar, syuhada, dan orang-orang saleh"
+        },
+        {
+          "id": "C",
+          "text": "Orang-orang yang sesat"
+        },
+        {
+          "id": "D",
+          "text": "Orang-orang yang sombong"
+        }
+      ],
+      "difficulty": "medium",
+      "tags": [
+        "Al-Fatihah",
+        "makna ayat"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000010",
+      "number": 9,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik dapat menerapkan sikap syukur atas nikmat Al-Qur'an.",
+      "cognitiveLevel": "C3",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menerapkan pengetahuan untuk memilih sikap yang tepat."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik menunjukkan pemahaman tentang cara bersyukur atas nikmat Al-Qur'an."
+      },
+      "questionType": "MCQ",
+      "stem": "Bentuk syukur yang paling tepat setelah memahami isi Surah Al-Fatihah adalah…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Membaca Al-Fatihah dengan lafal yang benar dan mengamalkan doanya dalam kehidupan"
+        },
+        {
+          "id": "B",
+          "text": "Membaca Al-Fatihah hanya saat ada tugas dari guru"
+        },
+        {
+          "id": "C",
+          "text": "Menghafalnya tanpa memahami artinya"
+        },
+        {
+          "id": "D",
+          "text": "Menunjukkan hafalan kepada teman agar dipuji"
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "Al-Fatihah",
+        "syukur"
+      ]
+    },
+    {
+      "questionId": "PAI-FB-Q000011",
+      "number": 10,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-001",
+      "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+      "tpId": "TP-ALQURAN-001",
+      "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+      "materialScope": "Surah An-Nas",
+      "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah An-Nas.",
+      "cognitiveLevel": "C1",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "evidence": "Peserta didik mengenal surah perlindungan sebagai sarana bertawakal kepada Allah."
+      },
+      "questionType": "MCQ",
+      "stem": "Surah An-Nas terdiri atas…",
+      "options": [
+        {
+          "id": "A",
+          "text": "Empat ayat"
+        },
+        {
+          "id": "B",
+          "text": "Lima ayat"
+        },
+        {
+          "id": "C",
+          "text": "Enam ayat"
+        },
+        {
+          "id": "D",
+          "text": "Tujuh ayat"
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "An-Nas",
+        "jumlah ayat"
       ]
     }
   ]

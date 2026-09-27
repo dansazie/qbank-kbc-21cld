@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000012",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah An-Nas",
+  "indicator": "Peserta didik dapat mengenali pesan pokok Surah An-Nas.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+  },
+  "cognitiveLevel": "C2",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik memahami pentingnya memohon perlindungan kepada Allah dari gangguan setan."
+  },
+  "questionType": "MCQ",
+  "stem": "Pesan pokok Surah An-Nas adalah memohon perlindungan kepada Allah dari…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Bahaya binatang buas"
+    },
+    {
+      "id": "B",
+      "text": "Bisikan setan yang menghasut dari kalangan jin dan manusia"
+    },
+    {
+      "id": "C",
+      "text": "Kesulitan mencari rezeki"
+    },
+    {
+      "id": "D",
+      "text": "Sikap orang-orang yang kafir"
+    }
+  ],
+  "answer": "B",
+  "explanation": "Surah An-Nas mengajarkan memohon perlindungan kepada Raja manusia dari kejahatan setan yang membisikkan keburukan, baik dari jin maupun manusia.",
+  "difficulty": "easy",
+  "tags": [
+    "An-Nas",
+    "pesan pokok"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

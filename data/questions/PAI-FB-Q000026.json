@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000026",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah Al-Ikhlas",
+  "indicator": "Peserta didik dapat menjelaskan makna 'ash-Shamad' dalam Surah Al-Ikhlas.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna kata."
+  },
+  "cognitiveLevel": "C2",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna kata dalam ayat."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik memahami bahwa hanya Allah tempat bergantung segala kebutuhan."
+  },
+  "questionType": "MCQ",
+  "stem": "Makna 'ash-Shamad' dalam Surah Al-Ikhlas adalah Allah sebagai…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Tempat bergantung dan meminta segala sesuatu kebutuhan"
+    },
+    {
+      "id": "B",
+      "text": "Tempat bersembunyi ketika merasa takut"
+    },
+    {
+      "id": "C",
+      "text": "Tempat beristirahat pada malam hari"
+    },
+    {
+      "id": "D",
+      "text": "Tempat bermain bagi anak-anak"
+    }
+  ],
+  "answer": "A",
+  "explanation": "Ash-Shamad berarti tempat bergantung dan permintaan segala sesuatu. Seluruh makhluk membutuhkan Allah, sedangkan Allah tidak membutuhkan siapa pun.",
+  "difficulty": "easy",
+  "tags": [
+    "Al-Ikhlas",
+    "arti kata"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

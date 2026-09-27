@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000014",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah An-Nas",
+  "indicator": "Peserta didik dapat menjelaskan tiga sebutan Allah dalam Surah An-Nas.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman arti ayat."
+  },
+  "cognitiveLevel": "C2",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik memahami kebesaran Allah sebagai tempat memohon perlindungan."
+  },
+  "questionType": "MCQ",
+  "stem": "Dalam Surah An-Nas, Allah disebut dengan tiga sebutan, yaitu Rabb (Pemelihara), Malik (Raja), dan Ilah (Sembahan) dari…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Para malaikat"
+    },
+    {
+      "id": "B",
+      "text": "Seluruh manusia"
+    },
+    {
+      "id": "C",
+      "text": "Kaum mukminin"
+    },
+    {
+      "id": "D",
+      "text": "Para nabi"
+    }
+  ],
+  "answer": "B",
+  "explanation": "Surah An-Nas menyebut Allah sebagai Rabbun-nas (Pemelihara manusia), Malikin-nas (Raja manusia), dan Ilahin-nas (Sembahan manusia).",
+  "difficulty": "easy",
+  "tags": [
+    "An-Nas",
+    "arti ayat"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000009",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah Al-Fatihah",
+  "indicator": "Peserta didik dapat menjelaskan makna ungkapan dalam Surah Al-Fatihah.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna ayat."
+  },
+  "cognitiveLevel": "C2",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik mengenal golongan yang diberi nikmat Allah sebagai teladan dalam hidup."
+  },
+  "questionType": "MCQ",
+  "stem": "Kelompok yang dimaksud 'orang-orang yang Engkau beri nikmat' (an'amta 'alaihim) dalam Surah Al-Fatihah adalah…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Orang-orang yang dimurkai Allah"
+    },
+    {
+      "id": "B",
+      "text": "Para nabi, orang-orang yang benar, syuhada, dan orang-orang saleh"
+    },
+    {
+      "id": "C",
+      "text": "Orang-orang yang sesat"
+    },
+    {
+      "id": "D",
+      "text": "Orang-orang yang sombong"
+    }
+  ],
+  "answer": "B",
+  "explanation": "Sesuai QS. An-Nisa ayat 69, orang-orang yang diberi nikmat oleh Allah adalah para nabi, orang-orang yang benar (shiddiqin), syuhada, dan orang-orang saleh.",
+  "difficulty": "medium",
+  "tags": [
+    "Al-Fatihah",
+    "makna ayat"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

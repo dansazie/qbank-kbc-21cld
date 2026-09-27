@@ -1,0 +1,72 @@
+{
+  "questionId": "PAI-FB-Q000037",
+  "version": 1,
+  "status": "draft",
+  "phase": "B",
+  "grade": 3,
+  "subject": "Al-Qur'an Hadis",
+  "element": "Al-Qur'an",
+  "curriculumId": "KM-MADRASAH",
+  "cpId": "CP-ALQURAN-001",
+  "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+  "tpId": "TP-ALQURAN-001",
+  "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+  "materialScope": "Surah Al-Kafirun",
+  "indicator": "Peserta didik dapat mengenali pesan pokok Surah Al-Kafirun.",
+  "sklReferences": [],
+  "contentStandardReferences": [],
+  "assessment": {
+    "purpose": "formative",
+    "domains": [
+      "knowledge"
+    ],
+    "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+  },
+  "cognitiveLevel": "C2",
+  "cld": [
+    {
+      "dimension": "21CLD-KC",
+      "level": 1,
+      "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+    }
+  ],
+  "kbc": {
+    "primary": "KBC-C01",
+    "evidence": "Peserta didik memahami pentingnya teguh dalam tauhid sekaligus toleran terhadap pemeluk agama lain."
+  },
+  "questionType": "MCQ",
+  "stem": "Pesan pokok Surah Al-Kafirun adalah…",
+  "options": [
+    {
+      "id": "A",
+      "text": "Perintah memutus hubungan silaturahmi dengan penganut agama lain"
+    },
+    {
+      "id": "B",
+      "text": "Izin untuk mencampuradukkan ibadah antaragama"
+    },
+    {
+      "id": "C",
+      "text": "Menegakkan tauhid dengan sikap toleransi tanpa mencampuradukkan ibadah"
+    },
+    {
+      "id": "D",
+      "text": "Perintah memaksa orang lain untuk memeluk Islam"
+    }
+  ],
+  "answer": "C",
+  "explanation": "Surah Al-Kafirun mengajarkan keteguhan dalam tauhid, yaitu tidak menyembah selain Allah, disertai sikap toleransi dengan tidak mengganggu ibadah penganut agama lain.",
+  "difficulty": "medium",
+  "tags": [
+    "Al-Kafirun",
+    "pesan pokok"
+  ],
+  "qualityControl": {
+    "contentValidity": "pending",
+    "constructValidity": "pending",
+    "languageQuality": "pending",
+    "biasCheck": "pending"
+  },
+  "createdAt": "2026-09-27T10:07:57.186Z",
+  "updatedAt": "2026-09-27T10:07:57.186Z"
+}

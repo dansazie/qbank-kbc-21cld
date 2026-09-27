@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBank Question Builder</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #15803d;
+            --danger: #dc2626;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --border: #cbd5e1;
+            --text: #0f172a;
+            --muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 24px 20px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
+        }
+
+        header .inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        header code {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 1280px;
+            margin: 20px auto;
+            padding: 0 16px 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(380px, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 16px;
+            font-size: 17px;
+        }
+
+        .card h2 .badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--primary-dark);
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .section {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 18px;
+        }
+
+        .section:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .section-title {
+            margin: 0 0 10px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .form-grid.three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field.inline {
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .required {
+            color: var(--danger);
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 9px 10px;
+            font: inherit;
+            color: var(--text);
+            background: white;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .option-row {
+            display: grid;
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            border-radius: 8px;
+            background: #eff6ff;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 9px;
+            padding: 10px 15px;
+            font: inherit;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #cbd5e1;
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            background: #fecaca;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 7px;
+        }
+
+        /* NAVIGATOR SOAL */
+        .nav-strip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+        }
+
+        .nav-info {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            min-width: 200px;
+        }
+
+        .nav-strip .spacer {
+            flex: 1;
+        }
+
+        .status {
+            display: none;
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .q-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+            max-height: 420px;
+            overflow: auto;
+        }
+
+        .q-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 13px;
+            background: #f8fafc;
+        }
+
+        .q-item .q-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .q-item .q-id {
+            font-weight: 800;
+            font-family: ui-monospace, monospace;
+        }
+
+        .q-item .q-meta {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .q-item .q-stem {
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+
+        .q-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .tag-ok {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .tag-bad {
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        .empty-note {
+            color: var(--muted);
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        pre.preview {
+            margin: 10px 0 0;
+            max-height: 320px;
+            overflow: auto;
+            padding: 12px;
+            border-radius: 9px;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 11.5px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .file-path {
+            font-family: ui-monospace, monospace;
+            font-size: 12px;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+        }
+
+        .toolbar .spacer {
+            flex: 1;
+        }
+
+        .counter {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 950px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .form-grid,
+            .form-grid.three {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="inner">
+            <h1>QBank Question Builder</h1>
+            <p>
+                Alur: Upload JSON → daftar Import (valid = <b>➕ Batch</b>, invalid = <b>🔧 Form</b>)
+                → navigasi Prev/Next + Simpan/Update/Hapus → <b>📦 Download ZIP</b>
+                berisi <code>Q001.json</code>, <code>Q002.json</code>, … → extract ke <code>data/questions/</code>.
+            </p>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar">
+            <span class="counter" id="batchCounter">Batch: 0 soal</span>
+            <span class="counter" id="stagedCounter">Import: 0 soal</span>
+            <span class="spacer"></span>
+            <button class="btn-primary" onclick="downloadZip()">📦 Download ZIP (per soal)</button>
+            <button class="btn-secondary" onclick="downloadCurrentFile()">⬇ Download File Ini</button>
+            <button class="btn-secondary" onclick="copySingle()">Copy JSON Soal</button>
+            <button class="btn-secondary" onclick="copyArrayItems()">Copy Isi Array (merge)</button>
+        </div>
+
+        <div id="globalStatus" class="status"></div>
+
+        <div class="grid">
+
+            <!-- ====== FORM ====== -->
+            <section class="card" id="formCard">
+
+                <h2>Form Soal</h2>
+
+                <!-- NAVIGATOR -->
+                <div class="nav-strip">
+                    <button class="btn-secondary" id="btnPrev" onclick="prevItem()">◀ Prev</button>
+                    <span class="nav-info" id="navInfo">Soal baru — belum masuk batch</span>
+                    <button class="btn-secondary" id="btnNext" onclick="nextItem()">Next ▶</button>
+                    <span class="spacer"></span>
+                    <button class="btn-secondary" onclick="newItem()">➕ Soal Baru</button>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Identitas</div>
+                    <div class="form-grid">
+                        <div class="field full">
+                            <label>Question ID <span class="required">*</span>
+                                <span class="hint">→ nama file: <span class="file-path"
+                                        id="filePathHint">data/questions/Q001.json</span></span>
+                            </label>
+                            <div class="field inline">
+                                <input id="idPrefix" value="Q" style="max-width:90px" title="Prefix ID">
+                                <input id="questionId" placeholder="Q001">
+                                <button class="btn-secondary" style="white-space:nowrap"
+                                    onclick="generateQuestionId()">Generate ID</button>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Version</label>
+                            <input id="version" type="number" value="1" min="1">
+                        </div>
+                        <div class="field">
+                            <label>Status</label>
+                            <select id="status">
+                                <option value="draft" selected>draft</option>
+                                <option value="review">review</option>
+                                <option value="published">published</option>
+                                <option value="archived">archived</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Phase</label>
+                            <select id="phase">
+                                <option value="A">A</option>
+                                <option value="B" selected>B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Grade</label>
+                            <select id="grade"></select>
+                        </div>
+                        <div class="field">
+                            <label>Subject</label>
+                            <input id="subject" value="Al-Qur'an Hadis">
+                        </div>
+                        <div class="field">
+                            <label>Element</label>
+                            <input id="element" value="Al-Qur'an">
+                        </div>
+                        <div class="field full">
+                            <label>Material Scope</label>
+                            <input id="materialScope" value="Membaca dan memahami surat pendek">
+                        </div>
+                        <div class="field full">
+                            <label>Indicator</label>
+                            <textarea id="indicator"
+                                style="min-height:60px">Peserta didik mampu menentukan makna ayat berdasarkan konteks.</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Kurikulum</div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label>Curriculum ID</label>
+                            <input id="curriculumId" value="KM-MADRASAH">
+                        </div>
+                        <div class="field">
+                            <label>CP ID</label>
+                            <input id="cpId" value="CP-01">
+                        </div>
+                        <div class="field full">
+                            <label>CP Text</label>
+                            <input id="cpText" value="Memahami kandungan ayat Al-Qur'an">
+                        </div>
+                        <div class="field">
+                            <label>TP ID</label>
+                            <input id="tpId" value="TP-01">
+                        </div>
+                        <div class="field full">
+                            <label>TP Text</label>
+                            <input id="tpText" value="Menjelaskan makna ayat">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Assessment &amp; Kognitif</div>
+                    <div class="form-grid three">
+                        <div class="field">
+                            <label>Cognitive Level</label>
+                            <select id="cognitiveLevel">
+                                <option>C1</option>
+                                <option>C2</option>
+                                <option selected>C3</option>
+                                <option>C4</option>
+                                <option>C5</option>
+                                <option>C6</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Difficulty</label>
+                            <select id="difficulty">
+                                <option value="easy" selected>easy</option>
+                                <option value="medium">medium</option>
+                                <option value="hard">hard</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Question Type</label>
+                            <select id="questionType">
+                                <option value="MCQ" selected>MCQ</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Assessment Purpose</label>
+                            <select id="assessmentPurpose">
+                                <option value="formative" selected>formative</option>
+                                <option value="summative">summative</option>
+                                <option value="diagnostic">diagnostic</option>
+                            </select>
+                        </div>
+                        <div class="field full">
+                            <label>Assessment Evidence</label>
+                            <input id="assessmentEvidence" value="Jawaban peserta didik pada soal pilihan ganda">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Soal</div>
+                    <div class="field">
+                        <label>Stem <span class="required">*</span></label>
+                        <textarea id="stem" placeholder="Tulis pertanyaan soal di sini…"></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Pilihan Jawaban (id + text)</div>
+                    <div id="optionRows"></div>
+                    <div class="form-grid" style="margin-top:10px">
+                        <div class="field">
+                            <label>Jawaban Benar <span class="required">*</span></label>
+                            <select id="answer">
+                                <option value="">— pilih —</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Tags <span class="hint">(pisahkan dengan koma)</span></label>
+                            <input id="tags" placeholder="alquran, fase-b">
+                        </div>
+                    </div>
+                    <div class="field" style="margin-top:12px">
+                        <label>Explanation</label>
+                        <textarea id="explanation" placeholder="Penjelasan jawaban benar…"></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">21CLD</div>
+                    <div class="form-grid three">
+                        <div class="field">
+                            <label>Dimension</label>
+                            <select id="cldDimension">
+                                <option value="21CLD-KC" selected>21CLD-KC</option>
+                                <option value="21CLD-CR">21CLD-CR</option>
+                                <option value="21CLD-CT">21CLD-CT</option>
+                                <option value="21CLD-SC">21CLD-SC</option>
+                                <option value="21CLD-SR">21CLD-SR</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Level</label>
+                            <select id="cldLevel">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="field full">
+                            <label>Evidence</label>
+                            <input id="cldEvidence"
+                                value="Peserta didik menggunakan pengetahuan untuk menentukan jawaban">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">KBC (primary + evidence)</div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label>Primary</label>
+                            <select id="kbcPrimary">
+                                <option value="">— pilih —</option>
+                                <option value="KBC-C01" selected>KBC-C01</option>
+                                <option value="KBC-C02">KBC-C02</option>
+                                <option value="KBC-C03">KBC-C03</option>
+                                <option value="KBC-C04">KBC-C04</option>
+                                <option value="KBC-C05">KBC-C05</option>
+                                <option value="KBC-C06">KBC-C06</option>
+                                <option value="KBC-C07">KBC-C07</option>
+                                <option value="KBC-C08">KBC-C08</option>
+                                <option value="KBC-C09">KBC-C09</option>
+                                <option value="KBC-C10">KBC-C10</option>
+                            </select>
+                        </div>
+                        <div class="field full">
+                            <label>Evidence</label>
+                            <input id="kbcEvidence" value="Soal melatih kompetensi yang dipetakan pada KBC-C01">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Quality Control</div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label>Content Validity</label>
+                            <select id="qcContent">
+                                <option value="pending" selected>pending</option>
+                                <option value="pass">pass</option>
+                                <option value="fail">fail</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Construct Validity</label>
+                            <select id="qcConstruct">
+                                <option value="pending" selected>pending</option>
+                                <option value="pass">pass</option>
+                                <option value="fail">fail</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Language Quality</label>
+                            <select id="qcLanguage">
+                                <option value="pending" selected>pending</option>
+                                <option value="pass">pass</option>
+                                <option value="fail">fail</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Bias Check</label>
+                            <select id="qcBias">
+                                <option value="pending" selected>pending</option>
+                                <option value="pass">pass</option>
+                                <option value="fail">fail</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-primary" onclick="saveToBatch()">💾 Simpan / Update ke Batch</button>
+                    <button class="btn-danger" id="btnDelete" onclick="deleteCurrent()" disabled>🗑 Hapus dari
+                        Batch</button>
+                    <button class="btn-secondary" onclick="resetForm()">Reset</button>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">
+                        Preview JSON — target file:
+                        <span class="file-path" id="previewFile">data/questions/Q001.json</span>
+                    </div>
+                    <pre class="preview" id="preview">Isi form untuk melihat preview…</pre>
+                </div>
+
+            </section>
+
+            <!-- ====== PANEL KANAN ====== -->
+            <aside>
+
+                <!-- 1. IMPORT -->
+                <div class="card">
+                    <h2>1 · Import JSON <span class="badge" id="stagedBadge">0</span></h2>
+                    <p class="hint">
+                        Upload file JSON berisi banyak soal (array) atau file individual
+                        (<code>Q001.json</code>, … sekaligus), atau paste JSON.
+                    </p>
+                    <div class="field" style="margin-top:10px">
+                        <label>Upload File (bisa multiple)</label>
+                        <input type="file" id="importFile" accept=".json,application/json" multiple>
+                    </div>
+                    <div class="field" style="margin-top:10px">
+                        <label>atau Paste JSON</label>
+                        <textarea id="importPaste" placeholder='[ { "questionId": "Q001", … }, … ]'
+                            style="min-height:70px"></textarea>
+                    </div>
+                    <div class="actions" style="margin-top:10px">
+                        <button class="btn-primary" onclick="importFromPaste()">Import dari Paste</button>
+                        <button class="btn-success" onclick="addAllValidToBatch()">➕ Semua Valid → Batch</button>
+                        <button class="btn-secondary" onclick="clearStaged()">Bersihkan</button>
+                    </div>
+                    <p class="hint" style="margin-top:8px">
+                        ✓ valid → tombol <b>➕ Batch</b> &nbsp;|&nbsp; ✗ error → tombol <b>🔧 Form</b> (perbaiki dulu)
+                    </p>
+                    <div id="importSummary" class="status"></div>
+                    <div class="q-list" id="stagedList"></div>
+                </div>
+
+                <!-- 2. BATCH -->
+                <div class="card">
+                    <h2>2 · Batch / Library <span class="badge" id="batchBadge">0</span></h2>
+                    <div class="q-list" id="batchList"></div>
+                    <div class="actions">
+                        <button class="btn-primary" onclick="downloadZip()">📦 Download ZIP</button>
+                        <button class="btn-secondary" onclick="copyArrayItems()">Copy Isi Array (merge)</button>
+                        <button class="btn-danger" onclick="clearBatch()">Clear Batch</button>
+                    </div>
+                    <p class="hint" style="margin-top:10px">
+                        Isi ZIP: satu file <code>&lt;questionId&gt;.json</code> per soal.
+                        Extract langsung ke <code>data/questions/</code>.
+                    </p>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <script>
+        "use strict";
+
+        /* ================= STATE ================= */
+        let batch = [];          // library — sumber ZIP
+        let staged = [];         // hasil import — daftar kanan atas
+        let currentIndex = null; // posisi di batch yang sedang dibuka form; null = soal baru
+        let lastSaved = "";
+
+        const KEY_BATCH = "qbank-builder-batch-v3";
+        const KEY_STAGED = "qbank-builder-staged-v3";
+        const COGNITIVE = ["C1", "C2", "C3", "C4", "C5", "C6"];
+        const DIFFICULTIES = ["easy", "medium", "hard"];
+        const PHASES = ["A", "B", "C"];
+
+        /* ================= HELPERS ================= */
+        const $ = (id) => document.getElementById(id);
+        const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        }[c]));
+
+        function showStatus(message, type = "info") {
+            const el = $("globalStatus");
+            el.textContent = message;
+            el.className = "status show " + type;
+            el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        async function copyText(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch {
+                const ta = document.createElement("textarea");
+                ta.value = text;
+                ta.style.position = "fixed";
+                ta.style.opacity = "0";
+                document.body.appendChild(ta);
+                ta.select();
+                let ok = false;
+                try { ok = document.execCommand("copy"); } catch { ok = false; }
+                ta.remove();
+                return ok;
+            }
+        }
+
+        function timestampName() {
+            const d = new Date();
+            const p = (n) => String(n).padStart(2, "0");
+            return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+        }
+
+        function safeFileName(id) {
+            return String(id || "soal").replace(/[\\/:*?"<>|]/g, "").trim() || "soal";
+        }
+
+        function updateFilePathHints() {
+            const id = $("questionId").value.trim() || "Q001";
+            $("filePathHint").textContent = `data/questions/${safeFileName(id)}.json`;
+            $("previewFile").textContent = `data/questions/${safeFileName(id)}.json`;
+        }
+
+        /* ================= ZIP (vanilla, store-only) ================= */
+        const crcTable = (() => {
+            const t = new Uint32Array(256);
+            for (let n = 0; n < 256; n++) {
+                let c = n;
+                for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+                t[n] = c >>> 0;
+            }
+            return t;
+        })();
+
+        function crc32(bytes) {
+            let c = 0xFFFFFFFF;
+            for (let i = 0; i < bytes.length; i++) c = crcTable[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+            return (c ^ 0xFFFFFFFF) >>> 0;
+        }
+
+        function buildZip(files) {
+            const enc = new TextEncoder();
+            const chunks = [];
+            const central = [];
+            let offset = 0;
+
+            const now = new Date();
+            const dosTime = ((now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1)) & 0xFFFF;
+            const dosDate = (((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate()) & 0xFFFF;
+
+            files.forEach(f => {
+                const nameBytes = enc.encode(f.name);
+                const dataBytes = enc.encode(f.text);
+                const crc = crc32(dataBytes);
+
+                const lh = new DataView(new ArrayBuffer(30));
+                lh.setUint32(0, 0x04034b50, true);
+                lh.setUint16(4, 20, true);
+                lh.setUint16(6, 0, true);
+                lh.setUint16(8, 0, true);
+                lh.setUint16(10, dosTime, true);
+                lh.setUint16(12, dosDate, true);
+                lh.setUint32(14, crc, true);
+                lh.setUint32(18, dataBytes.length, true);
+                lh.setUint32(22, dataBytes.length, true);
+                lh.setUint16(26, nameBytes.length, true);
+                lh.setUint16(28, 0, true);
+                chunks.push(new Uint8Array(lh.buffer), nameBytes, dataBytes);
+
+                const cd = new DataView(new ArrayBuffer(46));
+                cd.setUint32(0, 0x02014b50, true);
+                cd.setUint16(4, 20, true);
+                cd.setUint16(6, 20, true);
+                cd.setUint16(8, 0, true);
+                cd.setUint16(10, 0, true);
+                cd.setUint16(12, dosTime, true);
+                cd.setUint16(14, dosDate, true);
+                cd.setUint32(16, crc, true);
+                cd.setUint32(20, dataBytes.length, true);
+                cd.setUint32(24, dataBytes.length, true);
+                cd.setUint16(28, nameBytes.length, true);
+                cd.setUint16(30, 0, true);
+                cd.setUint16(32, 0, true);
+                cd.setUint16(34, 0, true);
+                cd.setUint16(36, 0, true);
+                cd.setUint32(38, 0, true);
+                cd.setUint32(42, offset, true);
+                central.push(new Uint8Array(cd.buffer), nameBytes);
+
+                offset += 30 + nameBytes.length + dataBytes.length;
+            });
+
+            const cdStart = offset;
+            let cdSize = 0;
+            central.forEach(c => cdSize += c.length);
+
+            const eocd = new DataView(new ArrayBuffer(22));
+            eocd.setUint32(0, 0x06054b50, true);
+            eocd.setUint16(4, 0, true);
+            eocd.setUint16(6, 0, true);
+            eocd.setUint16(8, files.length, true);
+            eocd.setUint16(10, files.length, true);
+            eocd.setUint32(12, cdSize, true);
+            eocd.setUint32(16, cdStart, true);
+            eocd.setUint16(20, 0, true);
+
+            const total = cdStart + cdSize + 22;
+            const out = new Uint8Array(total);
+            let pos = 0;
+            [...chunks, ...central, new Uint8Array(eocd.buffer)].forEach(c => {
+                out.set(c, pos);
+                pos += c.length;
+            });
+            return new Blob([out], { type: "application/zip" });
+        }
+
+        /* ================= INIT ================= */
+        (function init() {
+            const gradeSel = $("grade");
+            for (let g = 1; g <= 12; g++) {
+                const opt = document.createElement("option");
+                opt.value = g;
+                opt.textContent = g;
+                if (g === 3) opt.selected = true;
+                gradeSel.appendChild(opt);
+            }
+            $("optionRows").innerHTML = ["A", "B", "C", "D"].map(id => `
+            <div class="option-row">
+                <div class="option-label">${id}</div>
+                <input data-option="${id}" placeholder="Teks pilihan ${id}">
+            </div>`).join("");
+
+            try {
+                batch = JSON.parse(localStorage.getItem(KEY_BATCH)) || [];
+                staged = JSON.parse(localStorage.getItem(KEY_STAGED)) || [];
+            } catch { batch = []; staged = []; }
+
+            // migrasi skema lama: kbc tanpa values
+            batch.forEach(q => { if (q.kbc && "values" in q.kbc) delete q.kbc.values; });
+            staged.forEach(q => { if (q.kbc && "values" in q.kbc) delete q.kbc.values; });
+
+            generateQuestionId();
+            lastSaved = formFingerprint();
+
+            renderStaged();
+            renderBatch();
+            updateNav();
+            updatePreview();
+
+            $("formCard").addEventListener("input", updatePreview);
+            $("formCard").addEventListener("change", updatePreview);
+        })();
+
+        function persist() {
+            try {
+                localStorage.setItem(KEY_BATCH, JSON.stringify(batch));
+                localStorage.setItem(KEY_STAGED, JSON.stringify(staged));
+            } catch { /* ignore */ }
+        }
+
+        /* ================= COLLECT & FILL ================= */
+        function getOptions() {
+            return ["A", "B", "C", "D"].map(id => ({
+                id,
+                text: (document.querySelector(`[data-option="${id}"]`)?.value || "").trim()
+            }));
+        }
+
+        function listValue(id) {
+            return $(id).value.split(",").map(s => s.trim()).filter(Boolean);
+        }
+
+        function collectForm() {
+            const now = new Date().toISOString();
+            return {
+                questionId: $("questionId").value.trim(),
+                version: Number($("version").value) || 1,
+                status: $("status").value,
+                phase: $("phase").value,
+                grade: Number($("grade").value) || 3,
+                subject: $("subject").value.trim(),
+                element: $("element").value.trim(),
+                materialScope: $("materialScope").value.trim(),
+                indicator: $("indicator").value.trim(),
+                curriculumId: $("curriculumId").value.trim(),
+                cpId: $("cpId").value.trim(),
+                cpText: $("cpText").value.trim(),
+                tpId: $("tpId").value.trim(),
+                tpText: $("tpText").value.trim(),
+                sklReferences: [],
+                contentStandardReferences: [],
+                assessment: {
+                    purpose: $("assessmentPurpose").value,
+                    domains: ["knowledge"],
+                    evidence: $("assessmentEvidence").value.trim()
+                },
+                cognitiveLevel: $("cognitiveLevel").value,
+                cld: [{
+                    dimension: $("cldDimension").value,
+                    level: Number($("cldLevel").value) || 1,
+                    evidence: $("cldEvidence").value.trim()
+                }],
+                kbc: {
+                    primary: $("kbcPrimary").value,
+                    evidence: $("kbcEvidence").value.trim()
+                },
+                questionType: $("questionType").value,
+                stem: $("stem").value.trim(),
+                options: getOptions(),
+                answer: $("answer").value,
+                explanation: $("explanation").value.trim(),
+                difficulty: $("difficulty").value,
+                tags: listValue("tags"),
+                qualityControl: {
+                    contentValidity: $("qcContent").value,
+                    constructValidity: $("qcConstruct").value,
+                    languageQuality: $("qcLanguage").value,
+                    biasCheck: $("qcBias").value
+                },
+                createdAt: (window.__formSource && window.__formSource.createdAt) || now,
+                updatedAt: now
+            };
+        }
+
+        function formFingerprint() {
+            const q = collectForm();
+            delete q.createdAt;
+            delete q.updatedAt;
+            return JSON.stringify(q);
+        }
+
+        let formSource = null;
+        // jembatan agar collectForm tetap sederhana
+        Object.defineProperty(window, "__formSource", { get: () => formSource });
+
+        function fillForm(q, index) {
+            formSource = q || null;
+            currentIndex = (typeof index === "number") ? index : null;
+            $("questionId").value = q.questionId || "";
+            $("version").value = q.version ?? 1;
+            $("status").value = q.status || "draft";
+            $("phase").value = PHASES.includes(q.phase) ? q.phase : "B";
+            $("grade").value = String(q.grade ?? 3);
+            $("subject").value = q.subject || "";
+            $("element").value = q.element || "";
+            $("materialScope").value = q.materialScope || "";
+            $("indicator").value = q.indicator || "";
+            $("curriculumId").value = q.curriculumId || "";
+            $("cpId").value = q.cpId || "";
+            $("cpText").value = q.cpText || "";
+            $("tpId").value = q.tpId || "";
+            $("tpText").value = q.tpText || "";
+            $("assessmentPurpose").value = q.assessment?.purpose || "formative";
+            $("assessmentEvidence").value = q.assessment?.evidence || "";
+            $("cognitiveLevel").value = COGNITIVE.includes(q.cognitiveLevel) ? q.cognitiveLevel : "C3";
+            const c0 = (Array.isArray(q.cld) && q.cld[0]) || {};
+            $("cldDimension").value = c0.dimension || "21CLD-KC";
+            $("cldLevel").value = String(c0.level || 2);
+            $("cldEvidence").value = c0.evidence || "";
+            $("kbcPrimary").value = q.kbc?.primary || "";
+            $("kbcEvidence").value = q.kbc?.evidence || "";
+            $("stem").value = q.stem || "";
+            document.querySelectorAll("[data-option]").forEach(el => el.value = "");
+            (q.options || []).forEach(o => {
+                const input = document.querySelector(`[data-option="${o.id}"]`);
+                if (input) input.value = o.text || "";
+            });
+            $("answer").value = q.answer || "";
+            $("explanation").value = q.explanation || "";
+            $("difficulty").value = DIFFICULTIES.includes(q.difficulty) ? q.difficulty : "easy";
+            $("tags").value = Array.isArray(q.tags) ? q.tags.join(", ") : "";
+            $("qcContent").value = q.qualityControl?.contentValidity || "pending";
+            $("qcConstruct").value = q.qualityControl?.constructValidity || "pending";
+            $("qcLanguage").value = q.qualityControl?.languageQuality || "pending";
+            $("qcBias").value = q.qualityControl?.biasCheck || "pending";
+
+            lastSaved = formFingerprint();
+            updateNav();
+            updatePreview();
+        }
+
+        function clearAnswerContent() {
+            ["stem", "explanation", "tags"].forEach(id => $(id).value = "");
+            document.querySelectorAll("[data-option]").forEach(el => el.value = "");
+            $("answer").value = "";
+        }
+
+        function applyDefaults() {
+            formSource = null;
+            currentIndex = null;
+            generateQuestionId();
+            $("version").value = 1;
+            $("status").value = "draft";
+            $("phase").value = "B";
+            $("grade").value = "3";
+            $("subject").value = "Al-Qur'an Hadis";
+            $("element").value = "Al-Qur'an";
+            $("materialScope").value = "Membaca dan memahami surat pendek";
+            $("indicator").value = "Peserta didik mampu menentukan makna ayat berdasarkan konteks.";
+            $("curriculumId").value = "KM-MADRASAH";
+            $("cpId").value = "CP-01";
+            $("cpText").value = "Memahami kandungan ayat Al-Qur'an";
+            $("tpId").value = "TP-01";
+            $("tpText").value = "Menjelaskan makna ayat";
+            $("assessmentPurpose").value = "formative";
+            $("assessmentEvidence").value = "Jawaban peserta didik pada soal pilihan ganda";
+            $("cognitiveLevel").value = "C3";
+            $("cldDimension").value = "21CLD-KC";
+            $("cldLevel").value = "2";
+            $("cldEvidence").value = "Peserta didik menggunakan pengetahuan untuk menentukan jawaban";
+            $("kbcPrimary").value = "KBC-C01";
+            $("kbcEvidence").value = "Soal melatih kompetensi yang dipetakan pada KBC-C01";
+            $("difficulty").value = "easy";
+            $("qcContent").value = "pending";
+            $("qcConstruct").value = "pending";
+            $("qcLanguage").value = "pending";
+            $("qcBias").value = "pending";
+            clearAnswerContent();
+        }
+
+        /* ================= NAVIGASI FORM ================= */
+        function updateNav() {
+            const n = batch.length;
+            const prev = $("btnPrev"), next = $("btnNext"), del = $("btnDelete");
+            if (currentIndex !== null && currentIndex < n) {
+                $("navInfo").textContent = `Soal ${currentIndex + 1} dari ${n} — ${batch[currentIndex].questionId}`;
+                prev.disabled = currentIndex <= 0;
+                next.disabled = currentIndex >= n - 1;
+                del.disabled = false;
+            } else {
+                $("navInfo").textContent = n
+                    ? `Soal baru — belum masuk batch (batch: ${n} soal)`
+                    : "Soal baru — batch masih kosong";
+                prev.disabled = true;
+                next.disabled = true;
+                del.disabled = true;
+            }
+        }
+
+        function confirmLeave() {
+            if (formFingerprint() === lastSaved) return true;
+            return confirm("Ada perubahan belum disimpan ke batch.\nBuang perubahan dan lanjutkan?");
+        }
+
+        function goToItem(i) {
+            if (i < 0 || i >= batch.length) return;
+            if (!confirmLeave()) return;
+            fillForm(batch[i], i);
+        }
+
+        function prevItem() { if (currentIndex !== null) goToItem(currentIndex - 1); }
+        function nextItem() { if (currentIndex !== null) goToItem(currentIndex + 1); }
+
+        function newItem() {
+            if (!confirmLeave()) return;
+            formSource = null;
+            currentIndex = null;
+            clearAnswerContent();
+            generateQuestionId();
+            lastSaved = formFingerprint();
+            updateNav();
+            updatePreview();
+            showStatus("Form siap untuk soal baru. Isi lalu klik [💾 Simpan / Update ke Batch].", "info");
+        }
+
+        function saveToBatch() {
+            const q = collectForm();
+            const errors = validateQuestion(q, currentIndex);
+            if (errors.length) {
+                showStatus("Tidak dapat menyimpan soal.\n\nPerbaiki:\n- " + errors.join("\n- "), "error");
+                return;
+            }
+            if (currentIndex === null) {
+                batch.push(q);
+                currentIndex = batch.length - 1;
+                showStatus(`✅ ${q.questionId} disimpan ke batch (soal ${currentIndex + 1} dari ${batch.length}).`, "success");
+            } else {
+                batch[currentIndex] = q;
+                showStatus(`✅ ${q.questionId} diperbarui (soal ${currentIndex + 1} dari ${batch.length}).`, "success");
+            }
+            formSource = q;
+            lastSaved = formFingerprint();
+            persist();
+            renderBatch();
+            renderStaged();
+            updateNav();
+            updatePreview();
+        }
+
+        function deleteCurrent() {
+            if (currentIndex === null || currentIndex >= batch.length) return;
+            const q = batch[currentIndex];
+            if (!confirm(`Hapus ${q.questionId} dari batch?`)) return;
+            batch.splice(currentIndex, 1);
+            if (!batch.length) {
+                currentIndex = null;
+                applyDefaults();
+            } else {
+                currentIndex = Math.min(currentIndex, batch.length - 1);
+                fillForm(batch[currentIndex], currentIndex);
+            }
+            persist();
+            renderBatch();
+            renderStaged();
+            updateNav();
+            showStatus(`${q.questionId} dihapus dari batch.`, "info");
+        }
+
+        function resetForm() {
+            if (!confirm("Reset form ke nilai awal? (Batch & import tidak terhapus)")) return;
+            if (!confirmLeave()) return;
+            applyDefaults();
+            lastSaved = formFingerprint();
+            updateNav();
+            updatePreview();
+            showStatus("Form direset.", "info");
+        }
+
+        /* ================= VALIDATOR ================= */
+        function validateQuestion(q, excludeIndex = null) {
+            const errors = [];
+            if (!q.questionId) errors.push("Question ID belum diisi.");
+            else {
+                const dup = batch.some((b, i) => i !== excludeIndex && b.questionId === q.questionId);
+                if (dup) errors.push(`Question ID "${q.questionId}" sudah ada di batch.`);
+            }
+            if (!q.stem) errors.push("Stem soal belum diisi.");
+
+            const filled = q.options.filter(o => o.text);
+            if (filled.length < 2) errors.push("Minimal 2 pilihan jawaban yang terisi.");
+
+            if (!q.answer) errors.push("Jawaban benar belum dipilih.");
+            else if (!q.options.some(o => o.id === q.answer)) errors.push(`Answer "${q.answer}" tidak tersedia pada options.`);
+
+            if (!COGNITIVE.includes(q.cognitiveLevel)) errors.push("Cognitive level tidak valid.");
+            if (!DIFFICULTIES.includes(q.difficulty)) errors.push("Difficulty tidak valid.");
+            if (q.questionType !== "MCQ") errors.push("Question type harus MCQ (saat ini).");
+            if (!PHASES.includes(q.phase)) errors.push("Phase harus A, B, atau C.");
+            if (!(Number.isInteger(q.grade) && q.grade >= 1 && q.grade <= 12)) errors.push("Grade harus angka 1–12.");
+
+            if (!Array.isArray(q.cld) || q.cld.length === 0) errors.push("CLD kosong.");
+            else q.cld.forEach((c, i) => {
+                if (!c.dimension) errors.push(`CLD #${i + 1}: dimension kosong.`);
+                if (!Number.isInteger(c.level) || c.level < 1) errors.push(`CLD #${i + 1}: level tidak valid.`);
+                if (!c.evidence) errors.push(`CLD #${i + 1}: evidence kosong (divalidasi).`);
+            });
+
+            if (!q.kbc.primary) errors.push("KBC primary belum dipilih.");
+            if (!q.kbc.evidence) errors.push("KBC evidence kosong (divalidasi).");
+
+            return errors;
+        }
+
+        /* ================= AUTO ID (pola Q001) ================= */
+        function generateQuestionId() {
+            const prefix = ($("idPrefix").value.trim() || "Q").toUpperCase();
+            let max = 0;
+            const re = new RegExp("^" + prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-?(\\d+)$", "i");
+            [...batch, ...staged].forEach(q => {
+                const m = (q.questionId || "").trim().match(re);
+                if (m) max = Math.max(max, parseInt(m[1], 10));
+            });
+            $("questionId").value = `${prefix}${String(max + 1).padStart(3, "0")}`;
+            updatePreview();
+        }
+
+        /* ================= BATCH LIST ================= */
+        function renderBatch() {
+            $("batchCounter").textContent = `Batch: ${batch.length} soal`;
+            $("batchBadge").textContent = batch.length;
+            const box = $("batchList");
+            if (!batch.length) {
+                box.innerHTML = `<div class="empty-note">Batch masih kosong. Import JSON lalu klik [➕ Batch] pada soal yang valid.</div>`;
+                return;
+            }
+            box.innerHTML = batch.map((q, i) => `
+            <div class="q-item">
+                <div class="q-main">
+                    <div class="q-id">${esc(q.questionId)}.json ${i === currentIndex ? '<span class="tag-ok">● dibuka</span>' : ""}</div>
+                    <div class="q-meta">${esc(q.cognitiveLevel)} · ${esc(q.difficulty)} · ${esc(q.status)} · ${esc(q.materialScope || "-")}</div>
+                    <div class="q-stem" title="${esc(q.stem)}">${esc(q.stem)}</div>
+                </div>
+                <div class="q-actions">
+                    <button class="btn-secondary btn-sm" onclick="goToItem(${i})">Edit</button>
+                    <button class="btn-danger btn-sm" onclick="removeBatchItem(${i})">✕</button>
+                </div>
+            </div>`).join("");
+        }
+
+        function removeBatchItem(i) {
+            const q = batch[i];
+            if (!q) return;
+            if (!confirm(`Hapus ${q.questionId} dari batch?`)) return;
+            if (i !== currentIndex && i < currentIndex && !confirmLeave()) return;
+            batch.splice(i, 1);
+            if (i === currentIndex || currentIndex === null) {
+                if (!batch.length) {
+                    currentIndex = null;
+                    applyDefaults();
+                } else if (i === currentIndex) {
+                    currentIndex = Math.min(i, batch.length - 1);
+                    fillForm(batch[currentIndex], currentIndex);
+                }
+            } else if (i < currentIndex) {
+                currentIndex--;
+                fillForm(batch[currentIndex], currentIndex);
+            }
+            persist();
+            renderBatch();
+            renderStaged();
+            updateNav();
+            showStatus(`${q.questionId} dihapus dari batch.`, "info");
+        }
+
+        function clearBatch() {
+            if (!batch.length) return showStatus("Batch sudah kosong.", "info");
+            if (!confirm(`Hapus SEMUA ${batch.length} soal dari batch?`)) return;
+            batch = [];
+            applyDefaults();
+            persist();
+            renderBatch();
+            renderStaged();
+            updateNav();
+            showStatus("Batch dibersihkan.", "info");
+        }
+
+        /* ================= IMPORT (STAGING) ================= */
+        function normalizeImported(raw) {
+            const now = new Date().toISOString();
+            const q = { ...raw };
+            q.questionId = (q.questionId || "").trim();
+            q.version = typeof q.version === "number" ? q.version : 1;
+            q.status = q.status || "draft";
+            q.phase = PHASES.includes(q.phase) ? q.phase : "B";
+            q.grade = Number(q.grade) || 3;
+            q.subject = q.subject || "Al-Qur'an Hadis";
+            q.element = q.element || "Al-Qur'an";
+            q.materialScope = q.materialScope || "";
+            q.indicator = q.indicator || "";
+            q.curriculumId = q.curriculumId || "KM-MADRASAH";
+            q.cpId = q.cpId || "CP-01";
+            q.cpText = q.cpText || "";
+            q.tpId = q.tpId || "TP-01";
+            q.tpText = q.tpText || "";
+            q.sklReferences = Array.isArray(q.sklReferences) ? q.sklReferences : [];
+            q.contentStandardReferences = Array.isArray(q.contentStandardReferences) ? q.contentStandardReferences : [];
+            q.assessment = {
+                purpose: q.assessment?.purpose || "formative",
+                domains: Array.isArray(q.assessment?.domains) && q.assessment.domains.length ? q.assessment.domains : ["knowledge"],
+                evidence: q.assessment?.evidence || ""
+            };
+            if (!COGNITIVE.includes(q.cognitiveLevel)) q.cognitiveLevel = "C3";
+            q.cld = (Array.isArray(q.cld) && q.cld.length)
+                ? q.cld.map(c => ({
+                    dimension: c?.dimension || "21CLD-KC",
+                    level: Number(c?.level) || 1,
+                    evidence: c?.evidence || ""
+                }))
+                : [{ dimension: "21CLD-KC", level: 2, evidence: "" }];
+            q.kbc = { primary: q.kbc?.primary || "KBC-C01", evidence: q.kbc?.evidence || "" };
+            if ("values" in q.kbc) delete q.kbc.values;
+            q.questionType = q.questionType || "MCQ";
+            q.stem = q.stem || "";
+            q.options = (Array.isArray(q.options) ? q.options : []).map((o, i) => ({
+                id: o?.id || String.fromCharCode(65 + i),
+                text: o?.text || ""
+            }));
+            q.answer = q.answer || "";
+            q.explanation = q.explanation || "";
+            if (!DIFFICULTIES.includes(q.difficulty)) q.difficulty = "easy";
+            q.tags = Array.isArray(q.tags) ? q.tags : [];
+            q.qualityControl = {
+                contentValidity: q.qualityControl?.contentValidity || "pending",
+                constructValidity: q.qualityControl?.constructValidity || "pending",
+                languageQuality: q.qualityControl?.languageQuality || "pending",
+                biasCheck: q.qualityControl?.biasCheck || "pending"
+            };
+            q.createdAt = q.createdAt || now;
+            q.updatedAt = q.updatedAt || q.createdAt;
+            return q;
+        }
+
+        function mergeStaged(arr) {
+            // entri dengan questionId sama digantikan versi terbaru
+            arr.forEach(q => {
+                const idx = staged.findIndex(s => s.questionId === q.questionId);
+                if (idx >= 0) staged[idx] = q;
+                else staged.push(q);
+            });
+        }
+
+        function importFromText(text, sourceName) {
+            try {
+                const data = JSON.parse(text);
+                const arr = Array.isArray(data) ? data : [data];
+                if (!arr.length || typeof arr[0] !== "object") {
+                    throw new Error("Tidak ada object soal yang dikenali.");
+                }
+                mergeStaged(arr.map(normalizeImported));
+                persist();
+                renderStaged();
+                showStatus(
+                    `📥 ${staged.length} soal tersedia di daftar Import (dari: ${sourceName}).\n` +
+                    `✓ valid → klik [➕ Batch]  ·  ✗ error → klik [🔧 Form] untuk diperbaiki.\n` +
+                    `Atau klik [➕ Semua Valid → Batch].`,
+                    "success"
+                );
+            } catch (err) {
+                showStatus(`Gagal import (${sourceName}): ${err.message}`, "error");
+            }
+        }
+
+        function importFromPaste() {
+            const text = $("importPaste").value.trim();
+            if (!text) return showStatus("Paste JSON terlebih dahulu.", "error");
+            importFromText(text, "paste");
+        }
+
+        function clearStaged() {
+            if (!staged.length) return;
+            if (!confirm(`Bersihkan daftar import (${staged.length} soal)? Batch tidak terhapus.`)) return;
+            staged = [];
+            $("importPaste").value = "";
+            $("importFile").value = "";
+            persist();
+            renderStaged();
+        }
+
+        function renderStaged() {
+            $("stagedCounter").textContent = `Import: ${staged.length} soal`;
+            $("stagedBadge").textContent = staged.length;
+            const box = $("stagedList");
+            const sum = $("importSummary");
+            if (!staged.length) {
+                box.innerHTML = `<div class="empty-note">Belum ada file/paste yang diimport.</div>`;
+                sum.className = "status";
+                return;
+            }
+            let valid = 0, inBatch = 0;
+            const rows = staged.map((s, i) => {
+                const inB = batch.some(b => b.questionId === s.questionId);
+                let ok = true, errs = [];
+                if (!inB) {
+                    errs = validateQuestion(s);
+                    ok = errs.length === 0;
+                    if (ok) valid++;
+                } else {
+                    inBatch++;
+                }
+                let action;
+                if (inB) {
+                    action = `<span class="tag-ok">✓ di batch</span>`;
+                } else if (ok) {
+                    action = `<button class="btn-success btn-sm" onclick="stagedToBatch(${i})">➕ Batch</button>`;
+                } else {
+                    action = `<button class="btn-primary btn-sm" onclick="loadStagedToForm(${i})">🔧 Form</button>`;
+                }
+                return `
+            <div class="q-item">
+                <div class="q-main">
+                    <div class="q-id">${esc(s.questionId || "(tanpa ID)")}.json
+                        ${inB ? "" : (ok ? "" : `<span class="tag-bad">✗ ${errs.length} error</span>`)}
+                    </div>
+                    <div class="q-meta">${esc(s.cognitiveLevel)} · ${esc(s.difficulty)} · ${esc(s.materialScope || "-")}</div>
+                    <div class="q-stem" title="${esc(s.stem)}">${esc(s.stem || "(stem kosong)")}</div>
+                    ${(!inB && !ok) ? `<div class="q-stem" style="color:var(--danger)">${esc(errs.join(" | "))}</div>` : ""}
+                </div>
+                <div class="q-actions">${action}</div>
+            </div>`;
+            }).join("");
+            box.innerHTML = rows;
+            sum.className = "status show info";
+            sum.textContent = `Validasi: ${valid} valid, ${staged.length - valid - inBatch} invalid, ${inBatch} sudah di batch (total ${staged.length}).`;
+        }
+
+        function stagedToBatch(i) {
+            const s = staged[i];
+            if (!s) return;
+            if (batch.some(b => b.questionId === s.questionId)) {
+                renderStaged();
+                return showStatus(`${s.questionId} sudah ada di batch (lewati duplikat).`, "info");
+            }
+            const errors = validateQuestion(s);
+            if (errors.length) {
+                return showStatus(`${s.questionId || "(tanpa ID)"} belum valid:\n- ` + errors.join("\n- ") +
+                    `\n\nGunakan tombol [🔧 Form] untuk memperbaiki.`, "error");
+            }
+            batch.push({ ...s });
+            persist();
+            renderBatch();
+            renderStaged();
+            updateNav();
+            showStatus(`✅ ${s.questionId} masuk batch (soal ${batch.length}). Klik [Edit] di daftar Batch untuk membukanya di form.`, "success");
+        }
+
+        function addAllValidToBatch() {
+            if (!staged.length) return showStatus("Belum ada soal hasil import.", "error");
+            let added = 0, dup = 0, invalid = 0;
+            const bad = [];
+            staged.forEach(s => {
+                if (batch.some(b => b.questionId === s.questionId)) { dup++; return; }
+                const errs = validateQuestion(s);
+                if (errs.length) { invalid++; bad.push(s.questionId || "(tanpa ID)"); return; }
+                batch.push({ ...s });
+                added++;
+            });
+            persist();
+            renderBatch();
+            renderStaged();
+            if (added > 0 && currentIndex === null && batch.length) {
+                fillForm(batch[0], 0);
+            } else {
+                updateNav();
+            }
+            showStatus(
+                `➕ Selesai.\nDitambahkan : ${added}\nDuplikat    : ${dup}\nInvalid     : ${invalid}` +
+                (bad.length ? `\n\nPerbaiki lewat [🔧 Form]: ${bad.join(", ")}` : "") +
+                (added ? `\n\nForm kini membuka soal 1 dari ${batch.length} — gunakan Prev/Next.` : ""),
+                added ? "success" : "error"
+            );
+        }
+
+        function loadStagedToForm(i) {
+            const s = staged[i];
+            if (!s) return;
+            if (!confirmLeave()) return;
+            fillForm(s, null);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            showStatus(
+                `🔧 ${s.questionId || "(tanpa ID)"} dimuat ke form (mode perbaikan).\n` +
+                `Perbaiki bagian yang error, lalu klik [💾 Simpan / Update ke Batch].`,
+                "info"
+            );
+        }
+
+        $("importFile").addEventListener("change", async (e) => {
+            const files = Array.from(e.target.files || []);
+            if (!files.length) return;
+            const qs = [];
+            const failed = [];
+            for (const f of files) {
+                try {
+                    const text = await f.text();
+                    const data = JSON.parse(text);
+                    if (Array.isArray(data)) qs.push(...data);
+                    else qs.push(data);
+                } catch {
+                    failed.push(f.name);
+                }
+            }
+            if (!qs.length && failed.length) {
+                return showStatus(`Gagal membaca: ${failed.join(", ")}`, "error");
+            }
+            mergeStaged(qs.map(normalizeImported));
+            persist();
+            renderStaged();
+            showStatus(
+                `📥 ${qs.length} soal dimuat dari ${files.length} file.` +
+                (failed.length ? `\nGagal dibaca: ${failed.join(", ")}` : "") +
+                `\n✓ valid → [➕ Batch]  ·  ✗ error → [🔧 Form]  ·  atau [➕ Semua Valid → Batch].`,
+                "success"
+            );
+        });
+
+        /* ================= EXPORT ================= */
+        async function copySingle() {
+            const q = collectForm();
+            const errors = validateQuestion(q, currentIndex);
+            if (errors.length && !confirm("Soal belum valid:\n- " + errors.join("\n- ") + "\n\nTetap copy untuk debugging?")) return;
+            const ok = await copyText(JSON.stringify(q, null, 2));
+            showStatus(ok ? "JSON satu soal disalin ke clipboard." : "Gagal menyalin.", ok ? "success" : "error");
+        }
+
+        async function copyArrayItems() {
+            if (!batch.length) return showStatus("Batch masih kosong.", "error");
+            const block = batch
+                .map(q => JSON.stringify(q, null, 2).split("\n").map(l => "  " + l).join("\n"))
+                .join(",\n");
+            const ok = await copyText(block);
+            showStatus(
+                ok
+                    ? `Isi array (${batch.length} object, tanpa [ ]) disalin.\nTempel DI DALAM array — jangan menumpuk array dalam array.`
+                    : "Gagal menyalin.",
+                ok ? "success" : "error"
+            );
+        }
+
+        function downloadCurrentFile() {
+            const q = collectForm();
+            const errors = validateQuestion(q, currentIndex);
+            if (errors.length && !confirm("Soal belum valid:\n- " + errors.join("\n- ") + "\n\nTetap download?")) return;
+            if (!q.questionId) return showStatus("Question ID wajib diisi untuk nama file.", "error");
+            const fileName = safeFileName(q.questionId) + ".json";
+            const blob = new Blob([JSON.stringify(q, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            showStatus(`File ${fileName} berhasil di-download. Tempatkan ke data/questions/.`, "success");
+        }
+
+        function downloadZip() {
+            if (!batch.length) return showStatus("Batch masih kosong — tidak ada yang di-zip.", "error");
+
+            const problems = batch
+                .map((q, i) => ({ id: q.questionId, errors: validateQuestion(q, i) }))
+                .filter(x => x.errors.length);
+            if (problems.length && !confirm(
+                `${problems.length} soal di batch belum valid:\n` +
+                problems.map(p => `- ${p.id}: ${p.errors[0]}`).join("\n") +
+                "\n\nTetap download ZIP?"
+            )) return;
+
+            const names = batch.map(q => safeFileName(q.questionId));
+            const dupNames = names.filter((n, i) => names.indexOf(n) !== i);
+            if (dupNames.length && !confirm(
+                `Ada questionId duplikat: ${[...new Set(dupNames)].join(", ")}\nFile yang sama akan menimpa. Tetap lanjut?`
+            )) return;
+
+            const files = batch.map(q => ({
+                name: safeFileName(q.questionId) + ".json",
+                text: JSON.stringify(q, null, 2)
+            }));
+
+            const blob = buildZip(files);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `qbank-questions-${timestampName()}.zip`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+
+            showStatus(
+                `📦 ZIP berisi ${files.length} file:\n` +
+                files.slice(0, 10).map(f => `- ${f.name}`).join("\n") +
+                (files.length > 10 ? `\n- … dan ${files.length - 10} file lainnya` : "") +
+                `\n\nExtract ke data/questions/ — sesuai pola QuestionRepository.`,
+                "success"
+            );
+        }
+
+        /* ================= LIVE PREVIEW ================= */
+        function updatePreview() {
+            try {
+                updateFilePathHints();
+                $("preview").textContent = JSON.stringify(collectForm(), null, 2);
+            } catch {
+                $("preview").textContent = "…";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
