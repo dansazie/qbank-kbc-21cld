@@ -1,6 +1,8 @@
 import type {
     Question,
-    QuestionOption
+    QuestionOption,
+    QuestionType,
+    Stimulus
 } from "../types/question.js";
 
 import type {
@@ -39,11 +41,13 @@ export interface QuestionGenerationInput {
     kbcValues: string[];
     kbcEvidence: string;
 
-    stem: string;
-    options: QuestionOption[];
-    answer: string;
+    questionType?: QuestionType;
 
-    explanation: string;
+    stem: string;
+    options?: QuestionOption[];
+    answer?: string | string[];
+
+    explanation?: string;
     difficulty:
     | "easy"
     | "medium"
@@ -51,8 +55,12 @@ export interface QuestionGenerationInput {
 
     tags: string[];
 
-    sourceId: string;
-    sourceReference: string;
+    stimulusType?: Stimulus["type"];
+    stimulusContent?: string;
+
+    sourceId?: string;
+    sourceReference?: string;
+    sourceLocator?: string;
 }
 
 export class QuestionGenerator {
@@ -63,6 +71,54 @@ export class QuestionGenerator {
 
         const now =
             new Date().toISOString();
+
+        const questionType =
+            input.questionType ??
+            "MCQ";
+
+        const source =
+            input.sourceId ||
+                input.sourceReference ||
+                input.sourceLocator
+                ? {
+                    sourceId:
+                        input.sourceId ??
+                        "",
+
+                    reference:
+                        input.sourceReference ??
+                        "",
+
+                    ...(input.sourceLocator
+                        ? {
+                            locator:
+                                input.sourceLocator
+                        }
+                        : {})
+                }
+                : undefined;
+
+        const stimulus:
+            Stimulus | undefined =
+            input.stimulusType ||
+                input.stimulusContent ||
+                source
+                ? {
+                    type:
+                        input.stimulusType ??
+                        "text",
+
+                    content:
+                        input.stimulusContent ??
+                        input.materialScope,
+
+                    ...(source
+                        ? {
+                            source
+                        }
+                        : {})
+                }
+                : undefined;
 
         return {
             questionId:
@@ -113,7 +169,8 @@ export class QuestionGenerator {
             contentStandardReferences: [],
 
             assessment: {
-                purpose: "formative",
+                purpose:
+                    "formative",
 
                 domains: [
                     "knowledge"
@@ -150,35 +207,37 @@ export class QuestionGenerator {
                     input.kbcEvidence
             },
 
-            stimulus: {
-                type: "text",
-
-                content:
-                    input.materialScope,
-
-                source: {
-                    sourceId:
-                        input.sourceId,
-
-                    reference:
-                        input.sourceReference
+            ...(stimulus
+                ? {
+                    stimulus
                 }
-            },
+                : {}),
 
-            questionType:
-                "MCQ",
+            questionType,
 
             stem:
                 input.stem,
 
-            options:
-                input.options,
+            ...(input.options
+                ? {
+                    options:
+                        input.options
+                }
+                : {}),
 
-            answer:
-                input.answer,
+            ...(input.answer !== undefined
+                ? {
+                    answer:
+                        input.answer
+                }
+                : {}),
 
-            explanation:
-                input.explanation,
+            ...(input.explanation
+                ? {
+                    explanation:
+                        input.explanation
+                }
+                : {}),
 
             difficulty:
                 input.difficulty,
@@ -186,15 +245,13 @@ export class QuestionGenerator {
             tags:
                 input.tags,
 
-            sources: [
-                {
-                    sourceId:
-                        input.sourceId,
-
-                    reference:
-                        input.sourceReference
+            ...(source
+                ? {
+                    sources: [
+                        source
+                    ]
                 }
-            ],
+                : {}),
 
             qualityControl: {
                 contentValidity:
