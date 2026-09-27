@@ -15,7 +15,8 @@
         "blueprint": "tsx src/cli/index.ts blueprint",
         "api": "tsx src/api/server.ts",
         "check": "npm run build && npm test && npm run validate && npm run stats",
-        "library": "tsx src/cli/index.ts library"
+        "library": "tsx src/cli/index.ts library",
+        "portal": "tsx src/cli/index.ts portal"
     },
     "devDependencies": {
         "@types/node": "^22.10.0",

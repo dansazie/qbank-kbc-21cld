@@ -2,6 +2,11 @@ import { QuestionService } from "../services/question.service.js";
 import { BlueprintEngine } from "../engine/blueprint.engine.js";
 import { generateLibrary } from "./library.js";
 
+import {
+    generatePortal
+} from "./portal.js";
+
+
 const service = new QuestionService();
 const command = process.argv[2];
 
@@ -99,6 +104,13 @@ switch (command) {
         break;
     }
 
+    case "portal": {
+        await generatePortal();
+
+        break;
+    }
+
+
     default: {
         console.log(`
 QBank KBC × 21CLD
@@ -109,6 +121,7 @@ Commands:
   npm run stats
   npm run blueprint
   npm run library
+  npm run portal
         `);
 
         break;

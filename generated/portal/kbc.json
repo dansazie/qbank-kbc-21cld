@@ -1,0 +1,73 @@
+{
+  "worksheetId": "PORTAL-KBC-001",
+  "title": "Latihan KBC",
+  "generatedAt": "2026-09-27T08:37:56.756Z",
+  "instructions": "Kerjakan dengan teliti.",
+  "questions": [
+    {
+      "questionId": "PAI-FB-Q000001",
+      "number": 1,
+      "phase": "B",
+      "grade": 3,
+      "subject": "Al-Qur'an Hadis",
+      "element": "Al-Qur'an",
+      "curriculumId": "KM-MADRASAH",
+      "cpId": "CP-ALQURAN-HADIS-FB-01",
+      "cpText": "CP diambil dari dokumen kurikulum resmi yang berlaku.",
+      "tpId": "TP-ALQURAN-HADIS-FB-01",
+      "tpText": "Peserta didik mampu memahami pesan pokok ayat dan menghubungkannya dengan perilaku sehari-hari.",
+      "materialScope": "Surah Al-Fatihah",
+      "indicator": "Peserta didik mampu menghubungkan makna ayat dengan perilaku bersyukur.",
+      "cognitiveLevel": "C3",
+      "cld": [
+        {
+          "dimension": "21CLD-KC",
+          "level": 1,
+          "evidence": "Peserta didik menghubungkan informasi ayat dengan situasi yang diberikan."
+        }
+      ],
+      "kbc": {
+        "primary": "KBC-C01",
+        "values": [
+          "syukur",
+          "akhlak"
+        ],
+        "evidence": "Konteks soal mengarahkan peserta didik pada perilaku syukur kepada Allah."
+      },
+      "stimulus": {
+        "type": "quran",
+        "content": "Gunakan teks Surah Al-Fatihah dari Quran API eksternal.",
+        "source": {
+          "sourceId": "QURAN-API",
+          "reference": "/surat/1"
+        }
+      },
+      "questionType": "MCQ",
+      "stem": "Perilaku yang menunjukkan rasa syukur kepada Allah setelah memperoleh nikmat adalah ...",
+      "options": [
+        {
+          "id": "A",
+          "text": "Menggunakan nikmat dengan sombong."
+        },
+        {
+          "id": "B",
+          "text": "Menggunakan nikmat untuk kebaikan."
+        },
+        {
+          "id": "C",
+          "text": "Menyembunyikan semua nikmat dari orang lain."
+        },
+        {
+          "id": "D",
+          "text": "Menganggap nikmat sebagai hasil diri sendiri semata."
+        }
+      ],
+      "difficulty": "easy",
+      "tags": [
+        "syukur",
+        "al-fatihah",
+        "akhlak"
+      ]
+    }
+  ]
+}
