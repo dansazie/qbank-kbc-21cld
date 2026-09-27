@@ -12,6 +12,11 @@ import type {
     Question
 } from "../src/types/question.js";
 
+import {
+    serializeAnswerKey,
+    serializeWorksheet
+} from "../src/api/worksheet.serializer.js";
+
 function makeQuestion(
     id: string,
     cognitiveLevel:
@@ -168,6 +173,149 @@ function makeQuestion(
 describe(
     "Blueprint API contract",
     () => {
+
+        it(
+            "serializes a student worksheet without answer or explanation",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3",
+                        "easy"
+                    )
+                ];
+
+                const worksheet =
+                    serializeWorksheet(
+                        questions,
+                        {
+                            worksheetId:
+                                "LKPD-TEST-001",
+
+                            title:
+                                "LKPD Al-Qur'an Hadis",
+
+                            instructions:
+                                "Kerjakan dengan teliti."
+                        }
+                    );
+
+                expect(
+                    worksheet.worksheetId
+                ).toBe(
+                    "LKPD-TEST-001"
+                );
+
+                expect(
+                    worksheet.title
+                ).toBe(
+                    "LKPD Al-Qur'an Hadis"
+                );
+
+                expect(
+                    worksheet.instructions
+                ).toBe(
+                    "Kerjakan dengan teliti."
+                );
+
+                expect(
+                    worksheet.questions
+                ).toHaveLength(
+                    1
+                );
+
+                const question =
+                    worksheet.questions[0];
+
+                expect(
+                    question.questionId
+                ).toBe(
+                    "Q1"
+                );
+
+                expect(
+                    question.number
+                ).toBe(
+                    1
+                );
+
+                expect(
+                    question.stem
+                ).toBe(
+                    "Soal Q1"
+                );
+
+                expect(
+                    question.options
+                ).toHaveLength(
+                    2
+                );
+
+                expect(
+                    question
+                ).not.toHaveProperty(
+                    "answer"
+                );
+
+                expect(
+                    question
+                ).not.toHaveProperty(
+                    "explanation"
+                );
+
+                expect(
+                    question
+                ).not.toHaveProperty(
+                    "rubric"
+                );
+            }
+        );
+
+        it(
+            "keeps answer and explanation available only in answer key serialization",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3",
+                        "easy"
+                    )
+                ];
+
+                const answerKey =
+                    serializeAnswerKey(
+                        "LKPD-TEST-001",
+                        questions
+                    );
+
+                expect(
+                    answerKey.worksheetId
+                ).toBe(
+                    "LKPD-TEST-001"
+                );
+
+                expect(
+                    answerKey.answers
+                ).toHaveLength(
+                    1
+                );
+
+                expect(
+                    answerKey.answers[0]
+                ).toMatchObject({
+                    questionId:
+                        "Q1",
+
+                    answer:
+                        "B",
+
+                    explanation:
+                        "Penjelasan"
+                });
+            }
+        );
 
         it(
             "generates a complete blueprint with all requested distributions",
