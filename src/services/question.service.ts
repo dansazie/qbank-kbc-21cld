@@ -3,8 +3,7 @@ import type {
 } from "../types/question.js";
 
 import {
-    QuestionRepository,
-    type QuestionFilter
+    QuestionRepository
 } from "../repositories/question.repository.js";
 
 import {
@@ -12,41 +11,49 @@ import {
 } from "../engine/validation.engine.js";
 
 import {
-    MappingEngine
-} from "../engine/mapping.engine.js";
+    ScoringEngine,
+    type StudentAnswer,
+    type ScoreResult
+} from "../engine/scoring.engine.js";
 
 export class QuestionService {
 
+    private readonly repository:
+        QuestionRepository;
+
+    private readonly validator:
+        QuestionValidationEngine;
+
+    private readonly scorer:
+        ScoringEngine;
+
     constructor(
-        private readonly repository =
-            new QuestionRepository(),
+        repository =
+            new QuestionRepository()
+    ) {
+        this.repository =
+            repository;
 
-        private readonly validator =
-            new QuestionValidationEngine(),
+        this.validator =
+            new QuestionValidationEngine();
 
-        private readonly mapper =
-            new MappingEngine()
-    ) { }
+        this.scorer =
+            new ScoringEngine();
+    }
 
     getAll(): Question[] {
-        return this.repository.findAll();
+        return this.repository.getAll();
     }
 
     getById(
-        id: string
+        questionId: string
     ): Question | undefined {
-        return this.repository.findById(id);
-    }
-
-    search(
-        filter: QuestionFilter
-    ): Question[] {
-        return this.repository.search(
-            filter
+        return this.repository.getById(
+            questionId
         );
     }
 
-    validate(
+    validateQuestion(
         question: Question
     ) {
         return this.validator.validate(
@@ -54,26 +61,65 @@ export class QuestionService {
         );
     }
 
-    mapping(
-        question: Question
-    ) {
-        return this.mapper.inspect(
-            question
-        );
-    }
-
     validateAll() {
-
         return this.getAll().map(
             question => ({
                 questionId:
                     question.questionId,
 
                 result:
-                    this.validator.validate(
+                    this.validateQuestion(
                         question
                     )
             })
+        );
+    }
+
+    create(
+        question: Question
+    ): Question {
+
+        const existing =
+            this.getById(
+                question.questionId
+            );
+
+        if (existing) {
+            throw new Error(
+                `Question '${question.questionId}' sudah ada.`
+            );
+        }
+
+        return this.repository.create(
+            question
+        );
+    }
+
+    update(
+        questionId: string,
+        question: Question
+    ): Question {
+        return this.repository.update(
+            questionId,
+            question
+        );
+    }
+
+    delete(
+        questionId: string
+    ): boolean {
+        return this.repository.delete(
+            questionId
+        );
+    }
+
+    search(
+        filter: Parameters<
+            QuestionRepository["search"]
+        >[0]
+    ): Question[] {
+        return this.repository.search(
+            filter
         );
     }
 
@@ -82,90 +128,114 @@ export class QuestionService {
         const questions =
             this.getAll();
 
+        const countBy =
+            <T extends string>(
+                selector:
+                    (
+                        question: Question
+                    ) => T
+            ): Record<string, number> => {
+
+                const result:
+                    Record<string, number> = {};
+
+                for (
+                    const question of questions
+                ) {
+
+                    const key =
+                        selector(question);
+
+                    result[key] =
+                        (
+                            result[key] ??
+                            0
+                        ) + 1;
+                }
+
+                return result;
+            };
+
         return {
             total:
                 questions.length,
 
             byPhase:
-                this.group(
-                    questions,
-                    q => q.phase
+                countBy(
+                    question =>
+                        question.phase
                 ),
 
             bySubject:
-                this.group(
-                    questions,
-                    q => q.subject
+                countBy(
+                    question =>
+                        question.subject
                 ),
 
             byCognitiveLevel:
-                this.group(
-                    questions,
-                    q => q.cognitiveLevel
+                countBy(
+                    question =>
+                        question.cognitiveLevel
                 ),
 
             byType:
-                this.group(
-                    questions,
-                    q => q.questionType
+                countBy(
+                    question =>
+                        question.questionType
                 ),
 
             byStatus:
-                this.group(
-                    questions,
-                    q => q.status
+                countBy(
+                    question =>
+                        question.status
                 ),
 
             byDifficulty:
-                this.group(
-                    questions,
-                    q => q.difficulty ?? "unset"
+                this.countDifficulty(
+                    questions
                 ),
 
             byCLD:
-                this.groupCLD(
+                this.countCLD(
                     questions
                 ),
 
             byKBC:
-                this.groupKBC(
+                this.countKBC(
                     questions
                 )
         };
     }
 
-    private group<T>(
-        items: Question[],
-        selector: (
-            item: Question
-        ) => T
+    private countDifficulty(
+        questions: Question[]
     ): Record<string, number> {
 
-        return items.reduce<
-            Record<string, number>
-        >(
-            (
-                result,
-                item
-            ) => {
+        const result:
+            Record<string, number> = {};
 
-                const key =
-                    String(
-                        selector(item)
-                    );
+        for (
+            const question of questions
+        ) {
 
-                result[key] =
-                    (
-                        result[key] ?? 0
-                    ) + 1;
+            const difficulty =
+                question.difficulty;
 
-                return result;
-            },
-            {}
-        );
+            if (!difficulty) {
+                continue;
+            }
+
+            result[difficulty] =
+                (
+                    result[difficulty] ??
+                    0
+                ) + 1;
+        }
+
+        return result;
     }
 
-    private groupCLD(
+    private countCLD(
         questions: Question[]
     ): Record<string, number> {
 
@@ -181,13 +251,10 @@ export class QuestionService {
                 of question.cld ?? []
             ) {
 
-                result[
-                    mapping.dimension
-                ] =
+                result[mapping.dimension] =
                     (
-                        result[
-                        mapping.dimension
-                        ] ?? 0
+                        result[mapping.dimension] ??
+                        0
                     ) + 1;
             }
         }
@@ -195,7 +262,7 @@ export class QuestionService {
         return result;
     }
 
-    private groupKBC(
+    private countKBC(
         questions: Question[]
     ): Record<string, number> {
 
@@ -215,10 +282,25 @@ export class QuestionService {
 
             result[primary] =
                 (
-                    result[primary] ?? 0
+                    result[primary] ??
+                    0
                 ) + 1;
         }
 
         return result;
     }
+
+    score(
+        question: Question,
+        studentAnswer: StudentAnswer
+    ): ScoreResult {
+
+        return this.scorer.score(
+            question,
+            studentAnswer
+        );
+    }
 }
+
+export const questionService =
+    new QuestionService();

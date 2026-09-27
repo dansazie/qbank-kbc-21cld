@@ -32,6 +32,11 @@ import {
     statisticsHandler
 } from "./statistics.handler.js";
 
+import {
+    blueprintGenerateHandler,
+    isBlueprintGeneratePath
+} from "./blueprint.handler.js";
+
 const server =
     createServer(
         async (
@@ -48,7 +53,7 @@ const server =
 
                 response.setHeader(
                     "Access-Control-Allow-Methods",
-                    "GET, OPTIONS"
+                    "GET, POST, PUT, DELETE, OPTIONS"
                 );
 
                 response.setHeader(
@@ -78,22 +83,29 @@ const server =
                     request.method ??
                     "GET";
 
+                /*
+                 * POST /api/blueprints/generate
+                 */
                 if (
-                    method !==
-                    "GET"
+                    isBlueprintGeneratePath(
+                        url.pathname
+                    )
                 ) {
 
-                    error(
+                    await blueprintGenerateHandler(
                         response,
-                        405,
-                        "METHOD_NOT_ALLOWED",
-                        "Hanya GET dan OPTIONS yang didukung pada API ini."
+                        method,
+                        request
                     );
 
                     return;
                 }
 
+                /*
+                 * Health
+                 */
                 if (
+                    method === "GET" &&
                     url.pathname ===
                     "/health"
                 ) {
@@ -105,6 +117,18 @@ const server =
                     return;
                 }
 
+                /*
+                 * Questions
+                 *
+                 * Sengaja diproses sebelum
+                 * method guard karena endpoint
+                 * questions mendukung:
+                 *
+                 * GET
+                 * POST
+                 * PUT
+                 * DELETE
+                 */
                 if (
                     url.pathname ===
                     "/api/questions" ||
@@ -113,15 +137,36 @@ const server =
                     )
                 ) {
 
-                    questionsHandler(
+                    await questionsHandler(
                         response,
-                        method,
+                        request,
                         url
                     );
 
                     return;
                 }
 
+                /*
+                 * Endpoint lain
+                 * saat ini read-only.
+                 */
+                if (
+                    method !== "GET"
+                ) {
+
+                    error(
+                        response,
+                        405,
+                        "METHOD_NOT_ALLOWED",
+                        "HTTP method tidak didukung."
+                    );
+
+                    return;
+                }
+
+                /*
+                 * References
+                 */
                 if (
                     url.pathname ===
                     "/api/references" ||
@@ -139,6 +184,9 @@ const server =
                     return;
                 }
 
+                /*
+                 * Frameworks
+                 */
                 if (
                     url.pathname ===
                     "/api/frameworks" ||
@@ -156,6 +204,9 @@ const server =
                     return;
                 }
 
+                /*
+                 * Statistics
+                 */
                 if (
                     url.pathname ===
                     "/api/statistics"
@@ -164,6 +215,24 @@ const server =
                     statisticsHandler(
                         response,
                         method
+                    );
+
+                    return;
+                }
+
+                /*
+                 * Blueprint root
+                 */
+                if (
+                    url.pathname ===
+                    "/api/blueprints"
+                ) {
+
+                    error(
+                        response,
+                        405,
+                        "METHOD_NOT_ALLOWED",
+                        "Gunakan POST /api/blueprints/generate untuk menghasilkan paket soal."
                     );
 
                     return;
@@ -191,11 +260,11 @@ const server =
 
 server.on(
     "error",
-    error => {
+    serverError => {
 
         console.error(
             "API server error:",
-            error
+            serverError
         );
 
         process.exitCode =
@@ -222,6 +291,7 @@ server.listen(
                 `References: http://localhost:${apiConfig.port}/api/references`,
                 `Frameworks: http://localhost:${apiConfig.port}/api/frameworks`,
                 `Statistics: http://localhost:${apiConfig.port}/api/statistics`,
+                `Blueprint: POST http://localhost:${apiConfig.port}/api/blueprints/generate`,
                 ""
             ].join("\n")
         );
