@@ -1,0 +1,3033 @@
+[
+    {
+        "questionId": "PAI-FB-Q000003",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat mengenali Surah Al-Fatihah sebagai surah yang dipelajari.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik mengenal Al-Fatihah sebagai sarana memohon petunjuk dan bentuk syukur kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah pertama dalam Al-Qur'an yang terdiri atas tujuh ayat dan dibaca pada setiap rakaat salat adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Surah An-Nas"
+            },
+            {
+                "id": "B",
+                "text": "Surah Al-Fatihah"
+            },
+            {
+                "id": "C",
+                "text": "Surah Al-Ikhlas"
+            },
+            {
+                "id": "D",
+                "text": "Surah Al-Kautsar"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah Al-Fatihah adalah surah pembuka Al-Qur'an yang terdiri atas tujuh ayat dan wajib dibaca dalam salat.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Fatihah",
+            "surah pembuka"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000004",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah Al-Fatihah.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik menunjukkan keakraban dengan Surah Al-Fatihah sebagai sarana bersyukur atas petunjuk Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Jumlah ayat Surah Al-Fatihah adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Lima ayat"
+            },
+            {
+                "id": "B",
+                "text": "Enam ayat"
+            },
+            {
+                "id": "C",
+                "text": "Tujuh ayat"
+            },
+            {
+                "id": "D",
+                "text": "Delapan ayat"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah Al-Fatihah terdiri atas tujuh ayat sehingga disebut juga as-sab'ul matsani (tujuh ayat yang diulang-ulang dalam salat).",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Fatihah",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000005",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat memahami makna nama Allah dalam Surah Al-Fatihah.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman arti ayat."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik memahami kasih sayang Allah sebagai nikmat yang patut disyukuri."
+        },
+        "questionType": "MCQ",
+        "stem": "Makna 'ar-Rahman ar-Rahim' pada Surah Al-Fatihah adalah Allah yang…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Maha Pengasih dan Maha Penyayang"
+            },
+            {
+                "id": "B",
+                "text": "Maha Tinggi dan Maha Agung"
+            },
+            {
+                "id": "C",
+                "text": "Maha Melihat dan Maha Mendengar"
+            },
+            {
+                "id": "D",
+                "text": "Maha Kuasa dan Maha Perkasa"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Ar-Rahman berarti Maha Pengasih dan ar-Rahim berarti Maha Penyayang. Keduanya menunjukkan kasih sayang Allah kepada seluruh makhluk-Nya.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Fatihah",
+            "arti ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000006",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat menjelaskan arti ayat dalam Surah Al-Fatihah.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih arti ayat yang tepat berdasarkan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami isi ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "ikhlas",
+                "tawakal"
+            ],
+            "evidence": "Peserta didik memahami arti hanya beribadah dan memohon pertolongan kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Arti ayat 'iyyāka na'budu wa iyyāka nasta'īn' dalam Surah Al-Fatihah adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Segala puji bagi Allah, Tuhan seluruh alam"
+            },
+            {
+                "id": "B",
+                "text": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan"
+            },
+            {
+                "id": "C",
+                "text": "Tunjukilah kami jalan yang lurus"
+            },
+            {
+                "id": "D",
+                "text": "Raja pada hari pembalasan"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Ayat tersebut merupakan ikrar seorang muslim untuk hanya beribadah dan hanya memohon pertolongan kepada Allah semata.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Fatihah",
+            "arti ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000007",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat mengenali pesan pokok Surah Al-Fatihah.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "tawakal"
+            ],
+            "evidence": "Peserta didik memahami Al-Fatihah sebagai doa memohon petunjuk dari Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Pesan pokok Surah Al-Fatihah adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Perintah berzikir pada waktu pagi dan sore"
+            },
+            {
+                "id": "B",
+                "text": "Kisah para nabi terdahulu"
+            },
+            {
+                "id": "C",
+                "text": "Doa memuji Allah dan memohon petunjuk jalan yang lurus"
+            },
+            {
+                "id": "D",
+                "text": "Peringatan tentang azab neraka"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah Al-Fatihah merupakan doa lengkap: memuji Allah, mengakui hari pembalasan, dan memohon ditunjukkan jalan yang lurus.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Fatihah",
+            "pesan pokok"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000008",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat menerapkan pesan pokok Surah Al-Fatihah dalam kehidupan sehari-hari.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk mengambil keputusan dalam situasi nyata."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal",
+                "syukur"
+            ],
+            "evidence": "Peserta didik menunjukkan kebiasaan memohon petunjuk kepada Allah saat menghadapi pilihan."
+        },
+        "questionType": "MCQ",
+        "stem": "Saat merasa bingung memilih jalan yang baik, sikap yang sesuai dengan pesan Surah Al-Fatihah adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Membiarkan kebingungan itu tanpa melakukan apa-apa"
+            },
+            {
+                "id": "B",
+                "text": "Mengikuti ajakan teman tanpa berpikir"
+            },
+            {
+                "id": "C",
+                "text": "Berdoa memohon petunjuk kepada Allah seperti dalam Al-Fatihah"
+            },
+            {
+                "id": "D",
+                "text": "Menyalahkan orang lain atas kebingungannya"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah Al-Fatihah mengajarkan untuk memohon hidayah (petunjuk) kepada Allah ketika menghadapi pilihan dalam hidup.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Fatihah",
+            "penerapan"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000009",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat menjelaskan makna ungkapan dalam Surah Al-Fatihah.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna ayat."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "keteladanan"
+            ],
+            "evidence": "Peserta didik mengenal golongan yang diberi nikmat Allah sebagai teladan dalam hidup."
+        },
+        "questionType": "MCQ",
+        "stem": "Kelompok yang dimaksud 'orang-orang yang Engkau beri nikmat' (an'amta 'alaihim) dalam Surah Al-Fatihah adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Orang-orang yang dimurkai Allah"
+            },
+            {
+                "id": "B",
+                "text": "Para nabi, orang-orang yang benar, syuhada, dan orang-orang saleh"
+            },
+            {
+                "id": "C",
+                "text": "Orang-orang yang sesat"
+            },
+            {
+                "id": "D",
+                "text": "Orang-orang yang sombong"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Sesuai QS. An-Nisa ayat 69, orang-orang yang diberi nikmat oleh Allah adalah para nabi, orang-orang yang benar (shiddiqin), syuhada, dan orang-orang saleh.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Fatihah",
+            "makna ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000010",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Fatihah",
+        "indicator": "Peserta didik dapat menerapkan sikap syukur atas nikmat Al-Qur'an.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih bentuk sikap yang mencerminkan rasa syukur."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk memilih sikap yang tepat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik menunjukkan pemahaman tentang cara bersyukur atas nikmat Al-Qur'an."
+        },
+        "questionType": "MCQ",
+        "stem": "Bentuk syukur yang paling tepat setelah memahami isi Surah Al-Fatihah adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Membaca Al-Fatihah dengan lafal yang benar dan mengamalkan doanya dalam kehidupan"
+            },
+            {
+                "id": "B",
+                "text": "Membaca Al-Fatihah hanya saat ada tugas dari guru"
+            },
+            {
+                "id": "C",
+                "text": "Menghafalnya tanpa memahami artinya"
+            },
+            {
+                "id": "D",
+                "text": "Menunjukkan hafalan kepada teman agar dipuji"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Syukur atas nikmat Al-Qur'an diwujudkan dengan membaca, memahami, dan mengamalkan isinya dalam kehidupan sehari-hari.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Fatihah",
+            "syukur"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000011",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nas",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah An-Nas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal"
+            ],
+            "evidence": "Peserta didik mengenal surah perlindungan sebagai sarana bertawakal kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah An-Nas terdiri atas…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Empat ayat"
+            },
+            {
+                "id": "B",
+                "text": "Lima ayat"
+            },
+            {
+                "id": "C",
+                "text": "Enam ayat"
+            },
+            {
+                "id": "D",
+                "text": "Tujuh ayat"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah An-Nas adalah surah ke-114 dalam Al-Qur'an yang terdiri atas enam ayat.",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nas",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000012",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nas",
+        "indicator": "Peserta didik dapat mengenali pesan pokok Surah An-Nas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal"
+            ],
+            "evidence": "Peserta didik memahami pentingnya memohon perlindungan kepada Allah dari gangguan setan."
+        },
+        "questionType": "MCQ",
+        "stem": "Pesan pokok Surah An-Nas adalah memohon perlindungan kepada Allah dari…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Bahaya binatang buas"
+            },
+            {
+                "id": "B",
+                "text": "Bisikan setan yang menghasut dari kalangan jin dan manusia"
+            },
+            {
+                "id": "C",
+                "text": "Kesulitan mencari rezeki"
+            },
+            {
+                "id": "D",
+                "text": "Sikap orang-orang yang kafir"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah An-Nas mengajarkan memohon perlindungan kepada Raja manusia dari kejahatan setan yang membisikkan keburukan, baik dari jin maupun manusia.",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nas",
+            "pesan pokok"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000013",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nas",
+        "indicator": "Peserta didik dapat menyebutkan nama lain Surah An-Nas dan Al-Falaq.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal"
+            ],
+            "evidence": "Peserta didik mengenal surah perlindungan sebagai sarana bertawakal kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah An-Nas dan Surah Al-Falaq sering dibaca untuk memohon perlindungan sehingga keduanya disebut juga…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Al-Mu'awwidzatain"
+            },
+            {
+                "id": "B",
+                "text": "As-Sab'ul Matsani"
+            },
+            {
+                "id": "C",
+                "text": "Ummul Kitab"
+            },
+            {
+                "id": "D",
+                "text": "Al-Kautsar"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Al-Mu'awwidzatain berarti dua surah perlindungan, yaitu Surah Al-Falaq dan Surah An-Nas yang keduanya berisi doa perlindungan kepada Allah.",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nas",
+            "Al-Falaq",
+            "muawwidzatain"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000014",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nas",
+        "indicator": "Peserta didik dapat menjelaskan tiga sebutan Allah dalam Surah An-Nas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman arti ayat."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal",
+                "syukur"
+            ],
+            "evidence": "Peserta didik memahami kebesaran Allah sebagai tempat memohon perlindungan."
+        },
+        "questionType": "MCQ",
+        "stem": "Dalam Surah An-Nas, Allah disebut dengan tiga sebutan, yaitu Rabb (Pemelihara), Malik (Raja), dan Ilah (Sembahan) dari…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Para malaikat"
+            },
+            {
+                "id": "B",
+                "text": "Seluruh manusia"
+            },
+            {
+                "id": "C",
+                "text": "Kaum mukminin"
+            },
+            {
+                "id": "D",
+                "text": "Para nabi"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah An-Nas menyebut Allah sebagai Rabbun-nas (Pemelihara manusia), Malikin-nas (Raja manusia), dan Ilahin-nas (Sembahan manusia).",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nas",
+            "arti ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000015",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nas",
+        "indicator": "Peserta didik dapat menerapkan pesan Surah An-Nas dalam situasi sehari-hari.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk memilih sikap yang tepat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal"
+            ],
+            "evidence": "Peserta didik menunjukkan kebiasaan memohon perlindungan kepada Allah saat menghadapi godaan keburukan."
+        },
+        "questionType": "MCQ",
+        "stem": "Ketika ada teman mengajakmu berbuat nakal dan hatimu tergoda, tindakan yang sesuai dengan pesan Surah An-Nas adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Mengikuti ajakannya agar tidak dibilang penakut"
+            },
+            {
+                "id": "B",
+                "text": "Memohon perlindungan kepada Allah dari bisikan setan lalu menolak ajakan tersebut"
+            },
+            {
+                "id": "C",
+                "text": " diam saja tetapi ikut melihat mereka berbuat nakal"
+            },
+            {
+                "id": "D",
+                "text": "Menyalahkan teman di depan banyak orang"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah An-Nas mengajarkan untuk berlindung kepada Allah dari kejahatan setan yang membisikkan keburukan, sehingga kita kuat menolak ajakan berbuat maksiat.",
+        "difficulty": "medium",
+        "tags": [
+            "An-Nas",
+            "penerapan"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000016",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nas",
+        "indicator": "Peserta didik dapat menjelaskan makna sifat setan dalam Surah An-Nas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna kata."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna kata dalam ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal",
+                "kehati-hatian"
+            ],
+            "evidence": "Peserta didik memahami pentingnya mewaspadai bisikan setan dengan berlindung kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Setan dalam Surah An-Nas digambarkan sebagai 'al-waswas al-khannas'. Makna ungkapan tersebut adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Bisikan yang bersembunyi, muncul saat manusia lupa lalu menghilang saat manusia ingat kepada Allah"
+            },
+            {
+                "id": "B",
+                "text": "Makhluk yang selalu membantu manusia"
+            },
+            {
+                "id": "C",
+                "text": "Angin yang berhembus pada malam hari"
+            },
+            {
+                "id": "D",
+                "text": "Bayangan yang muncul di siang hari"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Al-waswas berarti pembisik, dan al-khannas berarti yang menghilang mundur. Setan membisikkan keburukan lalu mundur ketika manusia mengingat Allah.",
+        "difficulty": "medium",
+        "tags": [
+            "An-Nas",
+            "makna ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000017",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Falaq",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah Al-Falaq.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal"
+            ],
+            "evidence": "Peserta didik mengenal surah perlindungan sebagai sarana bertawakal kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah Al-Falaq merupakan surah yang terletak setelah Surah An-Nasr dan terdiri atas…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Tiga ayat"
+            },
+            {
+                "id": "B",
+                "text": "Empat ayat"
+            },
+            {
+                "id": "C",
+                "text": "Lima ayat"
+            },
+            {
+                "id": "D",
+                "text": "Enam ayat"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah Al-Falaq adalah surah ke-113 dalam Al-Qur'an yang terdiri atas lima ayat.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Falaq",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000018",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Falaq",
+        "indicator": "Peserta didik dapat menjelaskan arti kata dalam Surah Al-Falaq.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna kata."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat arti kata yang telah dipelajari."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal"
+            ],
+            "evidence": "Peserta didik memahami kebesaran Allah yang menciptakan alam semesta sebagai tempat bergantung."
+        },
+        "questionType": "MCQ",
+        "stem": "Kata 'al-falaq' dalam ayat pertama Surah Al-Falaq berarti…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Waktu subuh ketika matahari terbit"
+            },
+            {
+                "id": "B",
+                "text": "Waktu magrib ketika matahari terbenam"
+            },
+            {
+                "id": "C",
+                "text": "Tengah malam"
+            },
+            {
+                "id": "D",
+                "text": "Waktu shalat Jumat"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Al-falaq berarti waktu subuh. Ayat tersebut mengajarkan berlindung kepada Allah yang menguasai waktu subuh, simbol awal dan cahaya kehidupan.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Falaq",
+            "arti kata"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000019",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Falaq",
+        "indicator": "Peserta didik dapat mengenali pesan pokok Surah Al-Falaq.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal",
+                "keteguhan"
+            ],
+            "evidence": "Peserta didik memahami pentingnya bertawakal kepada Allah dari segala kejahatan."
+        },
+        "questionType": "MCQ",
+        "stem": "Pesan pokok Surah Al-Falaq adalah memohon perlindungan kepada Allah dari…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Kejahatan makhluk ciptaan-Nya, kegelapan malam, penyihir, dan orang yang dengki"
+            },
+            {
+                "id": "B",
+                "text": "Kesulitan belajar di sekolah"
+            },
+            {
+                "id": "C",
+                "text": "Bencana alam seperti banjir dan gempa"
+            },
+            {
+                "id": "D",
+                "text": "Orang yang tidak membayar utang"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Surah Al-Falaq berisi doa perlindungan dari kejahatan yang diciptakan Allah, kegelapan malam, orang yang meniup pada buhul (praktik sihir), dan orang yang dengki.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Falaq",
+            "pesan pokok"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000020",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Falaq",
+        "indicator": "Peserta didik dapat menjelaskan arti ayat dalam Surah Al-Falaq.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih arti ayat yang tepat berdasarkan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami isi ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal",
+                "kehati-hatian"
+            ],
+            "evidence": "Peserta didik memahami pentingnya berlindung dari kegelapan yang menjadi tempat bahaya."
+        },
+        "questionType": "MCQ",
+        "stem": "Arti ayat 'wa min syarri gāsiqin idzā waqab' dalam Surah Al-Falaq adalah memohon perlindungan dari…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Kegelapan malam ketika gelap gulita"
+            },
+            {
+                "id": "B",
+                "text": "Panasnya sinar matahari siang hari"
+            },
+            {
+                "id": "C",
+                "text": "Hujan yang turun sangat deras"
+            },
+            {
+                "id": "D",
+                "text": "Angin kencang pada musim badai"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Al-ghasiq berarti kegelapan malam dan waqab berarti gelap gulita. Kita berlindung kepada Allah dari bahaya yang tersembunyi dalam kegelapan malam.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Falaq",
+            "arti ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000021",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Falaq",
+        "indicator": "Peserta didik dapat menerapkan pesan Surah Al-Falaq dalam kebiasaan sehari-hari.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih kebiasaan yang mencerminkan pemahaman pesan surah."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk membentuk kebiasaan yang baik."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tawakal",
+                "keteguhan"
+            ],
+            "evidence": "Peserta didik menunjukkan kebiasaan berlindung kepada Allah sebelum beraktivitas atau tidur."
+        },
+        "questionType": "MCQ",
+        "stem": "Sebelum tidur, Rasulullah SAW menganjurkan membaca Al-Mu'awwidzatain yaitu Surah Al-Falaq dan An-Nas. Hal ini bertujuan untuk…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Memohon perlindungan Allah dari kejahatan dan gangguan selama tidur"
+            },
+            {
+                "id": "B",
+                "text": "Mempercepat waktu tidur"
+            },
+            {
+                "id": "C",
+                "text": "Agar dapat bermimpi yang indah"
+            },
+            {
+                "id": "D",
+                "text": "Menggantikan salat Isya"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Membaca Surah Al-Falaq dan An-Nas sebelum tidur adalah sunnah Nabi SAW untuk memohon perlindungan Allah dari kejahatan dan gangguan setan.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Falaq",
+            "penerapan",
+            "sunnah"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000022",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Falaq",
+        "indicator": "Peserta didik dapat menjelaskan sikap orang yang dengki sebagaimana disebut dalam Surah Al-Falaq.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna ayat."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "keteguhan",
+                "kehati-hatian"
+            ],
+            "evidence": "Peserta didik memahami buruknya sifat dengki dan pentingnya berlindung darinya."
+        },
+        "questionType": "MCQ",
+        "stem": "Ayat terakhir Surah Al-Falaq memohon perlindungan dari orang yang dengki. Orang yang dengki (hasad) adalah orang yang…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Selalu ikut senang atas kebahagiaan orang lain"
+            },
+            {
+                "id": "B",
+                "text": "Tidak suka melihat nikmat orang lain dan ingin nikmat itu hilang"
+            },
+            {
+                "id": "C",
+                "text": "Suka memberi bantuan kepada tetangga"
+            },
+            {
+                "id": "D",
+                "text": "Rajin beribadah di masjid"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Orang yang dengki (hasad) tidak suka melihat orang lain mendapat nikmat dan berharap nikmat itu hilang. Kita berlindung kepada Allah dari orang yang memiliki sifat tersebut.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Falaq",
+            "makna ayat",
+            "hasad"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000023",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Ikhlas",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah Al-Ikhlas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tauhid"
+            ],
+            "evidence": "Peserta didik mengenal Surah Al-Ikhlas sebagai surah tauhid yang patut dihafal dan diamalkan."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah Al-Ikhlas adalah surah ke-112 dalam Al-Qur'an yang terdiri atas…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Tiga ayat"
+            },
+            {
+                "id": "B",
+                "text": "Empat ayat"
+            },
+            {
+                "id": "C",
+                "text": "Lima ayat"
+            },
+            {
+                "id": "D",
+                "text": "Enam ayat"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah Al-Ikhlas terdiri atas empat ayat dan berisi tentang kesaan (ke-Esa-an) Allah sehingga disebut juga surah tauhid.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Ikhlas",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000024",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Ikhlas",
+        "indicator": "Peserta didik dapat mengenali makna nama Surah Al-Ikhlas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tauhid",
+                "ikhlas"
+            ],
+            "evidence": "Peserta didik memahami makna ikhlas sebagai memurnikan ibadah hanya untuk Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Nama 'Al-Ikhlas' berasal dari bahasa Arab yang berarti 'memurnikan'. Surah ini dinamai Al-Ikhlas karena isinya memurnikan…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Cara membaca Al-Qur'an dengan tartil"
+            },
+            {
+                "id": "B",
+                "text": "Ketauhidan kepada Allah dengan tidak menyekutukan-Nya"
+            },
+            {
+                "id": "C",
+                "text": "Hafalan surah-surah pendek"
+            },
+            {
+                "id": "D",
+                "text": "Bacaan salat berjamaah"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah Al-Ikhlas dinamai demikian karena memurnikan (mengikhlaskan) tauhid, yaitu keyakinan bahwa Allah Maha Esa tanpa menyekutukan-Nya dengan apa pun.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Ikhlas",
+            "makna nama surah"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000025",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Ikhlas",
+        "indicator": "Peserta didik dapat menyebutkan makna 'al-Ahad' dalam Surah Al-Ikhlas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna kata."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat arti kata yang telah dipelajari."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tauhid"
+            ],
+            "evidence": "Peserta didik memahami ke-Esa-an Allah sebagai inti ajaran Surah Al-Ikhlas."
+        },
+        "questionType": "MCQ",
+        "stem": "Dalam Surah Al-Ikhlas ayat pertama, Allah disebut 'al-Ahad'. Makna 'al-Ahad' adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Maha Esa"
+            },
+            {
+                "id": "B",
+                "text": "Maha Melihat"
+            },
+            {
+                "id": "C",
+                "text": "Maha Mendengar"
+            },
+            {
+                "id": "D",
+                "text": "Maha Mengetahui"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Al-Ahad berarti Maha Esa. Allah tidak ada yang serupa atau membandingkan dengan-Nya.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Ikhlas",
+            "arti kata"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000026",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Ikhlas",
+        "indicator": "Peserta didik dapat menjelaskan makna 'ash-Shamad' dalam Surah Al-Ikhlas.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna kata."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna kata dalam ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tauhid",
+                "tawakal"
+            ],
+            "evidence": "Peserta didik memahami bahwa hanya Allah tempat bergantung segala kebutuhan."
+        },
+        "questionType": "MCQ",
+        "stem": "Makna 'ash-Shamad' dalam Surah Al-Ikhlas adalah Allah sebagai…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Tempat bergantung dan meminta segala sesuatu kebutuhan"
+            },
+            {
+                "id": "B",
+                "text": "Tempat bersembunyi ketika merasa takut"
+            },
+            {
+                "id": "C",
+                "text": "Tempat beristirahat pada malam hari"
+            },
+            {
+                "id": "D",
+                "text": "Tempat bermain bagi anak-anak"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Ash-Shamad berarti tempat bergantung dan permintaan segala sesuatu. Seluruh makhluk membutuhkan Allah, sedangkan Allah tidak membutuhkan siapa pun.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Ikhlas",
+            "arti kata"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000027",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Ikhlas",
+        "indicator": "Peserta didik dapat menjelaskan arti ayat 'lam yalid wa lam yulad'.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih arti ayat yang tepat berdasarkan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami isi ayat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tauhid"
+            ],
+            "evidence": "Peserta didik memahami keunikan Allah yang tidak beranak dan tidak diperanakkan."
+        },
+        "questionType": "MCQ",
+        "stem": "Arti ayat 'lam yalid wa lam yulad' dalam Surah Al-Ikhlas adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Allah tidak beranak dan tidak diperanakkan"
+            },
+            {
+                "id": "B",
+                "text": "Allah menciptakan anak keturunan"
+            },
+            {
+                "id": "C",
+                "text": "Allah tidak memiliki rumah tempat tinggal"
+            },
+            {
+                "id": "D",
+                "text": "Allah tidak pernah berbicara dengan manusia"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Lam yalid wa lam yulad berarti Allah tidak beranak dan tidak diperanakkan. Ini menegaskan ke-Esa-an Allah yang tidak seperti makhluk-Nya.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Ikhlas",
+            "arti ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000028",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Ikhlas",
+        "indicator": "Peserta didik dapat menerapkan pesan tauhid Surah Al-Ikhlas dalam situasi sehari-hari.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk mengambil keputusan dalam situasi nyata."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "tauhid",
+                "keteguhan"
+            ],
+            "evidence": "Peserta didik menunjukkan keteguhan iman dengan hanya menyembah Allah dalam keadaan apa pun."
+        },
+        "questionType": "MCQ",
+        "stem": "Ada teman yang menyuruhmu ikut menyembah patung di rumahnya. Sikap yang sesuai dengan pesan Surah Al-Ikhlas adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Ikut menyembah agar tidak dianggap aneh"
+            },
+            {
+                "id": "B",
+                "text": "Menolak dengan sopan karena hanya Allah yang patut disembah"
+            },
+            {
+                "id": "C",
+                "text": "Diam saja tanpa mengambil keputusan"
+            },
+            {
+                "id": "D",
+                "text": "Ikut sesekali agar teman senang"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah Al-Ikhlas menegaskan bahwa Allah Maha Esa dan hanya Dialah yang patut disembah. Seorang muslim harus teguh menolak menyekutukan Allah dengan sopan santun.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Ikhlas",
+            "penerapan",
+            "tauhid"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000029",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nasr",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah An-Nasr.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik mengenal Surah An-Nasr sebagai pengingat untuk bersyukur atas pertolongan Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah An-Nasr merupakan surah Madaniyah yang terdiri atas…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Dua ayat"
+            },
+            {
+                "id": "B",
+                "text": "Tiga ayat"
+            },
+            {
+                "id": "C",
+                "text": "Empat ayat"
+            },
+            {
+                "id": "D",
+                "text": "Lima ayat"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah An-Nasr adalah surah ke-110 dalam Al-Qur'an yang terdiri atas tiga ayat dan termasuk golongan surah Madaniyah.",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nasr",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000030",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nasr",
+        "indicator": "Peserta didik dapat mengenali isi pokok Surah An-Nasr.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik memahami pertolongan Allah kepada Rasulullah SAW sebagai bentuk kasih sayang yang patut disyukuri."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah An-Nasr mengisahkan datangnya pertolongan Allah dan kemenangan yang diberikan kepada…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Nabi Nuh AS"
+            },
+            {
+                "id": "B",
+                "text": "Nabi Ibrahim AS"
+            },
+            {
+                "id": "C",
+                "text": "Nabi Muhammad SAW"
+            },
+            {
+                "id": "D",
+                "text": "Nabi Musa AS"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah An-Nasr menggambarkan pertolongan Allah dan kemenangan Islam yang diberikan kepada Nabi Muhammad SAW, ditandai banyaknya manusia yang masuk agama Allah.",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nasr",
+            "isi surah"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000031",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nasr",
+        "indicator": "Peserta didik dapat mengenali pesan pokok Surah An-Nasr.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "istighfar",
+                "tawadhu"
+            ],
+            "evidence": "Peserta didik memahami bahwa kemenangan harus disambut dengan tasbih, pujian, dan ampunan kepada Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Ketika pertolongan dan kemenangan Allah datang, Surah An-Nasr mengajarkan untuk…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Bertasbih memuji Allah dan memohon ampunan kepada-Nya"
+            },
+            {
+                "id": "B",
+                "text": "Berpesta pora merayakan kemenangan"
+            },
+            {
+                "id": "C",
+                "text": "Menyombongkan kehebatan diri sendiri"
+            },
+            {
+                "id": "D",
+                "text": "Berkumpul dengan teman tanpa beribadah"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Surah An-Nasr mengajarkan untuk bertasbih (subhanallah), bertahmid (alhamdulillah), dan memohon ampunan (istighfar) ketika mendapat pertolongan dan kemenangan dari Allah.",
+        "difficulty": "medium",
+        "tags": [
+            "An-Nasr",
+            "pesan pokok"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000032",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nasr",
+        "indicator": "Peserta didik dapat menerapkan sikap syukur dan tawadhu sesuai pesan Surah An-Nasr.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk memilih sikap yang tepat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "tawadhu"
+            ],
+            "evidence": "Peserta didik menunjukkan sikap tawadhu dan bersyukur saat berhasil, tidak sombong."
+        },
+        "questionType": "MCQ",
+        "stem": "Kamu memenangkan lomba membaca Al-Qur'an di madrasah. Sikap yang sesuai dengan pesan Surah An-Nasr adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Mengejek teman yang kalah berlomba"
+            },
+            {
+                "id": "B",
+                "text": "Menceritakan kehebatanmu kepada semua orang"
+            },
+            {
+                "id": "C",
+                "text": "Mengucap syukur bertasbih kepada Allah dan tetap rendah hati"
+            },
+            {
+                "id": "D",
+                "text": "Merasa diri paling hebat di kelas"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Sesuai pesan Surah An-Nasr, kemenangan harus disambut dengan tasbih dan syukur kepada Allah disertai istighfar, bukan dengan sikap sombong.",
+        "difficulty": "medium",
+        "tags": [
+            "An-Nasr",
+            "penerapan",
+            "tawadhu"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000033",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nasr",
+        "indicator": "Peserta didik dapat menyebutkan makna nama Surah An-Nasr.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur"
+            ],
+            "evidence": "Peserta didik mengenal Surah An-Nasr sebagai pengingat untuk bersyukur atas pertolongan Allah."
+        },
+        "questionType": "MCQ",
+        "stem": "Nama 'An-Nasr' pada Surah An-Nasr berasal dari bahasa Arab yang berarti…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Ampunan"
+            },
+            {
+                "id": "B",
+                "text": "Pertolongan"
+            },
+            {
+                "id": "C",
+                "text": "Kesabaran"
+            },
+            {
+                "id": "D",
+                "text": "Kejujuran"
+            }
+        ],
+        "answer": "B",
+        "explanation": "An-Nasr berarti pertolongan. Surah ini dinamai demikian karena mengisahkan datangnya pertolongan dan kemenangan Allah kepada Nabi Muhammad SAW.",
+        "difficulty": "easy",
+        "tags": [
+            "An-Nasr",
+            "makna nama surah"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000034",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah An-Nasr",
+        "indicator": "Peserta didik dapat menjelaskan alasan Surah An-Nasr disebut surah perpisahan.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman isi surah."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami isi surah."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "tawadhu"
+            ],
+            "evidence": "Peserta didik memahami kesabaran dan kerendahan hati Rasulullah SAW menjelang akhir hayatnya."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah An-Nasr juga disebut 'surah perpisahan' (at-tawdi') karena…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Berisi kisah perpisahan para sahabat di Makkah"
+            },
+            {
+                "id": "B",
+                "text": "Mengisyaratkan bahwa masa kerasulan Nabi Muhammad SAW akan segera berakhir"
+            },
+            {
+                "id": "C",
+                "text": "Diturunkan saat Rasulullah SAW berhijrah ke Madinah"
+            },
+            {
+                "id": "D",
+                "text": "Berisi kisah sahabat yang berpisah dengan keluarganya"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Setelah turunnya Surah An-Nasr, Nabi Muhammad SAW memahami bahwa tugas kerasulannya hampir selesai sehingga surah ini menandakan datangnya ajal beliau.",
+        "difficulty": "medium",
+        "tags": [
+            "An-Nasr",
+            "makna surah"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000035",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kafirun",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah Al-Kafirun.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "keteguhan",
+                "toleransi"
+            ],
+            "evidence": "Peserta didik mengenal Surah Al-Kafirun sebagai surah tentang keteguhan iman dan toleransi."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah Al-Kafirun adalah surah ke-109 dalam Al-Qur'an yang terdiri atas…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Empat ayat"
+            },
+            {
+                "id": "B",
+                "text": "Lima ayat"
+            },
+            {
+                "id": "C",
+                "text": "Enam ayat"
+            },
+            {
+                "id": "D",
+                "text": "Tujuh ayat"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah Al-Kafirun terdiri atas enam ayat dan termasuk golongan surah Makkiyah yang diturunkan di Makkah.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Kafirun",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000036",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kafirun",
+        "indicator": "Peserta didik dapat menjelaskan arti ayat terakhir Surah Al-Kafirun.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih arti ayat yang tepat berdasarkan pemahamannya."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat arti ayat yang telah dipelajari."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "toleransi",
+                "keteguhan"
+            ],
+            "evidence": "Peserta didik memahami sikap menghormati keyakinan orang lain tanpa mencampuradukkan ibadah."
+        },
+        "questionType": "MCQ",
+        "stem": "Arti 'lakum dinukum waliyadin' pada ayat terakhir Surah Al-Kafirun adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Aku tidak menyembah apa yang kamu sembah"
+            },
+            {
+                "id": "B",
+                "text": "Untukmu agamamu dan untukku agamaku"
+            },
+            {
+                "id": "C",
+                "text": "Kepada-Kulah kafir-kafir itu tidak mau beribadah"
+            },
+            {
+                "id": "D",
+                "text": "Aku tidak akan menyembah apa yang kamu sembah"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Lakum dinukum waliyadin berarti 'untukmu agamamu dan untukku agamaku'. Ayat ini menunjukkan sikap toleransi dengan tetap teguh pada keyakinan masing-masing.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Kafirun",
+            "arti ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000037",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kafirun",
+        "indicator": "Peserta didik dapat mengenali pesan pokok Surah Al-Kafirun.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih pesan pokok surah yang sesuai dengan pemahamannya."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami pesan pokok surah."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "keteguhan",
+                "toleransi"
+            ],
+            "evidence": "Peserta didik memahami pentingnya teguh dalam tauhid sekaligus toleran terhadap pemeluk agama lain."
+        },
+        "questionType": "MCQ",
+        "stem": "Pesan pokok Surah Al-Kafirun adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Perintah memutus hubungan silaturahmi dengan penganut agama lain"
+            },
+            {
+                "id": "B",
+                "text": "Izin untuk mencampuradukkan ibadah antaragama"
+            },
+            {
+                "id": "C",
+                "text": "Menegakkan tauhid dengan sikap toleransi tanpa mencampuradukkan ibadah"
+            },
+            {
+                "id": "D",
+                "text": "Perintah memaksa orang lain untuk memeluk Islam"
+            }
+        ],
+        "answer": "C",
+        "explanation": "Surah Al-Kafirun mengajarkan keteguhan dalam tauhid, yaitu tidak menyembah selain Allah, disertai sikap toleransi dengan tidak mengganggu ibadah penganut agama lain.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Kafirun",
+            "pesan pokok"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000038",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kafirun",
+        "indicator": "Peserta didik dapat menerapkan sikap toleransi sesuai pesan Surah Al-Kafirun.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk mengambil keputusan dalam situasi nyata."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "toleransi",
+                "keteguhan"
+            ],
+            "evidence": "Peserta didik menunjukkan sikap menghormati pemeluk agama lain tanpa meninggalkan keyakinannya."
+        },
+        "questionType": "MCQ",
+        "stem": "Tetangmamu yang beragama lain sedang melaksanakan ibadah di rumah ibadahnya. Sikap yang sesuai dengan pesan Surah Al-Kafirun adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Mengganggu ibadahnya karena berbeda keyakinan"
+            },
+            {
+                "id": "B",
+                "text": "Menghormati dan tidak mengganggu ibadahnya, tetapi tetap teguh menjalankan agamamu"
+            },
+            {
+                "id": "C",
+                "text": "Ikut beribadah di rumah ibadahnya agar dianggap baik"
+            },
+            {
+                "id": "D",
+                "text": "Menegurnya karena beribadah di tempat umum"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah Al-Kafirun mengajarkan toleransi, yaitu menghormati orang lain yang sedang beribadah, sambil tetap teguh menjalankan ajaran Islam tanpa mencampuradukkan ibadah.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Kafirun",
+            "penerapan",
+            "toleransi"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000039",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kafirun",
+        "indicator": "Peserta didik dapat menyebutkan keutamaan membaca Surah Al-Kafirun.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "keteguhan",
+                "syukur"
+            ],
+            "evidence": "Peserta didik termotivasi membiasakan membaca Al-Qur'an sebagai wujud syukur atas nikmat wahyu."
+        },
+        "questionType": "MCQ",
+        "stem": "Menurut hadis Rasulullah SAW, keutamaan membaca Surah Al-Kafirun adalah setara dengan…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Membaca sepertiga Al-Qur'an"
+            },
+            {
+                "id": "B",
+                "text": "Membaca satu perempat Al-Qur'an"
+            },
+            {
+                "id": "C",
+                "text": "Membaca separuh Al-Qur'an"
+            },
+            {
+                "id": "D",
+                "text": "Membaca seluruh Al-Qur'an"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Rasulullah SAW bersabda bahwa membaca Surah Al-Kafirun memberikan pahala seperti membaca seperempat Al-Qur'an karena isinya menegaskan tauhid.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Kafirun",
+            "keutamaan surah"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000040",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kautsar",
+        "indicator": "Peserta didik dapat menyebutkan jumlah ayat Surah Al-Kautsar.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan materi yang dipelajari."
+        },
+        "cognitiveLevel": "C1",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik mengingat pengetahuan yang telah dipelajari untuk menjawab soal."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "kedermawanan"
+            ],
+            "evidence": "Peserta didik mengenal Surah Al-Kautsar sebagai surah tentang nikmat yang patut disyukuri."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah Al-Kautsar adalah surah terpendek dalam Al-Qur'an yang terdiri atas…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Dua ayat"
+            },
+            {
+                "id": "B",
+                "text": "Tiga ayat"
+            },
+            {
+                "id": "C",
+                "text": "Empat ayat"
+            },
+            {
+                "id": "D",
+                "text": "Lima ayat"
+            }
+        ],
+        "answer": "B",
+        "explanation": "Surah Al-Kautsar adalah surah ke-108 dalam Al-Qur'an yang terdiri atas tiga ayat sehingga menjadi surah terpendek dalam Al-Qur'an.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Kautsar",
+            "jumlah ayat"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000041",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kautsar",
+        "indicator": "Peserta didik dapat menjelaskan makna 'Al-Kautsar'.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih jawaban yang sesuai berdasarkan pemahaman makna kata."
+        },
+        "cognitiveLevel": "C2",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menggunakan pengetahuan untuk memahami makna kata."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "kedermawanan"
+            ],
+            "evidence": "Peserta didik memahami kelimpahan nikmat dari Allah yang patut disyukuri dan dibagikan."
+        },
+        "questionType": "MCQ",
+        "stem": "Makna 'Al-Kautsar' dalam Surah Al-Kautsar adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Nikmat yang banyak, termasuk sungai kemuliaan di surga yang diberikan kepada Nabi Muhammad SAW"
+            },
+            {
+                "id": "B",
+                "text": "Kemenangan besar dalam peperangan"
+            },
+            {
+                "id": "C",
+                "text": "Ampunan bagi seluruh dosa manusia"
+            },
+            {
+                "id": "D",
+                "text": "Petunjuk jalan yang lurus"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Al-Kautsar berarti nikmat yang banyak. Salah satunya adalah sungai Al-Kautsar di surga yang Allah berikan sebagai kemuliaan bagi Nabi Muhammad SAW.",
+        "difficulty": "easy",
+        "tags": [
+            "Al-Kautsar",
+            "arti kata"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    },
+    {
+        "questionId": "PAI-FB-Q000042",
+        "version": 1,
+        "status": "",
+        "phase": "B",
+        "grade": 3,
+        "subject": "Al-Qur'an Hadis",
+        "element": "Al-Qur'an",
+        "curriculumId": "KM-MADRASAH",
+        "cpId": "CP-ALQURAN-001",
+        "cpText": "Peserta didik mampu memahami dan menerapkan pesan pokok Al-Qur'an.",
+        "tpId": "TP-ALQURAN-001",
+        "tpText": "Peserta didik mampu mengenali pesan pokok surah yang dipelajari.",
+        "materialScope": "Surah Al-Kautsar",
+        "indicator": "Peserta didik dapat menerapkan sikap syukur dan dermawan sesuai pesan Surah Al-Kautsar.",
+        "sklReferences": [],
+        "contentStandardReferences": [],
+        "assessment": {
+            "purpose": "formative",
+            "domains": [
+                "knowledge"
+            ],
+            "evidence": "Peserta didik memilih sikap yang sesuai dengan pesan surah dalam situasi nyata."
+        },
+        "cognitiveLevel": "C3",
+        "cld": [
+            {
+                "dimension": "21CLD-KC",
+                "level": 1,
+                "evidence": "Peserta didik menerapkan pengetahuan untuk memilih sikap yang tepat."
+            }
+        ],
+        "kbc": {
+            "primary": "KBC-C01",
+            "values": [
+                "syukur",
+                "kedermawanan"
+            ],
+            "evidence": "Peserta didik menunjukkan sikap bersyukur atas nikmat Allah dengan berbagi kepada sesama."
+        },
+        "questionType": "MCQ",
+        "stem": "Surah Al-Kautsar mengajarkan untuk bersyukur atas nikmat Allah dan tetap beribadah kepada-Nya. Penerapan yang paling tepat dalam kehidupan sehari-hari adalah…",
+        "options": [
+            {
+                "id": "A",
+                "text": "Berbagi rezeki dengan teman yang membutuhkan sebagai wujud syukur"
+            },
+            {
+                "id": "B",
+                "text": "Menyimpan semua rezeki hanya untuk diri sendiri"
+            },
+            {
+                "id": "C",
+                "text": "Beribadah hanya ketika sedang ingin dilihat orang lain"
+            },
+            {
+                "id": "D",
+                "text": "Bersyukur hanya ketika mendapat pujian dari guru"
+            }
+        ],
+        "answer": "A",
+        "explanation": "Wujud syukur atas nikmat Allah adalah memperbanyak ibadah kepada-Nya dan berbagi nikmat tersebut dengan orang lain yang membutuhkan.",
+        "difficulty": "medium",
+        "tags": [
+            "Al-Kautsar",
+            "penerapan",
+            "kedermawanan"
+        ],
+        "qualityControl": {
+            "contentValidity": "pending",
+            "constructValidity": "pending",
+            "languageQuality": "pending",
+            "biasCheck": "pending"
+        },
+        "createdAt": "2026-09-27T10:07:57.186Z",
+        "updatedAt": "2026-09-27T10:07:57.186Z"
+    }
+]
