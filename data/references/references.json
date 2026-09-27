@@ -1,0 +1,62 @@
+[
+    {
+        "referenceId": "REF-KM-001",
+        "type": "CURRICULUM",
+        "title": "Kurikulum Madrasah",
+        "issuer": "Kementerian Agama Republik Indonesia",
+        "description": "Reference record untuk dokumen kurikulum madrasah yang digunakan dalam pemetaan bank soal.",
+        "versions": [
+            {
+                "version": "current",
+                "status": "active"
+            }
+        ],
+        "currentVersion": "current",
+        "tags": [
+            "madrasah",
+            "kurikulum",
+            "kurikulum-merdeka"
+        ],
+        "status": "active"
+    },
+    {
+        "referenceId": "REF-21CLD-001",
+        "type": "FRAMEWORK",
+        "title": "21st Century Learning Design",
+        "issuer": "Microsoft",
+        "description": "Reference record untuk framework 21CLD yang digunakan sebagai metadata desain pembelajaran dan soal.",
+        "versions": [
+            {
+                "version": "current",
+                "status": "active"
+            }
+        ],
+        "currentVersion": "current",
+        "tags": [
+            "21cld",
+            "learning-design",
+            "skills"
+        ],
+        "status": "active"
+    },
+    {
+        "referenceId": "REF-KBC-001",
+        "type": "FRAMEWORK",
+        "title": "Kurikulum Berbasis Cinta",
+        "issuer": "Kementerian Agama Republik Indonesia",
+        "description": "Reference record untuk framework Kurikulum Berbasis Cinta.",
+        "versions": [
+            {
+                "version": "current",
+                "status": "active"
+            }
+        ],
+        "currentVersion": "current",
+        "tags": [
+            "kbc",
+            "madrasah",
+            "character"
+        ],
+        "status": "active"
+    }
+]

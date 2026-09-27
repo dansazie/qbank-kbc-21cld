@@ -1,0 +1,25 @@
+{
+    "name": "qbank-kbc-21cld",
+    "version": "0.1.0",
+    "description": "Library dan engine bank soal terintegrasi Kurikulum Merdeka, Kurikulum Madrasah, SKL, Standar Isi, Asesmen, 21CLD dan Kurikulum Berbasis Cinta.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/cli/index.js",
+        "dev": "tsx src/cli/index.ts",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "validate": "tsx src/cli/index.ts validate",
+        "stats": "tsx src/cli/index.ts stats",
+        "blueprint": "tsx src/cli/index.ts blueprint",
+        "api": "tsx src/api/server.ts",
+        "check": "npm run build && npm test && npm run validate && npm run stats"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.0",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2",
+        "vitest": "^2.1.8"
+    }
+}

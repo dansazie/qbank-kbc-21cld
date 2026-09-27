@@ -1,0 +1,56 @@
+{
+    "schema_version": "1.0.0",
+    "regulations": [
+        {
+            "id": "REG-UU-20-2003",
+            "type": "UU",
+            "number": "20",
+            "year": 2003,
+            "title": "Sistem Pendidikan Nasional",
+            "status": "berlaku"
+        },
+        {
+            "id": "REG-PERMENDIKDASMEN-10-2025",
+            "type": "Permendikdasmen",
+            "number": "10",
+            "year": 2025,
+            "title": "Standar Kompetensi Lulusan pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah",
+            "status": "berlaku",
+            "role": "SKL"
+        },
+        {
+            "id": "REG-PERMENDIKDASMEN-12-2025",
+            "type": "Permendikdasmen",
+            "number": "12",
+            "year": 2025,
+            "title": "Standar Isi pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah",
+            "status": "berlaku",
+            "role": "Standar Isi"
+        },
+        {
+            "id": "REG-KMA-450-2024",
+            "type": "KMA",
+            "number": "450",
+            "year": 2024,
+            "title": "Pedoman Implementasi Kurikulum pada RA, MI, MTs, MA dan MAK",
+            "status": "diubah"
+        },
+        {
+            "id": "REG-KMA-1503-2025",
+            "type": "KMA",
+            "number": "1503",
+            "year": 2025,
+            "title": "Perubahan atas KMA Nomor 450 Tahun 2024 tentang Pedoman Implementasi Kurikulum pada RA, MI, MTs, MA dan MAK",
+            "status": "berlaku",
+            "role": "Kurikulum Madrasah"
+        },
+        {
+            "id": "REG-KBC-6077-2025",
+            "type": "Kepdirjen",
+            "number": "6077",
+            "year": 2025,
+            "title": "Panduan Kurikulum Berbasis Cinta",
+            "status": "referensi"
+        }
+    ]
+}

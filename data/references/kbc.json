@@ -1,0 +1,76 @@
+{
+    "schema_version": "1.0.0",
+    "framework": {
+        "id": "FW-KBC",
+        "name": "Kurikulum Berbasis Cinta",
+        "institution": "Kementerian Agama Republik Indonesia",
+        "position": "insersi dan ruh dalam implementasi kurikulum"
+    },
+    "panca_cinta": [
+        {
+            "id": "KBC-C01",
+            "code": "cinta_allah_rasul",
+            "name": "Cinta Allah dan Rasul-Nya",
+            "values": [
+                "iman",
+                "takwa",
+                "ibadah",
+                "akhlak",
+                "keteladanan",
+                "rahmah"
+            ]
+        },
+        {
+            "id": "KBC-C02",
+            "code": "cinta_ilmu",
+            "name": "Cinta Ilmu",
+            "values": [
+                "rasa ingin tahu",
+                "belajar sepanjang hayat",
+                "berpikir kritis",
+                "kejujuran ilmiah",
+                "mengamalkan ilmu"
+            ]
+        },
+        {
+            "id": "KBC-C03",
+            "code": "cinta_lingkungan",
+            "name": "Cinta Lingkungan",
+            "values": [
+                "kepedulian",
+                "tanggung jawab",
+                "kelestarian",
+                "kebersihan",
+                "keberlanjutan"
+            ]
+        },
+        {
+            "id": "KBC-C04",
+            "code": "cinta_diri_sesama",
+            "name": "Cinta Diri dan Sesama Manusia",
+            "values": [
+                "empati",
+                "kasih sayang",
+                "toleransi",
+                "penghargaan terhadap perbedaan",
+                "gotong royong",
+                "kepedulian sosial"
+            ]
+        },
+        {
+            "id": "KBC-C05",
+            "code": "cinta_tanah_air",
+            "name": "Cinta Tanah Air",
+            "values": [
+                "persatuan",
+                "tanggung jawab kebangsaan",
+                "kepedulian",
+                "kontribusi sosial"
+            ]
+        }
+    ],
+    "source": {
+        "document": "Panduan Kurikulum Berbasis Cinta",
+        "institution": "Kementerian Agama Republik Indonesia"
+    }
+}

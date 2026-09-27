@@ -1,0 +1,40 @@
+{
+    "schema_version": "1.0.0",
+    "frameworks": {
+        "kurikulum_merdeka": {
+            "id": "FW-KM",
+            "name": "Kurikulum Merdeka",
+            "role": "curriculum"
+        },
+        "kurikulum_madrasah": {
+            "id": "FW-KM-MADRASAH",
+            "name": "Kurikulum Madrasah",
+            "role": "curriculum"
+        },
+        "skl": {
+            "id": "FW-SKL",
+            "name": "Standar Kompetensi Lulusan",
+            "role": "graduate_standard"
+        },
+        "standar_isi": {
+            "id": "FW-SI",
+            "name": "Standar Isi",
+            "role": "content_standard"
+        },
+        "asesmen": {
+            "id": "FW-ASESMEN",
+            "name": "Asesmen Pembelajaran",
+            "role": "assessment"
+        },
+        "21cld": {
+            "id": "FW-21CLD",
+            "name": "21st Century Learning Design",
+            "role": "learning_design"
+        },
+        "kbc": {
+            "id": "FW-KBC",
+            "name": "Kurikulum Berbasis Cinta",
+            "role": "value_integration"
+        }
+    }
+}

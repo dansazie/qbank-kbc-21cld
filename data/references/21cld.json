@@ -1,0 +1,49 @@
+{
+    "schema_version": "1.0.0",
+    "framework": {
+        "id": "FW-21CLD",
+        "name": "21st Century Learning Design"
+    },
+    "dimensions": [
+        {
+            "id": "21CLD-KC",
+            "code": "knowledge_construction",
+            "name": "Knowledge Construction",
+            "focus": "Peserta didik membangun pengetahuan dan menggunakannya untuk memahami atau menerapkan gagasan."
+        },
+        {
+            "id": "21CLD-COL",
+            "code": "collaboration",
+            "name": "Collaboration",
+            "focus": "Peserta didik bekerja bersama, berbagi tanggung jawab, mengambil keputusan substantif dan/atau bekerja secara interdependen."
+        },
+        {
+            "id": "21CLD-RPI",
+            "code": "real_world_problem_solving_innovation",
+            "name": "Real-world Problem Solving and Innovation",
+            "focus": "Peserta didik menyelesaikan persoalan dan mengembangkan solusi yang relevan dengan dunia nyata."
+        },
+        {
+            "id": "21CLD-SC",
+            "code": "skilled_communication",
+            "name": "Skilled Communication",
+            "focus": "Peserta didik menyampaikan gagasan secara efektif untuk tujuan dan audiens tertentu."
+        },
+        {
+            "id": "21CLD-SR",
+            "code": "self_regulation",
+            "name": "Self-Regulation",
+            "focus": "Peserta didik merencanakan, memantau dan mengevaluasi proses belajarnya."
+        },
+        {
+            "id": "21CLD-ICT",
+            "code": "ict_for_learning",
+            "name": "ICT for Learning",
+            "focus": "Peserta didik menggunakan teknologi untuk mendukung atau mentransformasi pengalaman belajar."
+        }
+    ],
+    "source": {
+        "organization": "Microsoft",
+        "url": "https://learn.microsoft.com/en-us/training/paths/21st-century-learning-design/"
+    }
+}

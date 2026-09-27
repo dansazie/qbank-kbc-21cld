@@ -1,0 +1,73 @@
+{
+    "schema_version": "1.0.0",
+    "assessment": {
+        "purposes": [
+            {
+                "id": "diagnostic",
+                "name": "Diagnostik"
+            },
+            {
+                "id": "formative",
+                "name": "Formatif"
+            },
+            {
+                "id": "summative",
+                "name": "Sumatif"
+            }
+        ],
+        "domains": [
+            {
+                "id": "knowledge",
+                "name": "Pengetahuan"
+            },
+            {
+                "id": "skill",
+                "name": "Keterampilan"
+            },
+            {
+                "id": "attitude",
+                "name": "Sikap"
+            }
+        ],
+        "cognitive_taxonomy": {
+            "id": "BLOOM-REV",
+            "name": "Revised Bloom",
+            "levels": [
+                {
+                    "id": "C1",
+                    "name": "Mengingat"
+                },
+                {
+                    "id": "C2",
+                    "name": "Memahami"
+                },
+                {
+                    "id": "C3",
+                    "name": "Menerapkan"
+                },
+                {
+                    "id": "C4",
+                    "name": "Menganalisis"
+                },
+                {
+                    "id": "C5",
+                    "name": "Mengevaluasi"
+                },
+                {
+                    "id": "C6",
+                    "name": "Mencipta"
+                }
+            ]
+        },
+        "question_types": [
+            "MCQ",
+            "MCMA",
+            "TRUE_FALSE",
+            "MATCHING",
+            "SHORT_ANSWER",
+            "ESSAY",
+            "PERFORMANCE",
+            "PROJECT"
+        ]
+    }
+}
