@@ -4,12 +4,19 @@ import {
 } from "node:fs/promises";
 
 import { QuestionService } from "../services/question.service.js";
+
 import {
     buildPortalWorksheet
 } from "../api/portal.api.js";
 
+import {
+    serializeAnswerKey
+} from "../api/worksheet.serializer.js";
+
+
 interface PortalConfig {
     fileName: string;
+    answerKeyFileName: string;
     worksheetId: string;
     title: string;
     subject: string;
@@ -18,14 +25,25 @@ interface PortalConfig {
 
 const configs: PortalConfig[] = [
     {
-        fileName: "kbc.json",
-        worksheetId: "PORTAL-KBC-001",
-        title: "Latihan KBC",
-        subject: "Al-Qur'an Hadis",
-        count: 10
+        fileName:
+            "kbc.json",
+
+        answerKeyFileName:
+            "kbc-answer-key.json",
+
+        worksheetId:
+            "PORTAL-KBC-001",
+
+        title:
+            "Latihan KBC",
+
+        subject:
+            "Al-Qur'an Hadis",
+
+        count:
+            10
     }
 ];
-
 
 export async function generatePortal() {
 
@@ -100,6 +118,21 @@ export async function generatePortal() {
             );
         }
 
+        const answerKey =
+            serializeAnswerKey(
+                config.worksheetId,
+                result.selectedQuestions
+            );
+
+        await writeFile(
+            `${outputDirectory}/${config.fileName.replace(
+                ".json",
+                "-answer-key.json"
+            )}`,
+            `${JSON.stringify(answerKey, null, 2)}\n`,
+            "utf8"
+        );
+
         const output =
             JSON.stringify(
                 result.worksheet,
@@ -115,6 +148,10 @@ export async function generatePortal() {
 
         console.log(
             `Generated: ${outputDirectory}/${config.fileName}`
+        );
+
+        console.log(
+            `Generated: ${outputDirectory}/${config.answerKeyFileName}`
         );
     }
 }

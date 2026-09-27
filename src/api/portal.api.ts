@@ -2,8 +2,10 @@ import type { Question } from "../types/question.js";
 import type { BlueprintRuleV2 } from "../types/blueprint.js";
 
 import { BlueprintEngineV2 } from "../engine/blueprint.engine.v2.js";
+
 import {
-    serializeWorksheet
+    serializeWorksheet,
+    serializeAnswerKey
 } from "./worksheet.serializer.js";
 
 export interface PortalWorksheetRequest {
@@ -41,8 +43,18 @@ export function buildPortalWorksheet(
             }
         );
 
+    const answerKey =
+        serializeAnswerKey(
+            request.worksheetId,
+            result.selected
+        );
+
     return {
         worksheet,
+
+        selectedQuestions:
+            result.selected,
+
         blueprint: {
             blueprintId:
                 request.blueprint.blueprintId,
@@ -66,4 +78,5 @@ export function buildPortalWorksheet(
                 result.warnings
         }
     };
+
 }

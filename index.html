@@ -548,62 +548,59 @@
                         <span class="px-3 py-1 bg-purple-100 text-brand-purple font-bold rounded-full text-xs">KBC
                             Kemenag & 21CLD</span>
                         <h2 class="font-fredoka text-2xl font-bold text-slate-800 mt-1">💖 Taman Cinta & Moderasi
-                            Beragama (40 Misi)</h2>
+                            Beragama</h2>
                         <p class="text-xs text-slate-500">Misi Kebajikan: Kasih Sayang, Toleransi, Gotong Royong,
                             Berbagi & Kebersamaan.</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="bg-purple-50 px-4 py-2 rounded-2xl border border-purple-200 text-right">
                             <div class="text-[10px] text-slate-500 font-bold uppercase">Kemajuan Misi</div>
-                            <div class="font-fredoka text-lg text-brand-purple font-bold"><span
-                                    id="kbcCurrentIndex">1</span> / 40</div>
+                            <div class="font-fredoka text-lg text-brand-purple font-bold">
+                                <span id="kbcCurrentIndex">1</span> /
+                                <span id="kbcTotalCount">0</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1.5 rounded-xl font-bold text-xs bg-purple-100 text-purple-700">
+                            QBank KBC Aktif
+                        </span>
+
+                        <span class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-100 text-slate-600">
+                            Fase B • Al-Qur'an Hadis
+                        </span>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <div class="flex justify-between items-center mb-3">
+                            <span id="kbcLevelBadge" class="level-badge bg-emerald-100 text-emerald-700">Tingkat 1:
+                                Pemula</span>
+                            <span id="kbcPilarTag"
+                                class="text-[10px] font-bold text-purple-700 bg-purple-100 px-2 py-1 rounded-lg">KBC:
+                                Moderasi Beragama</span>
+                        </div>
+
+                        <h3 class="font-fredoka text-lg md:text-xl font-bold text-slate-800 mb-4" id="kbcQuestionText">
+                            Loading Misi...
+                        </h3>
+
+                        <div class="space-y-3" id="kbcOptionsContainer">
+                        </div>
+
+                        <div id="kbcFeedbackBox" class="mt-6 p-4 rounded-2xl hidden">
+                            <div class="font-bold text-sm mb-1 flex items-center gap-2" id="kbcFeedbackTitle"></div>
+                            <p id="kbcFeedbackText" class="text-xs leading-relaxed"></p>
+                            <div class="mt-3 flex justify-end">
+                                <button onclick="nextKbcQuestion()"
+                                    class="px-5 py-2.5 bg-brand-purple text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-purple-700 transition bounce-hover flex items-center gap-2">
+                                    Misi Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <button onclick="filterKbcLevel(1)" id="btn-kbc-lvl-1"
-                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow">Tingkat 1:
-                        Pemula (1-10)</button>
-                    <button onclick="filterKbcLevel(2)" id="btn-kbc-lvl-2"
-                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
-                        2: Menengah (11-20)</button>
-                    <button onclick="filterKbcLevel(3)" id="btn-kbc-lvl-3"
-                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
-                        3: Mahir (21-30)</button>
-                    <button onclick="filterKbcLevel(4)" id="btn-kbc-lvl-4"
-                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
-                        4: Master (31-40)</button>
-                </div>
-
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <div class="flex justify-between items-center mb-3">
-                        <span id="kbcLevelBadge" class="level-badge bg-emerald-100 text-emerald-700">Tingkat 1:
-                            Pemula</span>
-                        <span id="kbcPilarTag"
-                            class="text-[10px] font-bold text-purple-700 bg-purple-100 px-2 py-1 rounded-lg">KBC:
-                            Moderasi Beragama</span>
-                    </div>
-
-                    <h3 class="font-fredoka text-lg md:text-xl font-bold text-slate-800 mb-4" id="kbcQuestionText">
-                        Loading Misi...
-                    </h3>
-
-                    <div class="space-y-3" id="kbcOptionsContainer">
-                    </div>
-
-                    <div id="kbcFeedbackBox" class="mt-6 p-4 rounded-2xl hidden">
-                        <div class="font-bold text-sm mb-1 flex items-center gap-2" id="kbcFeedbackTitle"></div>
-                        <p id="kbcFeedbackText" class="text-xs leading-relaxed"></p>
-                        <div class="mt-3 flex justify-end">
-                            <button onclick="nextKbcQuestion()"
-                                class="px-5 py-2.5 bg-brand-purple text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-purple-700 transition bounce-hover flex items-center gap-2">
-                                Misi Selanjutnya <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- TAB GAME HAFALAN AL-QURAN (PILIH JUZ + KATEGORI - ACAK TANPA BATAS + AUDIO) -->
@@ -1280,7 +1277,7 @@
         // BANK SOAL KBC & MODERASI BERAGAMA (40 MISI)
         // (Konteks soal disesuaikan agar tidak bermuatan perayaan yang tidak disyariatkan)
         // ==========================================
-        const kbcQuestions = [
+        let kbcQuestions = [
             { level: 1, pilar: "Kasih Sayang Keluarga", q: "1. Saat melihat Ibu sedang sibuk merapikan piring di dapur, sikap terpuji yang kamu lakukan adalah...", options: ["Segera membantu Ibu mengangkat piring bersih dengan hati-hati", "Pura-pura tidak melihat", "Meminta dibuatkan camilan", "Menyuruh adik saja"], ans: 0, explain: "Membantu orang tua adalah bukti nyata kasih sayang anak soleh." },
             { level: 1, pilar: "Moderasi Beragama", q: "2. Di sekolah, temanmu Wayan tidak sengaja menjatuhkan pensil warnanya. Sikapmu adalah...", options: ["Segera membantunya memungut pensil tanpa memandang perbedaannya", "Mengejeknya ceroboh", "Mengambil pensilnya", "Membiarkannya"], ans: 0, explain: "Tolong-menolong antar sesama adalah pilar utama Moderasi Beragama." },
             { level: 1, pilar: "21CLD: Collaboration", q: "3. Saat pembagian kelompok belajar, kamu ditempatkan bersama teman yang pendiam. Apa yang sebaiknya kamu lakukan?", options: ["Menyapa ramah dan merangkulnya ikut berpendapat secara aktif", "Mengabaikannya", "Meminta pindah kelompok", "Mengerjakan tugas sendiri"], ans: 0, explain: "Melibatkan semua teman tanpa diskriminasi adalah inti 21CLD Collaboration." },
@@ -1322,6 +1319,39 @@
             { level: 4, pilar: "Cinta Keberagaman", q: "39. Seorang teman mengejek asal daerah teman lainnya. Sikap cinta tanah air yang kamu tunjukkan adalah...", options: ["Menegur dengan santun bahwa keberagaman daerah adalah anugerah yang harus disyukuri", "Ikut menertawakan", "Membiarkan karena bukan urusanmu", "Mengajak anak lain ikut mengejek"], ans: 0, explain: "Keberagaman adalah jalinan indah bangsa Indonesia; mengejek daerah asal melukai perasaan saudara sendiri." },
             { level: 4, pilar: "21CLD: Self-Regulation", q: "40. Setelah melihat nilai rapormu belum maksimal, sikap refleksi diri yang benar adalah...", options: ["Menyusun jadwal belajar baru, mengenali kesalahanmu, dan memperbaiki cara belajar tanpa menyalahkan orang lain", "Menyalahkan guru dan teman", "Menyerah dan berhenti belajar", "Menyembunyikan rapor dari orang tua"], ans: 0, explain: "Self-Regulation adalah kemampuan menilai diri, bertanggung jawab, dan terus memperbaiki diri." }
         ];
+
+        async function loadKbcFromQBank() {
+            try {
+                if (
+                    window.portalQBank &&
+                    typeof window.portalQBank.getQuestions === "function"
+                ) {
+                    const questions =
+                        await window.portalQBank.getQuestions("kbc");
+
+                    if (
+                        Array.isArray(questions) &&
+                        questions.length > 0
+                    ) {
+                        window.kbcQuestionsFromQBank = questions;
+
+                        console.log(
+                            `QBank KBC loaded: ${questions.length} questions`
+                        );
+
+                        return questions;
+                    }
+                }
+            } catch (error) {
+                console.error(
+                    "Gagal memuat QBank KBC:",
+                    error
+                );
+            }
+
+            return kbcQuestions;
+        }
+
 
         // Jaring pengaman: memastikan kbcQuestions lengkap 40 item
         while (kbcQuestions.length < 40) {
@@ -2025,24 +2055,63 @@
         // ==========================================
         // UI & GAME CONTROLLERS
         // ==========================================
-        window.onload = function () {
+        window.onload = async function () {
             const hasSave = loadState();
+
             if (hasSave && state.playerName) {
                 document.getElementById('welcomeModal').classList.add('hidden');
                 document.getElementById('playerName').value = state.playerName;
                 document.getElementById('certPlayerName').innerText = state.playerName;
                 document.getElementById('certPlayerSchool').innerText = state.playerSchool;
-                if (Object.keys(state.mathAnswers).length >= 40) state.mathDone = true;
-                if (Object.keys(state.ipasAnswers).length >= 40) state.ipasDone = true;
-                if (Object.keys(state.kbcAnswers).length >= 40) state.kbcDone = true;
+
+                if (Object.keys(state.mathAnswers).length >= 40) {
+                    state.mathDone = true;
+                }
+
+                if (Object.keys(state.ipasAnswers).length >= 40) {
+                    state.ipasDone = true;
+                }
+
                 updateStarXpDisplay();
             }
+
+            try {
+                const portalKbcQuestions =
+                    await window.portalQBank.getQuestions("kbc");
+
+                if (
+                    Array.isArray(
+                        portalKbcQuestions
+                    ) &&
+                    portalKbcQuestions.length > 0
+                ) {
+                    kbcQuestions =
+                        portalKbcQuestions;
+
+                    window.kbcQuestionsFromQBank =
+                        portalKbcQuestions;
+                }
+            } catch (error) {
+                console.error(
+                    "Gagal memuat QBank KBC:",
+                    error
+                );
+            }
+
+            if (
+                Object.keys(state.kbcAnswers).length >=
+                kbcQuestions.length
+            ) {
+                state.kbcDone = true;
+            }
+
             renderMathQuestion();
             renderIpasQuestion();
             renderKbcQuestion();
             initQuranSetup();
             updateCertificate();
         };
+
 
         function updateStarXpDisplay() {
             document.getElementById('starScore').innerText = state.stars;
@@ -2090,12 +2159,19 @@
                 kbc: { prefix: 'kbc', name: 'Modul Taman Cinta KBC', answers: state.kbcAnswers, emoji: '💖', btnClass: 'bg-brand-purple hover:bg-purple-700' }
             }[mod];
             const correct = Object.values(cfg.answers).filter(a => a.isCorrect).length;
-            document.getElementById(cfg.prefix + 'CurrentIndex').innerText = '40';
+            document.getElementById(
+                cfg.prefix + 'CurrentIndex'
+            ).innerText =
+                mod === 'kbc'
+                    ? kbcQuestions.length
+                    : 40;
             document.getElementById(cfg.prefix + 'QuestionText').innerText = `${cfg.emoji} HEBAT! Kamu telah menuntaskan seluruh 40 soal ${cfg.name}!`;
             document.getElementById(cfg.prefix + 'OptionsContainer').innerHTML = `
                 <div class="md:col-span-2 text-center p-5 bg-white rounded-2xl border-2 border-emerald-200">
                     <div class="text-4xl mb-2">🏆</div>
-                    <p class="font-fredoka text-lg font-bold text-slate-800 mb-1">Jawaban Benar: ${correct} / 40</p>
+                    <p class="font-fredoka text-lg font-bold text-slate-800 mb-1">
+                        Jawaban Benar: ${correct} / ${mod === 'kbc' ? kbcQuestions.length : 40}
+                    </p>
                     <p class="text-xs text-slate-500 mb-4">Rapor & sertifikatmu sudah diperbarui otomatis. Kamu bisa mengulang modul ini untuk memperbaiki nilai!</p>
                     <div class="flex flex-wrap justify-center gap-3">
                         <button onclick="resetModuleAnswers('${mod}')" class="px-5 py-2.5 ${cfg.btnClass} text-white font-fredoka font-bold text-xs rounded-xl shadow transition bounce-hover flex items-center gap-2">
@@ -2372,67 +2448,219 @@
         }
 
         function renderKbcQuestion() {
-            if (state.kbcDone) { renderModuleComplete('kbc'); return; }
-            const qData = kbcQuestions[state.kbcIdx];
-            document.getElementById('kbcCurrentIndex').innerText = state.kbcIdx + 1;
-            document.getElementById('kbcQuestionText').innerText = qData.q;
-            document.getElementById('kbcPilarTag').innerText = `KBC: ${qData.pilar}`;
+            if (state.kbcDone) {
+                renderModuleComplete('kbc');
+                return;
+            }
 
-            const lvlBadge = document.getElementById('kbcLevelBadge');
-            lvlBadge.innerText = getLevelName(qData.level);
-            lvlBadge.className = `level-badge ${getLevelBadgeClass(qData.level)}`;
+            if (
+                !Array.isArray(kbcQuestions) ||
+                kbcQuestions.length === 0
+            ) {
+                document.getElementById(
+                    'kbcQuestionText'
+                ).innerText =
+                    'QBank KBC belum tersedia.';
 
-            const container = document.getElementById('kbcOptionsContainer');
+                return;
+            }
+
+            const qData =
+                kbcQuestions[state.kbcIdx];
+
+            if (!qData) {
+                state.kbcDone = true;
+                renderModuleComplete('kbc');
+                return;
+            }
+
+            document.getElementById(
+                'kbcCurrentIndex'
+            ).innerText =
+                state.kbcIdx + 1;
+
+            document.getElementById(
+                'kbcTotalCount'
+            ).innerText =
+                kbcQuestions.length;
+
+            document.getElementById(
+                'kbcQuestionText'
+            ).innerText =
+                qData.q;
+
+            document.getElementById(
+                'kbcPilarTag'
+            ).innerText =
+                `KBC: ${qData.pilar}`;
+
+            const lvlBadge =
+                document.getElementById(
+                    'kbcLevelBadge'
+                );
+
+            lvlBadge.innerText =
+                getLevelName(qData.level);
+
+            lvlBadge.className =
+                `level-badge ${getLevelBadgeClass(qData.level)}`;
+
+            const container =
+                document.getElementById(
+                    'kbcOptionsContainer'
+                );
+
             container.innerHTML = '';
 
-            const previousAnswer = state.kbcAnswers[state.kbcIdx];
+            const previousAnswer =
+                state.kbcAnswers[
+                state.kbcIdx
+                ];
 
-            qData.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                let btnStyle = "w-full text-left p-3.5 bg-white border-2 border-purple-100 hover:border-brand-purple rounded-xl transition font-bold text-xs md:text-sm text-slate-700 flex items-center gap-3";
+            qData.options.forEach(
+                (opt, idx) => {
 
-                if (previousAnswer !== undefined) {
-                    btn.disabled = true;
-                    if (idx === qData.ans) {
-                        btnStyle = "w-full text-left p-3.5 bg-purple-50 border-2 border-brand-purple rounded-xl font-bold text-xs md:text-sm text-purple-900 flex items-center gap-3";
-                    } else if (previousAnswer.selected === idx) {
-                        btnStyle = "w-full text-left p-3.5 bg-rose-50 border-2 border-rose-400 rounded-xl font-bold text-xs md:text-sm text-rose-800 flex items-center gap-3";
-                    } else {
-                        btnStyle = "w-full text-left p-3.5 bg-slate-50 border-2 border-slate-200 rounded-xl font-bold text-xs md:text-sm text-slate-400 opacity-60 flex items-center gap-3";
+                    const btn =
+                        document.createElement(
+                            'button'
+                        );
+
+                    let btnStyle =
+                        "w-full text-left p-3.5 bg-white border-2 border-purple-100 hover:border-brand-purple rounded-xl transition font-bold text-xs md:text-sm text-slate-700 flex items-center gap-3";
+
+                    if (
+                        previousAnswer !==
+                        undefined
+                    ) {
+                        btn.disabled = true;
+
+                        if (
+                            idx === qData.ans
+                        ) {
+                            btnStyle =
+                                "w-full text-left p-3.5 bg-purple-50 border-2 border-brand-purple rounded-xl font-bold text-xs md:text-sm text-purple-900 flex items-center gap-3";
+                        } else if (
+                            previousAnswer.selected ===
+                            idx
+                        ) {
+                            btnStyle =
+                                "w-full text-left p-3.5 bg-rose-50 border-2 border-rose-400 rounded-xl font-bold text-xs md:text-sm text-rose-800 flex items-center gap-3";
+                        } else {
+                            btnStyle =
+                                "w-full text-left p-3.5 bg-slate-50 border-2 border-slate-200 rounded-xl font-bold text-xs md:text-sm text-slate-400 opacity-60 flex items-center gap-3";
+                        }
                     }
+
+                    btn.className =
+                        btnStyle;
+
+                    btn.innerHTML =
+                        `<span class="w-6 h-6 rounded-full bg-purple-100 text-brand-purple font-fredoka flex items-center justify-center text-xs shrink-0">${String.fromCharCode(65 + idx)}</span><span>${opt}</span>`;
+
+                    btn.onclick =
+                        () =>
+                            checkKbcAnswer(
+                                idx
+                            );
+
+                    container.appendChild(
+                        btn
+                    );
                 }
+            );
 
-                btn.className = btnStyle;
-                btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-purple-100 text-brand-purple font-fredoka flex items-center justify-center text-xs shrink-0">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
-                btn.onclick = () => checkKbcAnswer(idx);
-                container.appendChild(btn);
-            });
+            const feedbackBox =
+                document.getElementById(
+                    'kbcFeedbackBox'
+                );
 
-            const feedbackBox = document.getElementById('kbcFeedbackBox');
-            if (previousAnswer !== undefined) {
-                feedbackBox.classList.remove('hidden', 'bg-purple-50', 'bg-red-50', 'border-purple-200', 'border-red-200');
-                const feedbackTitle = document.getElementById('kbcFeedbackTitle');
-                const feedbackText = document.getElementById('kbcFeedbackText');
-                if (previousAnswer.isCorrect) {
-                    feedbackBox.classList.add('bg-purple-50', 'border-purple-200', 'text-purple-800');
-                    feedbackTitle.innerHTML = `<i class="fa-solid fa-heart text-brand-purple text-lg"></i> Pilihan Penuh Kasih Sayang & Bijak!`;
+            if (
+                previousAnswer !==
+                undefined
+            ) {
+                feedbackBox.classList.remove(
+                    'hidden',
+                    'bg-purple-50',
+                    'bg-red-50',
+                    'border-purple-200',
+                    'border-red-200'
+                );
+
+                const feedbackTitle =
+                    document.getElementById(
+                        'kbcFeedbackTitle'
+                    );
+
+                const feedbackText =
+                    document.getElementById(
+                        'kbcFeedbackText'
+                    );
+
+                if (
+                    previousAnswer.isCorrect
+                ) {
+                    feedbackBox.classList.add(
+                        'bg-purple-50',
+                        'border-purple-200',
+                        'text-purple-800'
+                    );
+
+                    feedbackTitle.innerHTML =
+                        `<i class="fa-solid fa-heart text-brand-purple text-lg"></i> Pilihan Penuh Kasih Sayang & Bijak!`;
                 } else {
-                    feedbackBox.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
-                    feedbackTitle.innerHTML = `<i class="fa-solid fa-hand-holding-heart text-red-600 text-lg"></i> Mari Refleksikan Pilihan Karaktermu!`;
+                    feedbackBox.classList.add(
+                        'bg-red-50',
+                        'border-red-200',
+                        'text-red-800'
+                    );
+
+                    feedbackTitle.innerHTML =
+                        `<i class="fa-solid fa-hand-holding-heart text-red-600 text-lg"></i> Mari Refleksikan Pilihan Karaktermu!`;
                 }
-                feedbackText.innerText = qData.explain;
+
+                feedbackText.innerText =
+                    qData.explain;
+
             } else {
-                feedbackBox.classList.add('hidden');
+                feedbackBox.classList.add(
+                    'hidden'
+                );
             }
         }
 
+
         function checkKbcAnswer(selectedIdx) {
-            if (state.kbcAnswers[state.kbcIdx] !== undefined) return;
+            if (
+                state.kbcAnswers[
+                state.kbcIdx
+                ] !== undefined
+            ) {
+                return;
+            }
 
-            const qData = kbcQuestions[state.kbcIdx];
-            const isCorrect = (selectedIdx === qData.ans);
+            const qData =
+                kbcQuestions[
+                state.kbcIdx
+                ];
 
-            state.kbcAnswers[state.kbcIdx] = { selected: selectedIdx, isCorrect: isCorrect };
+            if (!qData) {
+                return;
+            }
+
+            const isCorrect =
+                selectedIdx ===
+                qData.ans;
+
+            state.kbcAnswers[
+                state.kbcIdx
+            ] = {
+                selected:
+                    selectedIdx,
+
+                isCorrect:
+                    isCorrect
+            };
+
             saveState();
 
             if (isCorrect) {
@@ -2445,17 +2673,34 @@
             renderKbcQuestion();
         }
 
+
         function nextKbcQuestion() {
             playSound('click');
-            if (state.kbcIdx < kbcQuestions.length - 1) {
+
+            if (
+                state.kbcIdx <
+                kbcQuestions.length - 1
+            ) {
                 state.kbcIdx++;
+
                 renderKbcQuestion();
+
             } else {
-                state.kbcDone = true;
+                state.kbcDone =
+                    true;
+
                 renderKbcQuestion();
-                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: {
+                        y: 0.6
+                    }
+                });
             }
         }
+
 
         // ==================== KALKULASI RAPOR & SERTIFIKAT DINAMIS ====================
         function calculateScores() {
