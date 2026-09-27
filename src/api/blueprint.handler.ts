@@ -16,6 +16,10 @@ import type {
 } from "../types/question.js";
 
 import {
+    serializeWorksheet
+} from "./worksheet.serializer.js";
+
+import {
     questionService
 } from "./repositories.js";
 
@@ -57,9 +61,6 @@ const difficulties = [
     "hard"
 ] as const;
 
-type Difficulty =
-    typeof difficulties[number];
-
 interface BlueprintRequest
     extends Omit<
         BlueprintRuleV2,
@@ -67,6 +68,9 @@ interface BlueprintRequest
     > {
     count: number;
 }
+
+type Difficulty =
+    typeof difficulties[number];
 
 function isRecord(
     value: unknown
@@ -156,7 +160,8 @@ function distributionTotal(
         ): number => {
 
             if (
-                typeof item !== "number"
+                typeof item !==
+                "number"
             ) {
                 return total;
             }
@@ -166,7 +171,6 @@ function distributionTotal(
         0
     );
 }
-
 
 function validateRequest(
     body: unknown
@@ -233,7 +237,8 @@ function validateRequest(
 
     if (
         body.phase !== undefined &&
-        typeof body.phase !== "string"
+        typeof body.phase !==
+        "string"
     ) {
 
         return {
@@ -245,7 +250,8 @@ function validateRequest(
 
     if (
         body.subject !== undefined &&
-        typeof body.subject !== "string"
+        typeof body.subject !==
+        "string"
     ) {
 
         return {
@@ -257,7 +263,8 @@ function validateRequest(
 
     if (
         body.element !== undefined &&
-        typeof body.element !== "string"
+        typeof body.element !==
+        "string"
     ) {
 
         return {
@@ -269,7 +276,8 @@ function validateRequest(
 
     if (
         body.curriculumId !== undefined &&
-        typeof body.curriculumId !== "string"
+        typeof body.curriculumId !==
+        "string"
     ) {
 
         return {
@@ -281,7 +289,8 @@ function validateRequest(
 
     if (
         body.cpId !== undefined &&
-        typeof body.cpId !== "string"
+        typeof body.cpId !==
+        "string"
     ) {
 
         return {
@@ -293,7 +302,8 @@ function validateRequest(
 
     if (
         body.tpId !== undefined &&
-        typeof body.tpId !== "string"
+        typeof body.tpId !==
+        "string"
     ) {
 
         return {
@@ -305,7 +315,8 @@ function validateRequest(
 
     if (
         body.status !== undefined &&
-        typeof body.status !== "string"
+        typeof body.status !==
+        "string"
     ) {
 
         return {
@@ -317,7 +328,8 @@ function validateRequest(
 
     if (
         body.blueprintId !== undefined &&
-        typeof body.blueprintId !== "string"
+        typeof body.blueprintId !==
+        "string"
     ) {
 
         return {
@@ -329,7 +341,8 @@ function validateRequest(
 
     if (
         body.name !== undefined &&
-        typeof body.name !== "string"
+        typeof body.name !==
+        "string"
     ) {
 
         return {
@@ -341,7 +354,8 @@ function validateRequest(
 
     if (
         body.allowFallback !== undefined &&
-        typeof body.allowFallback !== "boolean"
+        typeof body.allowFallback !==
+        "boolean"
     ) {
 
         return {
@@ -353,7 +367,8 @@ function validateRequest(
 
     if (
         body.requireAllConstraints !== undefined &&
-        typeof body.requireAllConstraints !== "boolean"
+        typeof body.requireAllConstraints !==
+        "boolean"
     ) {
 
         return {
@@ -365,7 +380,8 @@ function validateRequest(
 
     if (
         body.randomize !== undefined &&
-        typeof body.randomize !== "boolean"
+        typeof body.randomize !==
+        "boolean"
     ) {
 
         return {
@@ -686,15 +702,27 @@ export async function blueprintGenerateHandler(
                 validation.rule
             );
 
+        const worksheet =
+            serializeWorksheet(
+                result.selected,
+                {
+                    worksheetId:
+                        validation.rule.blueprintId,
+
+                    title:
+                        validation.rule.name ??
+                        "Lembar Kerja Peserta Didik"
+                }
+            );
+
         const responseBody = {
 
             blueprint:
                 validation.rule,
 
-            result: {
+            worksheet,
 
-                selected:
-                    result.selected,
+            result: {
 
                 rejected:
                     result.rejected,
@@ -731,7 +759,10 @@ export async function blueprintGenerateHandler(
 
                 filteredPool:
                     result.selected.length +
-                    result.rejected.length
+                    result.rejected.length,
+
+                selected:
+                    result.selected.length
             }
         };
 
