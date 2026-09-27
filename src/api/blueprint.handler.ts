@@ -762,8 +762,44 @@ export async function blueprintGenerateHandler(
                     result.rejected.length,
 
                 selected:
-                    result.selected.length
+                    result.selected.length,
+
+                request: {
+                    count:
+                        validation.rule.count,
+
+                    phase:
+                        validation.rule.phase,
+
+                    grade:
+                        validation.rule.grade,
+
+                    subject:
+                        validation.rule.subject,
+
+                    element:
+                        validation.rule.element,
+
+                    curriculumId:
+                        validation.rule.curriculumId,
+
+                    cpId:
+                        validation.rule.cpId,
+
+                    tpId:
+                        validation.rule.tpId,
+
+                    status:
+                        validation.rule.status,
+
+                    randomize:
+                        validation.rule.randomize,
+
+                    seed:
+                        validation.rule.seed
+                }
             }
+
         };
 
         success(
