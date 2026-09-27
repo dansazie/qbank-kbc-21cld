@@ -59,6 +59,23 @@ export interface BlueprintRuleV2
     allowFallback?: boolean;
 
     requireAllConstraints?: boolean;
+
+    /**
+     * Mengaktifkan pengacakan kandidat soal.
+     *
+     * Jika true, pool soal akan diacak sebelum
+     * proses pemilihan dilakukan.
+     */
+    randomize?: boolean;
+
+    /**
+     * Seed opsional untuk menghasilkan urutan
+     * yang deterministik/reproducible.
+     *
+     * Seed yang sama dengan pool dan blueprint
+     * yang sama akan menghasilkan urutan yang sama.
+     */
+    seed?: string | number;
 }
 
 export interface BlueprintShortage {

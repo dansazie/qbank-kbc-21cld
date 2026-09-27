@@ -31,8 +31,18 @@ export class BlueprintEngineV2 {
         const selected:
             Question[] = [];
 
+        const random =
+            this.createRandom(
+                rule.seed
+            );
+
         const remaining =
-            [...pool];
+            rule.randomize
+                ? this.shuffle(
+                    [...pool],
+                    random
+                )
+                : [...pool];
 
         while (
             selected.length <
@@ -107,7 +117,6 @@ export class BlueprintEngineV2 {
             selected.length <
             rule.count
         ) {
-
             warnings.push(
                 `Hanya ${selected.length} dari ${rule.count} soal yang tersedia.`
             );
@@ -116,7 +125,6 @@ export class BlueprintEngineV2 {
         if (
             shortages.length > 0
         ) {
-
             warnings.push(
                 "Sebagian constraint blueprint tidak terpenuhi."
             );
@@ -172,7 +180,82 @@ export class BlueprintEngineV2 {
                 "Blueprint count harus berupa integer lebih besar dari 0."
             );
         }
+
+        this.assertDistributionTotal(
+            "cognitive",
+            rule.cognitive,
+            rule.count
+        );
+
+        this.assertDistributionTotal(
+            "questionTypes",
+            rule.questionTypes,
+            rule.count
+        );
+
+        this.assertDistributionTotal(
+            "difficulty",
+            rule.difficulty,
+            rule.count
+        );
+
+        if (
+            rule.randomize !== undefined &&
+            typeof rule.randomize !==
+            "boolean"
+        ) {
+            throw new Error(
+                "Blueprint randomize harus berupa boolean."
+            );
+        }
+
+        if (
+            rule.seed !== undefined &&
+            typeof rule.seed !== "string" &&
+            typeof rule.seed !== "number"
+        ) {
+            throw new Error(
+                "Blueprint seed harus berupa string atau number."
+            );
+        }
     }
+
+    private assertDistributionTotal(
+        name: string,
+        distribution:
+            Partial<
+                Record<string, number>
+            > | undefined,
+        count: number
+    ): void {
+        if (!distribution) {
+            return;
+        }
+
+        let total = 0;
+
+        for (
+            const value of Object.values(
+                distribution
+            )
+        ) {
+            if (
+                typeof value === "number"
+            ) {
+                total += value;
+            }
+        }
+
+        if (
+            total > count
+        ) {
+            throw new Error(
+                `Total distribution '${name}' (${total}) tidak boleh melebihi count (${count}).`
+            );
+        }
+    }
+
+
 
     private matchesBasicFilters(
         question: Question,
@@ -490,7 +573,6 @@ export class BlueprintEngineV2 {
         }
 
         return {
-
             total:
                 questions.length,
 
@@ -887,5 +969,101 @@ export class BlueprintEngineV2 {
                 requestedTotal
             ) * 100
         );
+    }
+
+    private createRandom(
+        seed?: string | number
+    ): () => number {
+
+        if (
+            seed === undefined
+        ) {
+            return Math.random;
+        }
+
+        const input =
+            String(seed);
+
+        let state =
+            2166136261;
+
+        for (
+            let index = 0;
+            index < input.length;
+            index++
+        ) {
+
+            state ^=
+                input.charCodeAt(
+                    index
+                );
+
+            state =
+                Math.imul(
+                    state,
+                    16777619
+                );
+        }
+
+        return () => {
+
+            state +=
+                0x6D2B79F5;
+
+            let value =
+                state;
+
+            value =
+                Math.imul(
+                    value ^
+                    (value >>> 15),
+                    value | 1
+                );
+
+            value ^=
+                value +
+                Math.imul(
+                    value ^
+                    (value >>> 7),
+                    value | 61
+                );
+
+            return (
+                (
+                    value ^
+                    (value >>> 14)
+                ) >>> 0
+            ) / 4294967296;
+        };
+    }
+
+    private shuffle<T>(
+        values: T[],
+        random: () => number
+    ): T[] {
+
+        for (
+            let index =
+                values.length - 1;
+            index > 0;
+            index--
+        ) {
+
+            const swapIndex =
+                Math.floor(
+                    random() *
+                    (index + 1)
+                );
+
+            [
+                values[index],
+                values[swapIndex]
+            ] = [
+                    values[swapIndex],
+                    values[index]
+                ];
+        }
+
+        return values;
     }
 }

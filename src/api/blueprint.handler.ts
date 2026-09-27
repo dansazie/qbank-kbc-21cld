@@ -137,6 +137,37 @@ function validateDistribution(
     return undefined;
 }
 
+function distributionTotal(
+    value: unknown
+): number {
+
+    if (
+        !isRecord(value)
+    ) {
+        return 0;
+    }
+
+    return Object.values(
+        value
+    ).reduce(
+        (
+            total: number,
+            item: unknown
+        ): number => {
+
+            if (
+                typeof item !== "number"
+            ) {
+                return total;
+            }
+
+            return total + item;
+        },
+        0
+    );
+}
+
+
 function validateRequest(
     body: unknown
 ): {
@@ -332,6 +363,31 @@ function validateRequest(
         };
     }
 
+    if (
+        body.randomize !== undefined &&
+        typeof body.randomize !== "boolean"
+    ) {
+
+        return {
+            valid: false,
+            message:
+                "Field 'randomize' harus boolean."
+        };
+    }
+
+    if (
+        body.seed !== undefined &&
+        typeof body.seed !== "string" &&
+        typeof body.seed !== "number"
+    ) {
+
+        return {
+            valid: false,
+            message:
+                "Field 'seed' harus berupa string atau number."
+        };
+    }
+
     const cognitiveError =
         validateDistribution(
             body.cognitive,
@@ -415,8 +471,53 @@ function validateRequest(
         };
     }
 
+    const distributions: Array<
+        [
+            string,
+            unknown
+        ]
+    > = [
+            [
+                "cognitive",
+                body.cognitive
+            ],
+            [
+                "questionTypes",
+                body.questionTypes
+            ],
+            [
+                "difficulty",
+                body.difficulty
+            ]
+        ];
+
+    for (
+        const [
+            name,
+            distribution
+        ] of distributions
+    ) {
+
+        const total =
+            distributionTotal(
+                distribution
+            );
+
+        if (
+            total > count
+        ) {
+
+            return {
+                valid: false,
+                message:
+                    `Total distribution '${name}' (${total}) tidak boleh melebihi count (${count}).`
+            };
+        }
+    }
+
     const rule:
         BlueprintRuleV2 = {
+
         blueprintId:
             typeof body.blueprintId ===
                 "string"
@@ -477,7 +578,7 @@ function validateRequest(
             typeof body.status ===
                 "string"
                 ? body.status
-                : undefined,
+                : "published",
 
         allowFallback:
             typeof body.allowFallback ===
@@ -489,6 +590,20 @@ function validateRequest(
             typeof body.requireAllConstraints ===
                 "boolean"
                 ? body.requireAllConstraints
+                : undefined,
+
+        randomize:
+            typeof body.randomize ===
+                "boolean"
+                ? body.randomize
+                : true,
+
+        seed:
+            typeof body.seed ===
+                "string" ||
+                typeof body.seed ===
+                "number"
+                ? body.seed
                 : undefined,
 
         cognitive:
@@ -572,9 +687,12 @@ export async function blueprintGenerateHandler(
             );
 
         const responseBody = {
-            blueprint: validation.rule,
+
+            blueprint:
+                validation.rule,
 
             result: {
+
                 selected:
                     result.selected,
 
@@ -598,6 +716,7 @@ export async function blueprintGenerateHandler(
             },
 
             metadata: {
+
                 generatedAt:
                     new Date().toISOString(),
 
