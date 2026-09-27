@@ -175,6 +175,98 @@ describe(
     () => {
 
         it(
+            "preserves curriculum, 21CLD, and KBC metadata in worksheet",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q-METADATA",
+                        "C4",
+                        "medium"
+                    )
+                ];
+
+                const worksheet =
+                    serializeWorksheet(
+                        questions,
+                        {
+                            worksheetId:
+                                "LKPD-METADATA-001"
+                        }
+                    );
+
+                const question =
+                    worksheet.questions[0];
+
+                expect(
+                    question.phase
+                ).toBe(
+                    "B"
+                );
+
+                expect(
+                    question.grade
+                ).toBe(
+                    3
+                );
+
+                expect(
+                    question.subject
+                ).toBe(
+                    "Al-Qur'an Hadis"
+                );
+
+                expect(
+                    question.element
+                ).toBe(
+                    "Al-Qur'an"
+                );
+
+                expect(
+                    question.materialScope
+                ).toBe(
+                    "Surah Al-Fatihah"
+                );
+
+                expect(
+                    question.cognitiveLevel
+                ).toBe(
+                    "C4"
+                );
+
+                expect(
+                    question.cld
+                ).toEqual([
+                    {
+                        dimension:
+                            "21CLD-KC",
+
+                        level:
+                            1,
+
+                        evidence:
+                            "Evidence CLD"
+                    }
+                ]);
+
+                expect(
+                    question.kbc
+                ).toEqual({
+                    primary:
+                        "KBC-C01",
+
+                    values: [
+                        "syukur"
+                    ],
+
+                    evidence:
+                        "Evidence KBC"
+                });
+            }
+        );
+
+
+        it(
             "serializes a student worksheet without answer or explanation",
             () => {
 
