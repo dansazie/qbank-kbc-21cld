@@ -888,5 +888,155 @@ describe(
                 );
             }
         );
+
+        it(
+            "does not use fallback when all constraints are required",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q2",
+                        "C4"
+                    )
+                ];
+
+                const engine =
+                    new BlueprintEngineV2();
+
+                const result =
+                    engine.build(
+                        questions,
+                        {
+                            count:
+                                2,
+
+                            phase:
+                                "B",
+
+                            grade:
+                                3,
+
+                            subject:
+                                "Al-Qur'an Hadis",
+
+                            cognitive: {
+                                C4:
+                                    1
+                            },
+
+                            requireAllConstraints:
+                                true,
+
+                            allowFallback:
+                                false,
+
+                            randomize:
+                                false
+                        }
+                    );
+
+                expect(
+                    result.selected.map(
+                        question =>
+                            question.questionId
+                    )
+                ).toEqual([
+                    "Q2"
+                ]);
+
+                expect(
+                    result.complete
+                ).toBe(
+                    false
+                );
+
+                expect(
+                    result.shortages.length
+                ).toBeGreaterThan(
+                    0
+                );
+            }
+        );
+
+        it(
+            "uses fallback when explicitly allowed",
+            () => {
+
+                const questions = [
+                    makeQuestion(
+                        "Q1",
+                        "C3"
+                    ),
+
+                    makeQuestion(
+                        "Q2",
+                        "C4"
+                    )
+                ];
+
+                const engine =
+                    new BlueprintEngineV2();
+
+                const result =
+                    engine.build(
+                        questions,
+                        {
+                            count:
+                                2,
+
+                            phase:
+                                "B",
+
+                            grade:
+                                3,
+
+                            subject:
+                                "Al-Qur'an Hadis",
+
+                            cognitive: {
+                                C4:
+                                    1
+                            },
+
+                            requireAllConstraints:
+                                true,
+
+                            allowFallback:
+                                true,
+
+                            randomize:
+                                false
+                        }
+                    );
+
+                expect(
+                    result.selected.map(
+                        question =>
+                            question.questionId
+                    )
+                ).toEqual([
+                    "Q2",
+                    "Q1"
+                ]);
+
+                expect(
+                    result.selected
+                ).toHaveLength(
+                    2
+                );
+
+                expect(
+                    result.fulfilled.cognitive.C4
+                ).toBe(
+                    1
+                );
+            }
+        );
+
     }
 );

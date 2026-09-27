@@ -50,8 +50,46 @@ export class BlueprintEngineV2 {
             remaining.length > 0
         ) {
 
+            let candidates =
+                remaining;
+
+            /*
+            * Strict mode:
+            *
+            * - requireAllConstraints = true
+            * - allowFallback = false
+            *
+            * Hanya kandidat yang masih dapat memenuhi
+            * distribution constraint yang boleh dipilih.
+            */
+            if (
+                rule.requireAllConstraints === true &&
+                rule.allowFallback !== true
+            ) {
+                candidates =
+                    remaining.filter(
+                        question =>
+                            this.isStrictCandidate(
+                                question,
+                                selected,
+                                rule
+                            )
+                    );
+            }
+
+
+            /*
+            * Tidak ada kandidat yang memenuhi semua
+            * constraint. Berhenti tanpa fallback.
+            */
+            if (
+                candidates.length === 0
+            ) {
+                break;
+            }
+
             const ranked =
-                remaining
+                candidates
                     .map(
                         question => ({
                             question,
@@ -64,9 +102,11 @@ export class BlueprintEngineV2 {
                         })
                     )
                     .sort(
-                        (a, b) =>
-                            b.score -
-                            a.score
+                        (
+                            a,
+                            b
+                        ) =>
+                            b.score - a.score
                     );
 
             const candidate =
@@ -85,11 +125,79 @@ export class BlueprintEngineV2 {
                     candidate.question
                 );
 
-            if (index >= 0) {
+            if (
+                index >= 0
+            ) {
                 remaining.splice(
                     index,
                     1
                 );
+            }
+        }
+
+        /*
+        * Jika fallback diizinkan, lanjutkan mengisi
+        * kekurangan jumlah dari pool yang tersisa.
+        */
+        if (
+            rule.allowFallback === true &&
+            selected.length < rule.count
+        ) {
+
+            while (
+                selected.length <
+                rule.count &&
+                remaining.length > 0
+            ) {
+
+                const candidates =
+                    remaining;
+
+                const ranked =
+                    candidates
+                        .map(
+                            question => ({
+                                question,
+                                score:
+                                    this.scoreCandidate(
+                                        question,
+                                        selected,
+                                        rule
+                                    )
+                            })
+                        )
+                        .sort(
+                            (
+                                a,
+                                b
+                            ) =>
+                                b.score - a.score
+                        );
+
+                const candidate =
+                    ranked[0];
+
+                if (!candidate) {
+                    break;
+                }
+
+                selected.push(
+                    candidate.question
+                );
+
+                const index =
+                    remaining.indexOf(
+                        candidate.question
+                    );
+
+                if (
+                    index >= 0
+                ) {
+                    remaining.splice(
+                        index,
+                        1
+                    );
+                }
             }
         }
 
@@ -164,6 +272,180 @@ export class BlueprintEngineV2 {
             warnings
         };
     }
+
+    private isStrictCandidate(
+        question: Question,
+        selected: Question[],
+        rule: BlueprintRuleV2
+    ): boolean {
+
+        /*
+     * Jika tidak ada distribution constraint,
+     * kandidat tetap valid.
+     */
+        const hasDistribution =
+            Boolean(
+                rule.cognitive ||
+                rule.questionTypes ||
+                rule.difficulty ||
+                rule.cld ||
+                rule.kbc
+            );
+
+        if (!hasDistribution) {
+            return true;
+        }
+
+        /*
+        * Kandidat harus membantu memenuhi setidaknya
+        * satu target distribution yang masih kurang.
+        */
+        let contributesToRequiredTarget =
+            false;
+
+        if (rule.cognitive) {
+
+            const used =
+                selected.filter(
+                    item =>
+                        item.cognitiveLevel ===
+                        question.cognitiveLevel
+                ).length;
+
+            const target =
+                rule.cognitive[
+                question.cognitiveLevel
+                ];
+
+            if (
+                target !== undefined &&
+                used < target
+            ) {
+                contributesToRequiredTarget = true;
+            }
+        }
+
+        if (rule.questionTypes) {
+
+            const used =
+                selected.filter(
+                    item =>
+                        item.questionType ===
+                        question.questionType
+                ).length;
+
+            const target =
+                rule.questionTypes[
+                question.questionType
+                ];
+
+            if (
+                target !== undefined &&
+                used < target
+            ) {
+                contributesToRequiredTarget = true;
+            }
+        }
+
+        if (rule.difficulty) {
+
+            const difficulty =
+                question.difficulty;
+
+            if (difficulty) {
+
+                const used =
+                    selected.filter(
+                        item =>
+                            item.difficulty ===
+                            difficulty
+                    ).length;
+
+                const target =
+                    rule.difficulty[
+                    difficulty
+                    ];
+
+                if (
+                    target !== undefined &&
+                    used < target
+                ) {
+                    contributesToRequiredTarget = true;
+                }
+            }
+        }
+
+        if (rule.cld) {
+
+            const selectedCLD =
+                selected.flatMap(
+                    item =>
+                        (
+                            item.cld ?? []
+                        ).map(
+                            mapping =>
+                                mapping.dimension
+                        )
+                );
+
+            for (
+                const mapping
+                of question.cld ?? []
+            ) {
+
+                const target =
+                    rule.cld[
+                    mapping.dimension
+                    ];
+
+                const used =
+                    selectedCLD.filter(
+                        value =>
+                            value ===
+                            mapping.dimension
+                    ).length;
+
+                if (
+                    target !== undefined &&
+                    used < target
+                ) {
+                    contributesToRequiredTarget = true;
+                    break;
+                }
+            }
+        }
+
+        if (rule.kbc) {
+
+            const primary =
+                question.kbc?.primary;
+
+            if (primary) {
+
+                const target =
+                    rule.kbc[
+                    primary
+                    ];
+
+                const used =
+                    selected.filter(
+                        item =>
+                            item.kbc?.primary ===
+                            primary
+                    ).length;
+
+                if (
+                    target !== undefined &&
+                    used < target
+                ) {
+                    contributesToRequiredTarget = true;
+                }
+            }
+        }
+
+        return contributesToRequiredTarget;
+    }
+
 
     private assertRule(
         rule: BlueprintRuleV2
@@ -253,6 +535,186 @@ export class BlueprintEngineV2 {
                 `Total distribution '${name}' (${total}) tidak boleh melebihi count (${count}).`
             );
         }
+    }
+
+    private matchesRequiredConstraints(
+        question: Question,
+        selected: Question[],
+        rule: BlueprintRuleV2
+    ): boolean {
+
+        if (rule.cognitive) {
+            const targetEntries =
+                Object.entries(rule.cognitive)
+                    .filter(
+                        ([, value]) =>
+                            Number(value) > 0
+                    );
+
+            if (
+                targetEntries.length > 0 &&
+                !targetEntries.some(
+                    ([key]) =>
+                        question.cognitiveLevel === key &&
+                        this.hasRemainingDistributionCapacity(
+                            question.cognitiveLevel,
+                            selected.map(
+                                item =>
+                                    item.cognitiveLevel
+                            ),
+                            rule.cognitive!
+                        )
+                )
+            ) {
+                return false;
+            }
+        }
+
+        if (rule.questionTypes) {
+            const targetEntries =
+                Object.entries(rule.questionTypes)
+                    .filter(
+                        ([, value]) =>
+                            Number(value) > 0
+                    );
+
+            if (
+                targetEntries.length > 0 &&
+                !targetEntries.some(
+                    ([key]) =>
+                        question.questionType === key &&
+                        this.hasRemainingDistributionCapacity(
+                            question.questionType,
+                            selected.map(
+                                item =>
+                                    item.questionType
+                            ),
+                            rule.questionTypes!
+                        )
+                )
+            ) {
+                return false;
+            }
+        }
+
+        if (rule.difficulty) {
+            const targetEntries =
+                Object.entries(rule.difficulty)
+                    .filter(
+                        ([, value]) =>
+                            Number(value) > 0
+                    );
+
+            if (
+                targetEntries.length > 0 &&
+                !targetEntries.some(
+                    ([key]) =>
+                        question.difficulty === key &&
+                        this.hasRemainingDistributionCapacity(
+                            question.difficulty,
+                            selected
+                                .map(
+                                    item =>
+                                        item.difficulty
+                                )
+                                .filter(
+                                    (
+                                        value
+                                    ): value is Difficulty =>
+                                        value !== undefined
+                                ),
+                            rule.difficulty!
+                        )
+                )
+            ) {
+                return false;
+            }
+        }
+
+        if (rule.cld) {
+            const selectedCLD =
+                selected.flatMap(
+                    item =>
+                        (item.cld ?? []).map(
+                            mapping =>
+                                mapping.dimension
+                        )
+                );
+
+            const requiredCLD =
+                Object.entries(rule.cld)
+                    .filter(
+                        ([, value]) =>
+                            Number(value) > 0
+                    )
+                    .map(
+                        ([key]) =>
+                            key
+                    );
+
+            const matches =
+                (question.cld ?? []).some(
+                    mapping =>
+                        requiredCLD.includes(
+                            mapping.dimension
+                        ) &&
+                        this.hasRemainingDistributionCapacity(
+                            mapping.dimension,
+                            selectedCLD,
+                            rule.cld!
+                        )
+                );
+
+            if (
+                requiredCLD.length > 0 &&
+                !matches
+            ) {
+                return false;
+            }
+        }
+
+        if (rule.kbc) {
+            const primary =
+                question.kbc?.primary;
+
+            const requiredKBC =
+                Object.entries(rule.kbc)
+                    .filter(
+                        ([, value]) =>
+                            Number(value) > 0
+                    )
+                    .map(
+                        ([key]) =>
+                            key
+                    );
+
+            if (
+                requiredKBC.length > 0 &&
+                (
+                    !primary ||
+                    !requiredKBC.includes(primary) ||
+                    !this.hasRemainingDistributionCapacity(
+                        primary,
+                        selected
+                            .map(
+                                item =>
+                                    item.kbc?.primary
+                            )
+                            .filter(
+                                (
+                                    value
+                                ): value is string =>
+                                    value !== undefined
+                            ),
+                        rule.kbc
+                    )
+                )
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
@@ -505,6 +967,155 @@ export class BlueprintEngineV2 {
         );
     }
 
+    private satisfiesRemainingConstraints(
+        question: Question,
+        selected: Question[],
+        rule: BlueprintRuleV2
+    ): boolean {
+
+        if (
+            rule.cognitive &&
+            !this.hasRemainingDistributionCapacity(
+                question.cognitiveLevel,
+                selected.map(
+                    item =>
+                        item.cognitiveLevel
+                ),
+                rule.cognitive
+            )
+        ) {
+            return false;
+        }
+
+        if (
+            rule.questionTypes &&
+            !this.hasRemainingDistributionCapacity(
+                question.questionType,
+                selected.map(
+                    item =>
+                        item.questionType
+                ),
+                rule.questionTypes
+            )
+        ) {
+            return false;
+        }
+
+        if (
+            rule.difficulty &&
+            !this.hasRemainingDistributionCapacity(
+                question.difficulty,
+                selected
+                    .map(
+                        item =>
+                            item.difficulty
+                    )
+                    .filter(
+                        (
+                            value
+                        ): value is Difficulty =>
+                            value !== undefined
+                    ),
+                rule.difficulty
+            )
+        ) {
+            return false;
+        }
+
+        if (
+            rule.cld
+        ) {
+            const mappings =
+                question.cld ?? [];
+
+            const selectedCLD =
+                selected.flatMap(
+                    item =>
+                        (
+                            item.cld ?? []
+                        ).map(
+                            mapping =>
+                                mapping.dimension
+                        )
+                );
+
+            const hasCLDCapacity =
+                mappings.some(
+                    mapping =>
+                        this.hasRemainingDistributionCapacity(
+                            mapping.dimension,
+                            selectedCLD,
+                            rule.cld!
+                        )
+                );
+
+            if (
+                !hasCLDCapacity
+            ) {
+                return false;
+            }
+        }
+
+        if (
+            rule.kbc
+        ) {
+            const primary =
+                question.kbc?.primary;
+
+            if (
+                primary &&
+                !this.hasRemainingDistributionCapacity(
+                    primary,
+                    selected
+                        .map(
+                            item =>
+                                item.kbc?.primary
+                        )
+                        .filter(
+                            (
+                                value
+                            ): value is string =>
+                                value !== undefined
+                        ),
+                    rule.kbc
+                )
+            ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private hasRemainingDistributionCapacity(
+        value:
+            string | undefined,
+        current: string[],
+        requested:
+            Partial<
+                Record<string, number>
+            >
+    ): boolean {
+
+        if (
+            !value ||
+            requested[value] === undefined
+        ) {
+            return true;
+        }
+
+        const target =
+            requested[value] ?? 0;
+
+        const used =
+            current.filter(
+                item =>
+                    item === value
+            ).length;
+
+        return used < target;
+    }
+
     private calculateDistribution(
         questions: Question[]
     ): BlueprintFulfillment {
@@ -725,7 +1336,7 @@ export class BlueprintEngineV2 {
         );
 
         if (
-            pool.length <
+            selected.length <
             rule.count
         ) {
 

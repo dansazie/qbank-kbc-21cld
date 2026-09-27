@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Belajar Fase B - 120+ Soal & Game Hafalan Quran (KBC & 21CLD)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans & Amiri (Arab) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FF6B6B',
+                            yellow: '#FFD93D',
+                            green: '#6BCB77',
+                            blue: '#4D96FF',
+                            purple: '#9B51E0',
+                            dark: '#2D3748'
+                        }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #E0F2FE 0%, #F0FDFA 50%, #FEF3C7 100%);
+            min-height: 100vh;
+        }
+
+        .font-fredoka {
+            font-family: 'Fredoka', cursive;
+        }
+
+        .arab-text {
+            font-family: 'Amiri', 'Traditional Arabic', serif;
+            direction: rtl;
+            unicode-bidi: isolate;
+            line-height: 2.2;
+        }
+
+        .bounce-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes soundPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .audio-playing {
+            animation: soundPulse 0.8s ease-in-out infinite;
+        }
+
+        .level-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 pb-16 select-none">
+
+    <!-- Modal Input Nama & Profil Awal -->
+    <div id="welcomeModal"
+        class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl border-4 border-brand-yellow text-center relative overflow-hidden">
+            <div
+                class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-inner animate-bounce">
+                🎓
+            </div>
+            <h2 class="font-fredoka text-2xl md:text-3xl font-bold text-slate-800 mb-2">Selamat Datang!</h2>
+            <p class="text-xs md:text-sm text-slate-600 mb-6 leading-relaxed">
+                Sebelum memulai petualangan belajar, masukkan <b>Nama Lengkap</b> dan <b>Asal Sekolah/Kelas</b> untuk
+                dicetak secara otomatis di Rapor & Sertifikat Digitalmu!
+            </p>
+
+            <form onsubmit="saveInitialPlayerProfile(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap Siswa <span
+                            class="text-red-500">*</span></label>
+                    <input type="text" id="inputWelcomeName" required placeholder="Contoh: Ahmad Angga Pratama"
+                        class="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-brand-blue focus:outline-none font-semibold text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Kelas / Asal Sekolah</label>
+                    <input type="text" id="inputWelcomeSchool" placeholder="Contoh: Kelas 4 SD Negeri 1"
+                        class="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-brand-blue focus:outline-none font-semibold text-sm"
+                        value="Kelas 4 SD/MI">
+                </div>
+                <button type="submit"
+                    class="w-full py-3.5 bg-gradient-to-r from-brand-blue to-brand-purple text-white font-fredoka font-bold text-base rounded-2xl shadow-lg hover:opacity-95 transition bounce-hover flex items-center justify-center gap-2 mt-2">
+                    🚀 Mulai Petualangan Belajar <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Web Audio Synthesizer -->
+    <script>
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+        }
+
+        function playSound(type) {
+            initAudio();
+            if (!audioCtx) return;
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'correct') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1); // E5
+                osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2); // G5
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.setValueAtTime(174.61, now + 0.15);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, now);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'star') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, now);
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            }
+        }
+    </script>
+
+    <!-- Header Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-4 border-brand-yellow px-4 py-3 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-12 h-12 bg-gradient-to-tr from-brand-pink to-brand-yellow rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-md animate-float">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="font-fredoka text-xl md:text-2xl text-slate-800 font-bold leading-tight">Jelajah Cerdas
+                        Fase B</h1>
+                    <p class="text-xs text-slate-500 font-semibold">Integrasi 21CLD, KBC & Game Hafalan Al-Qur'an</p>
+                </div>
+            </div>
+
+            <!-- Profile & Stats Display -->
+            <div class="flex items-center gap-3 bg-slate-100 p-2 rounded-2xl border border-slate-200">
+                <div class="flex items-center gap-2 px-2">
+                    <div class="w-9 h-9 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-lg"
+                        id="avatarDisplay">
+                        👦
+                    </div>
+                    <div>
+                        <input type="text" id="playerName" value="Siswa Cerdas" onchange="updatePlayerNameFromHeader()"
+                            class="bg-transparent font-bold text-sm text-slate-700 w-32 focus:outline-none focus:bg-white rounded px-1"
+                            title="Klik untuk mengubah nama">
+                        <div class="text-[10px] text-brand-purple font-extrabold flex items-center gap-1">
+                            <i class="fa-solid fa-medal"></i> <span id="playerTitle">Pengembara Cinta Ilmu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-8 w-[2px] bg-slate-300"></div>
+
+                <div class="flex items-center gap-3 px-2">
+                    <div class="flex items-center gap-1 text-amber-500 font-fredoka font-bold text-base">
+                        <i class="fa-solid fa-star text-lg animate-bounce"></i>
+                        <span id="starScore">0</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-emerald-600 font-fredoka font-bold text-base">
+                        <i class="fa-solid fa-bolt text-lg"></i>
+                        <span id="xpScore">0</span> <span class="text-xs">XP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <main class="max-w-6xl mx-auto px-4 mt-6">
+
+        <nav class="flex flex-wrap justify-center gap-2 md:gap-3 mb-8">
+            <button onclick="switchTab('beranda')" id="tab-beranda"
+                class="nav-btn active flex items-center gap-2 px-4 py-2.5 rounded-2xl font-fredoka font-bold text-xs md:text-sm transition-all bg-brand-blue text-white shadow-lg">
+                <i class="fa-solid fa-house"></i> Beranda
+            </button>
+            <button onclick="switchTab('matematika')" id="tab-matematika"
+                class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl font-fredoka font-bold text-xs md:text-sm transition-all bg-white text-slate-600 hover:bg-slate-100 shadow">
+                <i class="fa-solid fa-calculator text-brand-pink"></i> Matematika (40 Soal)
+            </button>
+            <button onclick="switchTab('ipas')" id="tab-ipas"
+                class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl font-fredoka font-bold text-xs md:text-sm transition-all bg-white text-slate-600 hover:bg-slate-100 shadow">
+                <i class="fa-solid fa-leaf text-brand-green"></i> Detektif IPAS (40 Soal)
+            </button>
+            <button onclick="switchTab('kbc')" id="tab-kbc"
+                class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl font-fredoka font-bold text-xs md:text-sm transition-all bg-white text-slate-600 hover:bg-slate-100 shadow">
+                <i class="fa-solid fa-hand-holding-heart text-brand-purple"></i> Taman Cinta KBC (40 Misi)
+            </button>
+            <button onclick="switchTab('quran')" id="tab-quran"
+                class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl font-fredoka font-bold text-xs md:text-sm transition-all bg-white text-slate-600 hover:bg-slate-100 shadow">
+                <i class="fa-solid fa-book-quran text-emerald-500"></i> Hafalan Quran (Game)
+            </button>
+            <button onclick="switchTab('evaluasi')" id="tab-evaluasi"
+                class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl font-fredoka font-bold text-xs md:text-sm transition-all bg-white text-slate-600 hover:bg-slate-100 shadow">
+                <i class="fa-solid fa-award text-brand-yellow"></i> Rapor & Sertifikat
+            </button>
+        </nav>
+
+        <!-- TAB BERANDA -->
+        <section id="sec-beranda" class="tab-content block">
+            <div
+                class="glass-card rounded-3xl p-6 md:p-8 mb-8 border-l-8 border-brand-pink relative overflow-hidden custom-shadow">
+                <div class="max-w-2xl">
+                    <span
+                        class="inline-block px-3 py-1 bg-brand-pink/10 text-brand-pink rounded-full font-bold text-xs mb-3">
+                        🌟 120 Soal Berjenjang + Game Hafalan Al-Qur'an Berkategori & Beraudio (Fase B SD/MI)
+                    </span>
+                    <h2 class="font-fredoka text-3xl md:text-4xl text-slate-800 font-bold mb-3">
+                        Petualangan Belajar Berbasis Cinta & Kolaborasi!
+                    </h2>
+                    <p class="text-slate-600 mb-6 text-sm md:text-base leading-relaxed">
+                        Nikmati pembelajaran interaktif matematika, IPAS, moderasi karakter, dan <b>Game Hafalan
+                            Al-Qur'an</b> — pilih <b>Juz + Kategori permainan</b>, soal diacak otomatis <b>tanpa
+                            batas</b>, lengkap dengan <b>audio tilawah qari</b>. Setiap jawaban langsung dinilai ke
+                        dalam Rapor & Sertifikat Digitalmu!
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchTab('matematika')"
+                            class="bg-brand-pink text-white font-fredoka font-bold px-6 py-3 rounded-2xl shadow-lg hover:bg-red-500 transition bounce-hover flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-play"></i> Mulai Dari Matematika
+                        </button>
+                        <button onclick="switchTab('quran')"
+                            class="bg-emerald-500 text-white font-fredoka font-bold px-6 py-3 rounded-2xl shadow-lg hover:bg-emerald-600 transition bounce-hover flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-book-quran"></i> Game Hafalan Al-Qur'an
+                        </button>
+                        <button onclick="openModal('infoModal')"
+                            class="bg-white border-2 border-slate-300 text-slate-700 font-fredoka font-bold px-5 py-3 rounded-2xl hover:bg-slate-50 transition flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-circle-info"></i> Panduan KBC & 21CLD
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div onclick="switchTab('matematika')"
+                    class="glass-card p-6 rounded-3xl cursor-pointer bounce-hover border-t-4 border-brand-pink custom-shadow">
+                    <div
+                        class="w-14 h-14 bg-pink-100 text-brand-pink rounded-2xl flex items-center justify-center text-2xl font-bold mb-4">
+                        🍕
+                    </div>
+                    <h3 class="font-fredoka text-xl font-bold text-slate-800 mb-2">Matematika Kasih Sayang</h3>
+                    <p class="text-xs text-slate-500 mb-4">40 Soal Pecahan Pizza Visual, Operasi Perkalian/Pembagian &
+                        Soal Cerita Kolaboratif.</p>
+                    <div class="flex justify-between items-center text-xs font-bold text-brand-pink">
+                        <span>4 Tingkat Kesulitan</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('ipas')"
+                    class="glass-card p-6 rounded-3xl cursor-pointer bounce-hover border-t-4 border-brand-green custom-shadow">
+                    <div
+                        class="w-14 h-14 bg-emerald-100 text-brand-green rounded-2xl flex items-center justify-center text-2xl font-bold mb-4">
+                        🔬
+                    </div>
+                    <h3 class="font-fredoka text-xl font-bold text-slate-800 mb-2">Detektif IPAS & Alam</h3>
+                    <p class="text-xs text-slate-500 mb-4">40 Soal Organ Tumbuhan, Daur Hidup Hewan, Ekosistem, dan
+                        Wujud Benda.</p>
+                    <div class="flex justify-between items-center text-xs font-bold text-brand-green">
+                        <span>4 Tingkat Kesulitan</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('kbc')"
+                    class="glass-card p-6 rounded-3xl cursor-pointer bounce-hover border-t-4 border-brand-purple custom-shadow">
+                    <div
+                        class="w-14 h-14 bg-purple-100 text-brand-purple rounded-2xl flex items-center justify-center text-2xl font-bold mb-4">
+                        💖
+                    </div>
+                    <h3 class="font-fredoka text-xl font-bold text-slate-800 mb-2">Taman Cinta & Toleransi</h3>
+                    <p class="text-xs text-slate-500 mb-4">40 Skenario Dilema Karakter (Moderasi Beragama, Cinta Alam, &
+                        21CLD Collaboration).</p>
+                    <div class="flex justify-between items-center text-xs font-bold text-brand-purple">
+                        <span>4 Tingkat Kesulitan</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('quran')"
+                    class="glass-card p-6 rounded-3xl cursor-pointer bounce-hover border-t-4 border-emerald-500 custom-shadow">
+                    <div
+                        class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-bold mb-4">
+                        🕌
+                    </div>
+                    <h3 class="font-fredoka text-xl font-bold text-slate-800 mb-2">Game Hafalan Al-Qur'an</h3>
+                    <p class="text-xs text-slate-500 mb-4">Pilih Juz + Kategori permainan (3 kategori) — soal acak tanpa
+                        batas & audio tilawah qari.</p>
+                    <div class="flex justify-between items-center text-xs font-bold text-emerald-600">
+                        <span>Juz 1-30 • 3 Kategori • Audio</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB MATEMATIKA -->
+        <section id="sec-matematika" class="tab-content hidden">
+            <div class="glass-card rounded-3xl p-6 mb-6 border-t-8 border-brand-pink custom-shadow">
+
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6 pb-4 border-b">
+                    <div>
+                        <span class="px-3 py-1 bg-pink-100 text-brand-pink font-bold rounded-full text-xs">Matematika
+                            Fase B</span>
+                        <h2 class="font-fredoka text-2xl font-bold text-slate-800 mt-1">🔢 Modul Matematika Berjenjang
+                            (40 Soal)</h2>
+                        <p class="text-xs text-slate-500">Pecahan Sederhana, Perkalian, Pembagian & Soal Cerita Kasih
+                            Sayang.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-pink-50 px-4 py-2 rounded-2xl border border-pink-200 text-right">
+                            <div class="text-[10px] text-slate-500 font-bold uppercase">Kemajuan Soal</div>
+                            <div class="font-fredoka text-lg text-brand-pink font-bold"><span
+                                    id="mathCurrentIndex">1</span> / 40</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty Filter Controls -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button onclick="filterMathLevel(1)" id="btn-math-lvl-1"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow">Tingkat 1:
+                        Pemula (1-10)</button>
+                    <button onclick="filterMathLevel(2)" id="btn-math-lvl-2"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        2: Menengah (11-20)</button>
+                    <button onclick="filterMathLevel(3)" id="btn-math-lvl-3"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        3: Mahir (21-30)</button>
+                    <button onclick="filterMathLevel(4)" id="btn-math-lvl-4"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        4: Master (31-40)</button>
+                </div>
+
+                <!-- Question Box -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <div class="flex justify-between items-center mb-3">
+                        <span id="mathLevelBadge" class="level-badge bg-emerald-100 text-emerald-700">Tingkat 1:
+                            Pemula</span>
+                        <span id="math21cldTag"
+                            class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded-lg border border-purple-100">21CLD:
+                            Collaboration & Knowledge Construction</span>
+                    </div>
+
+                    <h3 class="font-fredoka text-lg md:text-xl font-bold text-slate-800 mb-4" id="mathQuestionText">
+                        Loading soal...
+                    </h3>
+
+                    <!-- Pizza Visual SVG -->
+                    <div id="mathVisualContainer"
+                        class="hidden mb-6 flex flex-col md:flex-row items-center justify-center gap-6 bg-white p-4 rounded-2xl border border-slate-200">
+                        <div
+                            class="relative w-44 h-44 flex items-center justify-center bg-amber-50 rounded-full border-4 border-amber-300 shadow-inner p-2">
+                            <svg id="mathPizzaSvg" viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
+                            </svg>
+                        </div>
+                        <div class="text-xs text-slate-600 max-w-xs">
+                            <p class="font-bold text-slate-700 mb-1">Visualisasi Pecahan Pizza:</p>
+                            <p>Bagian berwarna merah menunjukkan jumlah pecahan yang disajikan untuk temanmu.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="mathOptionsContainer">
+                    </div>
+
+                    <div id="mathFeedbackBox" class="mt-6 p-4 rounded-2xl hidden">
+                        <div class="font-bold text-sm mb-1 flex items-center gap-2" id="mathFeedbackTitle"></div>
+                        <p id="mathFeedbackText" class="text-xs leading-relaxed"></p>
+                        <div class="mt-3 flex justify-end">
+                            <button onclick="nextMathQuestion()"
+                                class="px-5 py-2.5 bg-brand-pink text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-red-500 transition bounce-hover flex items-center gap-2">
+                                Soal Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB IPAS -->
+        <section id="sec-ipas" class="tab-content hidden">
+            <div class="glass-card rounded-3xl p-6 mb-6 border-t-8 border-brand-green custom-shadow">
+
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6 pb-4 border-b">
+                    <div>
+                        <span class="px-3 py-1 bg-emerald-100 text-brand-green font-bold rounded-full text-xs">IPAS Fase
+                            B</span>
+                        <h2 class="font-fredoka text-2xl font-bold text-slate-800 mt-1">🌱 Detektif Alam & Sains (40
+                            Soal)</h2>
+                        <p class="text-xs text-slate-500">Organ Tumbuhan/Hewan, Wujud Benda, Ekosistem & Pelestarian
+                            Alam.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-50 px-4 py-2 rounded-2xl border border-emerald-200 text-right">
+                            <div class="text-[10px] text-slate-500 font-bold uppercase">Kemajuan Soal</div>
+                            <div class="font-fredoka text-lg text-brand-green font-bold"><span
+                                    id="ipasCurrentIndex">1</span> / 40</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button onclick="filterIpasLevel(1)" id="btn-ipas-lvl-1"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow">Tingkat 1:
+                        Pemula (1-10)</button>
+                    <button onclick="filterIpasLevel(2)" id="btn-ipas-lvl-2"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        2: Menengah (11-20)</button>
+                    <button onclick="filterIpasLevel(3)" id="btn-ipas-lvl-3"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        3: Mahir (21-30)</button>
+                    <button onclick="filterIpasLevel(4)" id="btn-ipas-lvl-4"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        4: Master (31-40)</button>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <div class="flex justify-between items-center mb-3">
+                        <span id="ipasLevelBadge" class="level-badge bg-emerald-100 text-emerald-700">Tingkat 1:
+                            Pemula</span>
+                        <span id="ipasKbcTag"
+                            class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-1 rounded-lg">KBC:
+                            Cinta Flora & Fauna</span>
+                    </div>
+
+                    <h3 class="font-fredoka text-lg md:text-xl font-bold text-slate-800 mb-4" id="ipasQuestionText">
+                        Loading soal...
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="ipasOptionsContainer">
+                    </div>
+
+                    <div id="ipasFeedbackBox" class="mt-6 p-4 rounded-2xl hidden">
+                        <div class="font-bold text-sm mb-1 flex items-center gap-2" id="ipasFeedbackTitle"></div>
+                        <p id="ipasFeedbackText" class="text-xs leading-relaxed"></p>
+                        <div class="mt-3 flex justify-end">
+                            <button onclick="nextIpasQuestion()"
+                                class="px-5 py-2.5 bg-brand-green text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-emerald-600 transition bounce-hover flex items-center gap-2">
+                                Soal Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB KBC & MODERASI -->
+        <section id="sec-kbc" class="tab-content hidden">
+            <div class="glass-card rounded-3xl p-6 mb-6 border-t-8 border-brand-purple custom-shadow">
+
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6 pb-4 border-b">
+                    <div>
+                        <span class="px-3 py-1 bg-purple-100 text-brand-purple font-bold rounded-full text-xs">KBC
+                            Kemenag & 21CLD</span>
+                        <h2 class="font-fredoka text-2xl font-bold text-slate-800 mt-1">💖 Taman Cinta & Moderasi
+                            Beragama (40 Misi)</h2>
+                        <p class="text-xs text-slate-500">Misi Kebajikan: Kasih Sayang, Toleransi, Gotong Royong,
+                            Berbagi & Kebersamaan.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-purple-50 px-4 py-2 rounded-2xl border border-purple-200 text-right">
+                            <div class="text-[10px] text-slate-500 font-bold uppercase">Kemajuan Misi</div>
+                            <div class="font-fredoka text-lg text-brand-purple font-bold"><span
+                                    id="kbcCurrentIndex">1</span> / 40</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button onclick="filterKbcLevel(1)" id="btn-kbc-lvl-1"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow">Tingkat 1:
+                        Pemula (1-10)</button>
+                    <button onclick="filterKbcLevel(2)" id="btn-kbc-lvl-2"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        2: Menengah (11-20)</button>
+                    <button onclick="filterKbcLevel(3)" id="btn-kbc-lvl-3"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        3: Mahir (21-30)</button>
+                    <button onclick="filterKbcLevel(4)" id="btn-kbc-lvl-4"
+                        class="px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300">Tingkat
+                        4: Master (31-40)</button>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <div class="flex justify-between items-center mb-3">
+                        <span id="kbcLevelBadge" class="level-badge bg-emerald-100 text-emerald-700">Tingkat 1:
+                            Pemula</span>
+                        <span id="kbcPilarTag"
+                            class="text-[10px] font-bold text-purple-700 bg-purple-100 px-2 py-1 rounded-lg">KBC:
+                            Moderasi Beragama</span>
+                    </div>
+
+                    <h3 class="font-fredoka text-lg md:text-xl font-bold text-slate-800 mb-4" id="kbcQuestionText">
+                        Loading Misi...
+                    </h3>
+
+                    <div class="space-y-3" id="kbcOptionsContainer">
+                    </div>
+
+                    <div id="kbcFeedbackBox" class="mt-6 p-4 rounded-2xl hidden">
+                        <div class="font-bold text-sm mb-1 flex items-center gap-2" id="kbcFeedbackTitle"></div>
+                        <p id="kbcFeedbackText" class="text-xs leading-relaxed"></p>
+                        <div class="mt-3 flex justify-end">
+                            <button onclick="nextKbcQuestion()"
+                                class="px-5 py-2.5 bg-brand-purple text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-purple-700 transition bounce-hover flex items-center gap-2">
+                                Misi Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB GAME HAFALAN AL-QURAN (PILIH JUZ + KATEGORI - ACAK TANPA BATAS + AUDIO) -->
+        <section id="sec-quran" class="tab-content hidden">
+            <div class="glass-card rounded-3xl p-6 mb-6 border-t-8 border-emerald-500 custom-shadow">
+
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6 pb-4 border-b">
+                    <div>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 font-bold rounded-full text-xs">Tahfizh &
+                            Hafalan Fase B</span>
+                        <h2 class="font-fredoka text-2xl font-bold text-slate-800 mt-1">🕌 Game Hafalan Al-Qur'an (Juz +
+                            Kategori, Soal Acak Tanpa Batas)</h2>
+                        <p class="text-xs text-slate-500">Pilih Juz & satu kategori permainan — surat & ayat diacak
+                            otomatis, lengkap dengan audio tilawah qari.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-50 px-4 py-2 rounded-2xl border border-emerald-200 text-right">
+                            <div class="text-[10px] text-slate-500 font-bold uppercase">Total Latihan Hafalan</div>
+                            <div class="font-fredoka text-lg text-emerald-600 font-bold"><span
+                                    id="quranHeaderStats">0</span> Soal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL PENGATURAN: PILIH JUZ + KATEGORI -->
+                <div id="quranSetupPanel" class="bg-slate-50 p-5 md:p-6 rounded-2xl border border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">1️⃣ Pilih Juz yang Ingin Kamu
+                                Hafalkan <span class="text-red-500">*</span></label>
+                            <select id="quranJuzSelect" onchange="updateQuranJuzInfo()"
+                                class="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-emerald-500 focus:outline-none font-bold text-lg bg-white"></select>
+                            <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                                <i class="fa-solid fa-circle-info"></i> Kamu <b>tidak perlu</b> memilih surat, ayat,
+                                atau jumlah soal — semuanya diacak otomatis dari seluruh ayat Juz pilihanmu.
+                            </p>
+                        </div>
+                        <div class="bg-emerald-50 border-2 border-emerald-100 rounded-2xl p-4">
+                            <div class="text-xs font-extrabold text-emerald-700 uppercase tracking-wide mb-2"><i
+                                    class="fa-solid fa-layer-group"></i> Isi <span id="quranInfoJuzNo">Juz 30</span>:
+                            </div>
+                            <div id="quranJuzInfo" class="text-xs text-slate-600 leading-relaxed"></div>
+                        </div>
+                    </div>
+
+                    <label class="block text-sm font-bold text-slate-700 mb-2">2️⃣ Pilih Kategori Permainan (satu
+                        kategori per sesi) <span class="text-red-500">*</span></label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
+                        <button onclick="setQuranMode('next')" id="quranMode-next"
+                            class="p-4 rounded-2xl border-4 border-emerald-500 bg-emerald-50 text-left shadow-lg transition bounce-hover">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="text-2xl">🔮</div>
+                                <span id="quranModeReward-next"
+                                    class="text-[10px] font-extrabold text-emerald-600 bg-white px-2 py-0.5 rounded-full border border-emerald-200">+2⭐
+                                    / 20XP</span>
+                            </div>
+                            <div class="font-fredoka font-bold text-slate-800 text-sm">Lanjutkan Ayat</div>
+                            <div class="text-[10px] text-slate-500 leading-snug mt-1">Ayat ditampilkan, tebak AYAT
+                                BERIKUTNYA yang tepat.</div>
+                        </button>
+                        <button onclick="setQuranMode('words')" id="quranMode-words"
+                            class="p-4 rounded-2xl border-2 border-slate-200 bg-white text-left shadow hover:border-emerald-300 transition bounce-hover">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="text-2xl">🧩</div>
+                                <span id="quranModeReward-words"
+                                    class="text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">+3⭐
+                                    / 25XP</span>
+                            </div>
+                            <div class="font-fredoka font-bold text-slate-800 text-sm">Susun Kata Ayat</div>
+                            <div class="text-[10px] text-slate-500 leading-snug mt-1">Susun potongan kata Arab yang
+                                diacak menjadi ayat utuh.</div>
+                        </button>
+                        <button onclick="setQuranMode('meaning')" id="quranMode-meaning"
+                            class="p-4 rounded-2xl border-2 border-slate-200 bg-white text-left shadow hover:border-emerald-300 transition bounce-hover">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="text-2xl">💡</div>
+                                <span id="quranModeReward-meaning"
+                                    class="text-[10px] font-extrabold text-emerald-600 bg-white px-2 py-0.5 rounded-full border border-emerald-200">+2⭐
+                                    / 20XP</span>
+                            </div>
+                            <div class="font-fredoka font-bold text-slate-800 text-sm">Tebak Arti Ayat</div>
+                            <div class="text-[10px] text-slate-500 leading-snug mt-1">Cocokkan ayat Arab dengan
+                                terjemahan yang paling tepat.</div>
+                        </button>
+                    </div>
+
+                    <label
+                        class="flex items-center gap-3 bg-white border-2 border-emerald-100 rounded-2xl px-4 py-3 mb-5 cursor-pointer hover:border-emerald-300 transition">
+                        <input type="checkbox" id="quranAutoplayCheck" checked
+                            class="w-5 h-5 accent-emerald-600 cursor-pointer">
+                        <span class="text-xs font-bold text-slate-600 leading-snug"><i
+                                class="fa-solid fa-volume-high text-emerald-600"></i> Putar audio tilawah otomatis saat
+                            soal muncul <span class="font-normal text-slate-400">(suara Qari Syaikh Mishary Rashid
+                                Alafasy — kategori Susun Kata tidak diputar otomatis agar tidak membocorkan
+                                jawaban)</span></span>
+                    </label>
+
+                    <div
+                        class="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-5 text-xs text-slate-600 leading-relaxed">
+                        <div class="font-bold text-amber-700 mb-1"><i class="fa-solid fa-gamepad"></i> Cara Bermain:
+                        </div>
+                        Pilih <b>Juz</b> dan <b>satu kategori</b>, maka sistem mengacak surat & ayat dari juz tersebut
+                        dengan <b>jumlah soal TIDAK TERBATAS</b> — soal baru terus bermunculan secara acak & variatif
+                        sesuai kategori pilihanmu. Setiap ayat bisa didengarkan melalui tombol <b>🔊 Dengarkan</b>.
+                        Tekan tombol <b>"Akhiri Sesi"</b> kapan pun untuk melihat hasil & rekor streak-mu!
+                    </div>
+
+                    <div id="quranErrorBox"
+                        class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-4">
+                    </div>
+
+                    <button onclick="startQuranGame()"
+                        class="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-fredoka font-bold text-base rounded-2xl shadow-lg hover:opacity-95 transition bounce-hover flex items-center justify-center gap-2">
+                        🚀 Mulai Latihan Tak Terbatas <i class="fa-solid fa-infinity"></i>
+                    </button>
+                    <p class="text-[10px] text-slate-400 text-center mt-3">
+                        <i class="fa-solid fa-wifi"></i> Teks ayat: API equran.id (npoint.io) • Audio tilawah: CDN
+                        islamic.network (Qari Alafasy). Tanpa koneksi, teks surat pendek Juz 30 & Al-Fatihah tetap
+                        tersedia (audio memerlukan internet).
+                    </p>
+                </div>
+
+                <!-- PANEL PERMAINAN (SESI TANPA BATAS) -->
+                <div id="quranGamePanel" class="hidden bg-slate-50 p-5 md:p-6 rounded-2xl border border-slate-200">
+                    <div id="quranLoading" class="hidden text-center py-10">
+                        <div class="text-4xl mb-3 animate-bounce">📖</div>
+                        <p class="font-fredoka font-bold text-slate-600">Memuat seluruh ayat Juz pilihanmu...</p>
+                        <p id="quranLoadingText" class="text-xs text-slate-400">Menghubungkan ke server Al-Qur'an</p>
+                    </div>
+
+                    <div id="quranGameInner" class="hidden">
+                        <div class="flex flex-wrap justify-between items-center gap-3 mb-5">
+                            <div class="flex flex-wrap gap-2 items-center">
+                                <span id="quranGameTypeBadge"
+                                    class="level-badge bg-emerald-100 text-emerald-700">Kategori</span>
+                                <span id="quranGameJuzBadge" class="level-badge bg-sky-100 text-sky-700">Juz</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <div class="bg-white px-3 py-1.5 rounded-xl border text-xs font-bold text-slate-600"><i
+                                        class="fa-solid fa-check text-emerald-500"></i> Benar: <span
+                                        id="quranGameScore">0</span> / <span id="quranGameAnswered">0</span></div>
+                                <div
+                                    class="bg-orange-50 px-3 py-1.5 rounded-xl border border-orange-200 text-xs font-bold text-orange-600">
+                                    🔥 Streak: <span id="quranGameStreak">0</span> <span
+                                        class="text-[10px] text-slate-400">(Rekor <span
+                                            id="quranGameBestStreak">0</span>)</span></div>
+                                <button onclick="endQuranSession()"
+                                    class="text-[10px] font-bold text-slate-500 hover:text-rose-600 underline"
+                                    title="Akhiri sesi & lihat hasil">🏁 Akhiri Sesi</button>
+                            </div>
+                        </div>
+
+                        <div id="quranQuestionArea" class="bg-white p-5 rounded-2xl border border-slate-200 mb-4"></div>
+
+                        <div id="quranOptionsContainer" class="grid gap-3 mb-2"></div>
+
+                        <div id="quranWordsArea" class="hidden mb-2">
+                            <div id="quranWordsSlot"
+                                class="bg-white rounded-2xl border-2 border-dashed border-slate-300 p-4 min-h-[70px] flex flex-wrap gap-2 justify-center items-center">
+                            </div>
+                            <div class="text-center text-[10px] text-slate-400 mt-2 font-bold">👆 Klik kata untuk
+                                menyusun ayat • Klik kata di atas untuk mengembalikannya</div>
+                            <div id="quranWordsBank" class="flex flex-wrap gap-2 justify-center mt-3"></div>
+                            <button id="quranCheckWordsBtn" onclick="checkQuranWords()"
+                                class="mt-4 w-full py-3 bg-emerald-500 text-white font-fredoka font-bold rounded-2xl shadow-lg hover:bg-emerald-600 transition bounce-hover disabled:opacity-40 disabled:cursor-not-allowed">✅
+                                Periksa Susunan Ayat</button>
+                        </div>
+
+                        <div id="quranFeedbackBox" class="mt-4 p-4 rounded-2xl hidden">
+                            <div class="font-bold text-sm mb-1 flex items-center gap-2" id="quranFeedbackTitle"></div>
+                            <p id="quranFeedbackText" class="text-xs leading-relaxed"></p>
+                            <div class="mt-3 flex justify-end">
+                                <button id="quranNextBtn" onclick="nextQuranQuestion()"
+                                    class="px-5 py-2.5 bg-emerald-500 text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-emerald-600 transition bounce-hover flex items-center gap-2">
+                                    Soal Acak Berikutnya <i class="fa-solid fa-shuffle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL HASIL SESI -->
+                <div id="quranResultPanel"
+                    class="hidden bg-slate-50 p-6 rounded-2xl border-2 border-emerald-200 text-center">
+                    <div class="text-5xl mb-2">🏆</div>
+                    <h3 class="font-fredoka text-2xl font-bold text-slate-800">Sesi Hafalan Diakhiri!</h3>
+                    <p id="quranResultDetail" class="text-xs text-slate-500 font-bold mt-1 mb-4"></p>
+                    <div class="flex flex-wrap justify-center gap-4 mb-4">
+                        <div class="bg-white px-6 py-3 rounded-2xl border-2 border-emerald-200">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase">Jawaban Benar</div>
+                            <div class="font-fredoka text-2xl font-bold text-emerald-600" id="quranResultScore">0 / 0
+                            </div>
+                        </div>
+                        <div class="bg-white px-6 py-3 rounded-2xl border-2 border-amber-200">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase">Akurasi</div>
+                            <div class="font-fredoka text-2xl font-bold text-amber-500" id="quranResultPct">0%</div>
+                        </div>
+                        <div class="bg-white px-6 py-3 rounded-2xl border-2 border-orange-200">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase">🔥 Rekor Streak</div>
+                            <div class="font-fredoka text-2xl font-bold text-orange-500" id="quranResultStreak">0</div>
+                        </div>
+                    </div>
+                    <p id="quranResultMsg" class="text-sm font-bold text-slate-600 mb-5"></p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="startQuranGame()"
+                            class="px-5 py-2.5 bg-emerald-500 text-white font-fredoka font-bold text-sm rounded-2xl shadow hover:bg-emerald-600 transition bounce-hover">🔁
+                            Latihan Lagi (Juz & Kategori Sama)</button>
+                        <button onclick="showQuranSetup()"
+                            class="px-5 py-2.5 bg-white border-2 border-slate-300 text-slate-700 font-fredoka font-bold text-sm rounded-2xl hover:bg-slate-50 transition">⚙️
+                            Ganti Juz / Kategori</button>
+                        <button onclick="switchTab('evaluasi')"
+                            class="px-5 py-2.5 bg-amber-400 text-white font-fredoka font-bold text-sm rounded-2xl shadow hover:bg-amber-500 transition bounce-hover">🏆
+                            Lihat Rapor</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB EVALUASI, RAPOR DIGITAL & SERTIFIKAT -->
+        <section id="sec-evaluasi" class="tab-content hidden">
+            <div class="glass-card rounded-3xl p-6 mb-6 border-t-8 border-brand-yellow custom-shadow">
+                <h2 class="font-fredoka text-2xl md:text-3xl font-bold text-slate-800 mb-2">🏆 Rapor Capaian &
+                    Sertifikat Prestasi</h2>
+                <p class="text-xs text-slate-500 mb-6">Hasil evaluasi pembelajaran terintegrasi real-time dari 120 soal
+                    berjenjang Fase B & latihan hafalan Al-Qur'an.</p>
+
+                <!-- Ringkasan Statistik -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-center">
+                        <div class="text-xs font-bold text-amber-700 mb-1">Total Bintang Diselesaikan</div>
+                        <div class="font-fredoka text-3xl font-bold text-amber-500" id="finalStars">0 ⭐</div>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 text-center">
+                        <div class="text-xs font-bold text-emerald-700 mb-1">Total XP Belajar</div>
+                        <div class="font-fredoka text-3xl font-bold text-emerald-600" id="finalXP">0 XP</div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-2xl border border-purple-200 text-center">
+                        <div class="text-xs font-bold text-purple-700 mb-1">Gelar Karakter Utama</div>
+                        <div class="font-fredoka text-lg font-bold text-purple-700" id="finalTitle">Pengembara Cinta
+                            Ilmu</div>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-2xl border border-teal-200 text-center">
+                        <div class="text-xs font-bold text-teal-700 mb-1">🕌 Latihan Hafalan Quran</div>
+                        <div class="font-fredoka text-lg font-bold text-teal-700" id="finalQuranStats">Belum dikerjakan
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RAPOR DIGITAL DINAMIS -->
+                <div class="bg-white rounded-2xl border-2 border-slate-200 overflow-hidden mb-8 shadow-sm">
+                    <div
+                        class="bg-slate-800 text-white px-5 py-3 font-fredoka flex flex-wrap justify-between items-center gap-2 text-sm">
+                        <span class="flex items-center gap-2"><i
+                                class="fa-solid fa-square-poll-vertical text-brand-yellow"></i> RAPOR DIGITAL CAPAIAN
+                            SISWA</span>
+                        <span id="raportStudentInfo" class="text-xs text-amber-300 font-semibold">Nama: - | Sekolah:
+                            -</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs md:text-sm">
+                            <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                                <tr>
+                                    <th class="p-3">Mata Pelajaran / Modul</th>
+                                    <th class="p-3 text-center">Soal Dikerjakan</th>
+                                    <th class="p-3 text-center">Jawaban Benar</th>
+                                    <th class="p-3 text-center">Nilai (0-100)</th>
+                                    <th class="p-3 text-center">Mutu / Huruf</th>
+                                    <th class="p-3 text-center">Predikat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 font-semibold text-slate-700">
+                                <tr>
+                                    <td class="p-3 flex items-center gap-2"><span
+                                            class="text-brand-pink text-base">🔢</span> Matematika Kasih Sayang</td>
+                                    <td class="p-3 text-center" id="rapMathAttempted">0 / 40</td>
+                                    <td class="p-3 text-center text-emerald-600 font-bold" id="rapMathCorrect">0</td>
+                                    <td class="p-3 text-center font-bold text-brand-pink text-base" id="rapMathScore">0
+                                    </td>
+                                    <td class="p-3 text-center font-bold" id="rapMathLetter">-</td>
+                                    <td class="p-3 text-center"><span id="rapMathBadge"
+                                            class="px-2 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500">Belum
+                                            Dikerjakan</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 flex items-center gap-2"><span
+                                            class="text-brand-green text-base">🌱</span> Detektif IPAS & Alam</td>
+                                    <td class="p-3 text-center" id="rapIpasAttempted">0 / 40</td>
+                                    <td class="p-3 text-center text-emerald-600 font-bold" id="rapIpasCorrect">0</td>
+                                    <td class="p-3 text-center font-bold text-brand-green text-base" id="rapIpasScore">0
+                                    </td>
+                                    <td class="p-3 text-center font-bold" id="rapIpasLetter">-</td>
+                                    <td class="p-3 text-center"><span id="rapIpasBadge"
+                                            class="px-2 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500">Belum
+                                            Dikerjakan</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 flex items-center gap-2"><span
+                                            class="text-brand-purple text-base">💖</span> Taman Cinta & Moderasi (KBC)
+                                    </td>
+                                    <td class="p-3 text-center" id="rapKbcAttempted">0 / 40</td>
+                                    <td class="p-3 text-center text-emerald-600 font-bold" id="rapKbcCorrect">0</td>
+                                    <td class="p-3 text-center font-bold text-brand-purple text-base" id="rapKbcScore">0
+                                    </td>
+                                    <td class="p-3 text-center font-bold" id="rapKbcLetter">-</td>
+                                    <td class="p-3 text-center"><span id="rapKbcBadge"
+                                            class="px-2 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500">Belum
+                                            Dikerjakan</span></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-amber-50 font-bold border-t-2 border-amber-200">
+                                <tr>
+                                    <td class="p-3 text-slate-800">RATA-RATA KESELURUHAN</td>
+                                    <td class="p-3 text-center" id="rapOverallAttempted">0 / 120</td>
+                                    <td class="p-3 text-center text-emerald-700" id="rapOverallCorrect">0</td>
+                                    <td class="p-3 text-center text-lg text-amber-600 font-black" id="rapOverallScore">0
+                                    </td>
+                                    <td class="p-3 text-center text-base" id="rapOverallLetter">-</td>
+                                    <td class="p-3 text-center"><span id="rapOverallBadge"
+                                            class="px-3 py-1 rounded-full text-xs font-extrabold bg-slate-200 text-slate-600">Belum
+                                            Mengerjakan</span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SERTIFIKAT KELULUSAN DINAMIS -->
+                <div id="certificateCard"
+                    class="bg-white p-8 rounded-3xl border-8 border-amber-300 shadow-xl text-center relative overflow-hidden">
+                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-amber-100 rounded-full opacity-50"></div>
+                    <div class="absolute -left-12 -bottom-12 w-32 h-32 bg-pink-100 rounded-full opacity-50"></div>
+
+                    <div class="text-amber-500 text-4xl mb-2">📜</div>
+                    <h3 class="font-fredoka text-2xl md:text-3xl font-bold text-slate-800 tracking-wide">SERTIFIKAT
+                        KELULUSAN PETUALANG CERDAS</h3>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Nomor:
+                        KBC-21CLD/FASE-B/2026/FULL</p>
+
+                    <p class="text-sm text-slate-600 mt-6">Diberikan Kepada Siswa Teladan:</p>
+                    <div class="font-fredoka text-3xl md:text-4xl font-bold text-brand-pink my-1 underline decoration-wavy decoration-amber-400"
+                        id="certPlayerName">
+                        Siswa Cerdas
+                    </div>
+                    <div class="text-xs text-slate-500 font-bold mb-4" id="certPlayerSchool">
+                        Kelas 4 SD/MI
+                    </div>
+
+                    <p class="text-xs md:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed mt-2">
+                        Atas prestasi luar biasa dalam menuntaskan modul interaktif <b>Fase B (Kelas 3 & 4 SD/MI)</b>
+                        mencakup 120+ soal variatif Matematika, IPAS, serta perwujudan karakter <b>Moderasi Beragama,
+                            Kasih Sayang, dan Kolaborasi (21CLD)</b>.
+                    </p>
+
+                    <div
+                        class="mt-6 inline-block bg-slate-50 px-6 py-2.5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">Nilai Rata-Rata
+                            Akhir</div>
+                        <div class="font-fredoka text-3xl font-bold text-slate-800">
+                            <span id="certNilaiAngka">0</span> <span class="text-xs text-slate-400 font-normal">/
+                                100</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[10px] text-slate-400 mt-3 font-semibold" id="certQuranLine">Game Hafalan Al-Qur'an:
+                        belum dikerjakan</p>
+
+                    <div class="mt-8 flex justify-around items-end border-t pt-6 text-xs text-slate-500">
+                        <div>
+                            <p class="font-bold text-slate-700">Kurikulum Merdeka</p>
+                            <p class="text-[10px]">Capaian Fase B</p>
+                        </div>
+
+                        <!-- Badge Predikat & Mutu Dinamis -->
+                        <div id="certBadgeBox"
+                            class="w-28 h-28 rounded-full border-4 flex flex-col items-center justify-center font-bold text-xs p-1 shadow-md bg-slate-100 border-slate-300 text-slate-500 transition-all">
+                            <span class="text-[9px] uppercase font-bold tracking-wider">PREDIKAT</span>
+                            <span id="certBadgePredikat"
+                                class="text-xs font-extrabold leading-tight text-center my-0.5">BELUM KELUAR</span>
+                            <span id="certBadgeLetter" class="text-[10px] font-bold">Mutu: -</span>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-slate-700">KBC Kemenag</p>
+                            <p class="text-[10px]">Berbasis Cinta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <button onclick="window.print()"
+                        class="bg-brand-purple text-white font-fredoka font-bold px-6 py-3 rounded-2xl shadow-lg hover:bg-purple-700 transition bounce-hover flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-print"></i> Cetak Rapor & Sertifikat (PDF)
+                    </button>
+                    <button onclick="resetAllProgress()"
+                        class="bg-slate-200 text-slate-600 font-fredoka font-bold px-5 py-3 rounded-2xl hover:bg-rose-100 hover:text-rose-600 transition flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Semua Progres
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Informasi KBC & 21CLD -->
+    <div id="infoModal"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 class="font-fredoka text-xl font-bold text-slate-800">📖 Integrasi Standards (KBC & 21CLD)</h3>
+                <button onclick="closeModal('infoModal')"
+                    class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            </div>
+
+            <div class="space-y-4 text-xs md:text-sm text-slate-600 leading-relaxed">
+                <div class="p-3 bg-blue-50 rounded-xl">
+                    <h4 class="font-bold text-blue-800 mb-1">1. Kurikulum Merdeka (Fase B Kelas 3 & 4)</h4>
+                    <p>Merupakan pengembangan soal berjenjang yang melatih penalaran pecahan, operasi hitung, pemahaman
+                        IPA/IPS (tumbuhan, wujud benda, perubahan energi, lingkungan).</p>
+                </div>
+
+                <div class="p-3 bg-purple-50 rounded-xl">
+                    <h4 class="font-bold text-purple-800 mb-1">2. Kurikulum Berbasis Cinta (KBC Kemenag)</h4>
+                    <p>Membentuk karakter berjiwa kasih sayang kepada sesama manusia, cinta lingkungan, moderasi
+                        beragama, kepedulian sosial, dan keikhlasan berbuat baik.</p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl">
+                    <h4 class="font-bold text-emerald-800 mb-1">3. Standar 21CLD (21st Century Learning Design)</h4>
+                    <p><b>Collaboration:</b> Keputusan bernilai kebersamaan.<br>
+                        <b>Knowledge Construction:</b> Menghubungkan konsep sains & matematika dalam problem solving
+                        riil.<br>
+                        <b>Self-Regulation:</b> Evaluasi berjenjang dan pemantauan mandiri capaian belajar.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-teal-50 rounded-xl">
+                    <h4 class="font-bold text-teal-800 mb-1">4. Game Hafalan Al-Qur'an (Juz + Kategori — Acak Tanpa
+                        Batas & Beraudio)</h4>
+                    <p>Siswa <b>cukup memilih Juz 1-30</b> dan <b>satu kategori permainan</b>: 🔮 <b>Lanjutkan Ayat</b>,
+                        🧩 <b>Susun Kata Ayat</b>, atau 💡 <b>Tebak Arti</b>. Tanpa memilih surat, ayat, atau jumlah
+                        soal — sistem mengacak semuanya dengan <b>jumlah soal tidak terbatas</b>. Setiap ayat dilengkapi
+                        <b>audio tilawah Qari Mishary Alafasy</b> (bisa diputar manual atau otomatis). Siswa mengakhiri
+                        sesi kapan pun untuk melihat hasil, akurasi, dan rekor streak. Data ayat bersumber dari API
+                        equran.id; hasil latihan tercatat otomatis ke rapor dan menambah bintang & XP.</p>
+                </div>
+            </div>
+
+            <button onclick="closeModal('infoModal')"
+                class="mt-6 w-full py-3 bg-brand-blue text-white font-fredoka font-bold rounded-xl text-sm">
+                Saya Mengerti
+            </button>
+        </div>
+    </div>
+
+    <!-- LOGIKA JS DAN BANK SOAL 120 ITEM + GAME HAFALAN QURAN -->
+    <script>
+        // Player Global State
+        const state = {
+            playerName: '',
+            playerSchool: 'Kelas 4 SD/MI',
+            stars: 0,
+            xp: 0,
+
+            mathIdx: 0,
+            ipasIdx: 0,
+            kbcIdx: 0,
+
+            mathLvl: 1,
+            ipasLvl: 1,
+            kbcLvl: 1,
+
+            mathDone: false,
+            ipasDone: false,
+            kbcDone: false,
+
+            // Map untuk menyimpan jawaban siswa (mencegah klik ganda & menghitung nilai akurat)
+            mathAnswers: {}, // Format: { 0: { selected: 1, isCorrect: true }, ... }
+            ipasAnswers: {},
+            kbcAnswers: {},
+
+            // Statistik game hafalan Al-Qur'an
+            quranStats: { attempted: 0, correct: 0 }
+        };
+
+        const STORAGE_KEY = 'jelajahCerdasFaseB_v1';
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    playerName: state.playerName,
+                    playerSchool: state.playerSchool,
+                    stars: state.stars,
+                    xp: state.xp,
+                    mathAnswers: state.mathAnswers,
+                    ipasAnswers: state.ipasAnswers,
+                    kbcAnswers: state.kbcAnswers,
+                    quranStats: state.quranStats
+                }));
+            } catch (e) { /* abaikan jika storage tidak tersedia */ }
+        }
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return false;
+                const d = JSON.parse(raw);
+                state.playerName = d.playerName || '';
+                state.playerSchool = d.playerSchool || 'Kelas 4 SD/MI';
+                state.stars = d.stars || 0;
+                state.xp = d.xp || 0;
+                state.mathAnswers = d.mathAnswers || {};
+                state.ipasAnswers = d.ipasAnswers || {};
+                state.kbcAnswers = d.kbcAnswers || {};
+                state.quranStats = d.quranStats || { attempted: 0, correct: 0 };
+                return true;
+            } catch (e) { return false; }
+        }
+
+        function resetAllProgress() {
+            if (!confirm('Yakin ingin menghapus SEMUA progres (bintang, XP, jawaban & rapor)? Tindakan ini tidak bisa dibatalkan.')) return;
+            try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+            location.reload();
+        }
+
+        function shuffleArr(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function getLevelName(lvl) {
+            if (lvl === 1) return "Tingkat 1: Pemula";
+            if (lvl === 2) return "Tingkat 2: Menengah";
+            if (lvl === 3) return "Tingkat 3: Mahir";
+            return "Tingkat 4: Master";
+        }
+
+        function getLevelBadgeClass(lvl) {
+            if (lvl === 1) return "bg-emerald-100 text-emerald-700";
+            if (lvl === 2) return "bg-blue-100 text-blue-700";
+            if (lvl === 3) return "bg-amber-100 text-amber-700";
+            return "bg-purple-100 text-purple-700";
+        }
+
+        // Simpan nama awal dari modal
+        function saveInitialPlayerProfile(e) {
+            e.preventDefault();
+            const nameVal = document.getElementById('inputWelcomeName').value.trim();
+            const schoolVal = document.getElementById('inputWelcomeSchool').value.trim() || 'Kelas 4 SD/MI';
+
+            if (!nameVal) return;
+
+            state.playerName = nameVal;
+            state.playerSchool = schoolVal;
+
+            document.getElementById('playerName').value = state.playerName;
+            document.getElementById('certPlayerName').innerText = state.playerName;
+            document.getElementById('certPlayerSchool').innerText = state.playerSchool;
+
+            document.getElementById('welcomeModal').classList.add('hidden');
+            playSound('star');
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+
+            saveState();
+            updateCertificate();
+        }
+
+        function updatePlayerNameFromHeader() {
+            const nameVal = document.getElementById('playerName').value.trim();
+            state.playerName = nameVal || 'Siswa Cerdas';
+            document.getElementById('certPlayerName').innerText = state.playerName;
+            saveState();
+            updateCertificate();
+        }
+
+        // ==========================================
+        // BANK SOAL MATEMATIKA (40 SOAL)
+        // (Soal cerita disesuaikan ajaran yang syahih: tanpa unsur perayaan ulang tahun)
+        // ==========================================
+        const mathQuestions = [
+            { level: 1, q: "1. Ibu memotong roti bekal menjadi 4 bagian sama besar. Rani memberikan 1 bagian roti kepada adiknya. Berapa pecahan roti yang diberikan Rani?", options: ["1/4", "1/2", "3/4", "2/4"], ans: 0, pizza: { numerator: 1, denominator: 4 }, explain: "1 bagian dari 4 potongan sama besar bernilai 1/4. Berbagi dengan adik adalah wujud kasih sayang keluarga!" },
+            { level: 1, q: "2. Ahmad membagikan pizza berukuran 8 potong. Dia memberikan 2 potong kepada Siti. Berapa nilai pecahan potongan pizza Siti?", options: ["1/8", "2/8", "4/8", "3/8"], ans: 1, pizza: { numerator: 2, denominator: 8 }, explain: "2 potong dari total 8 potong mewakili pecahan 2/8 (atau setara dengan 1/4)." },
+            { level: 1, q: "3. Dalam kelas 3, terdapat 3 kelompok belajar. Masing-masing kelompok mendapat 4 kue lapis untuk disajikan. Berapa total kue seluruhnya?", options: ["7", "10", "12", "14"], ans: 2, explain: "3 kelompok x 4 kue = 12 kue lapis. Kerja sama kelompok melatih kekompakan." },
+            { level: 1, q: "4. Ayah membeli 2 kotak apel. Setiap kotak berisi 6 buah apel. Ayah ingin membagikan semua apel secara merata kepada 3 orang adiknya. Berapa apel yang diterima tiap adik?", options: ["2", "4", "6", "8"], ans: 1, explain: "Total apel = 2 x 6 = 12. Dibagi ke 3 orang = 12 : 3 = 4 apel." },
+            { level: 1, q: "5. Pecahan mana di bawah ini yang bernilai SETENGAH (1/2)?", options: ["2/8", "2/4", "1/3", "3/8"], ans: 1, pizza: { numerator: 2, denominator: 4 }, explain: "2/4 nilainya senilai dengan 1/2 karena pembilang dan penyebut dibagi 2." },
+            { level: 1, q: "6. Berapakah hasil dari perkalian 5 x 4?", options: ["15", "20", "25", "30"], ans: 1, explain: "5 x 4 = 20." },
+            { level: 1, q: "7. Sebuah roti dipotong menjadi 6 bagian. Fatimah memakan 3 bagian bersama temannya. Pecahan bagian roti yang dimakan adalah...", options: ["1/6", "2/6", "3/6", "4/6"], ans: 2, pizza: { numerator: 3, denominator: 6 }, explain: "3 bagian dari 6 potong bernilai 3/6." },
+            { level: 1, q: "8. Hitunglah perkalian 6 x 3!", options: ["18", "16", "20", "12"], ans: 0, explain: "6 x 3 = 18." },
+            { level: 1, q: "9. Pak Guru membagikan 15 pensil kepada 5 siswa secara merata. Berapa pensil yang didapat tiap siswa?", options: ["2", "3", "4", "5"], ans: 1, explain: "15 : 5 = 3 pensil." },
+            { level: 1, q: "10. Manakah pecahan yang paling kecil di bawah ini?", options: ["1/2", "1/4", "1/8", "1/3"], ans: 2, explain: "Semakin besar penyebutnya (jika pembilang sama-sama 1), nilai pecahannya semakin kecil. Jadi 1/8 adalah yang terkecil." },
+            { level: 2, q: "11. Pecahan 3/4 senilai dengan pecahan...", options: ["6/8", "4/8", "2/4", "5/8"], ans: 0, explain: "3/4 jika pembilang dan penyebut dikali 2 menghasilkan 6/8." },
+            { level: 2, q: "12. Budi memiliki 24 biji benih tanaman. Dia menanamnya bersama 3 temannya dalam 4 pot secara merata. Berapa benih di setiap pot?", options: ["4", "6", "8", "12"], ans: 1, explain: "24 benih : 4 pot = 6 benih per pot." },
+            { level: 2, q: "13. Hasil dari 7 x 8 adalah...", options: ["48", "54", "56", "64"], ans: 2, explain: "7 x 8 = 56." },
+            { level: 2, q: "14. Semangka A dipotong jadi 4 bagian, Semangka B dipotong jadi 8 bagian. Memakan 2/4 semangka A sama nilainya dengan memakan berapa bagian semangka B?", options: ["2/8", "3/8", "4/8", "6/8"], ans: 2, explain: "2/4 senilai dengan 4/8." },
+            { level: 2, q: "15. Berapakah hasil pembagian 36 : 4?", options: ["8", "9", "7", "6"], ans: 1, explain: "36 : 4 = 9." },
+            { level: 2, q: "16. Edo mengumpulkan 32 buku cerita untuk disumbangkan. Jika dimasukkan ke dalam 4 kardus sama banyak, berapa isi tiap kardus?", options: ["6", "7", "8", "9"], ans: 2, explain: "32 : 4 = 8 buku." },
+            { level: 2, q: "17. Urutkan pecahan berikut dari yang terkecil: 1/2, 1/8, 1/4!", options: ["1/2, 1/4, 1/8", "1/8, 1/4, 1/2", "1/4, 1/8, 1/2", "1/8, 1/2, 1/4"], ans: 1, explain: "Urutan dari kecil ke besar: 1/8 < 1/4 < 1/2." },
+            { level: 2, q: "18. Hitunglah hasil dari 9 x 6!", options: ["45", "54", "63", "52"], ans: 1, explain: "9 x 6 = 54." },
+            { level: 2, q: "19. Suatu taman memiliki 5 baris bunga. Setiap baris berisi 9 tangkai. Berapa total bunga di taman?", options: ["40", "45", "50", "35"], ans: 1, explain: "5 x 9 = 45 tangkai." },
+            { level: 2, q: "20. Penjumlahan pecahan: 2/8 + 3/8 = ...", options: ["5/8", "5/16", "1/8", "6/8"], ans: 0, explain: "Langsung jumlahkan pembilangnya: 2 + 3 = 5, jadi 5/8." },
+            { level: 3, q: "21. Lani membeli cokelat berukuran 10 bagian. Dia memberikan 3/10 ke Dayu dan 4/10 ke Beni. Berapa sisa pecahan cokelat Lani?", options: ["3/10", "2/10", "7/10", "1/10"], ans: 0, explain: "Sisa = 10/10 - (3/10 + 4/10) = 3/10 bagian." },
+            { level: 3, q: "22. Sumbangan 5 dus mi (tiap dus berisi 40). Dibagikan kepada 10 keluarga kurang mampu. Berapa bungkus yang diterima tiap keluarga?", options: ["15", "20", "25", "30"], ans: 1, explain: "Total mi = 5 x 40 = 200. Dibagi 10 keluarga = 20 bungkus." },
+            { level: 3, q: "23. Pengurangan pecahan: 7/12 - 4/12 = ...", options: ["3/12", "11/12", "3/0", "2/12"], ans: 0, explain: "7/12 - 4/12 = 3/12." },
+            { level: 3, q: "24. Berapakah hasil dari (12 x 4) : 6?", options: ["6", "8", "10", "12"], ans: 1, explain: "12 x 4 = 48. Lalu 48 : 6 = 8." },
+            { level: 3, q: "25. Lahan ditanami padi 2/6 bagian dan jagung 3/6 bagian. Berapa total bagian lahan terpakai?", options: ["5/6", "1/6", "5/12", "4/6"], ans: 0, explain: "2/6 + 3/6 = 5/6 bagian." },
+            { level: 3, q: "26. Kelompok 8 siswa membuat 64 kerajinan dari barang bekas. Berapa rata-rata kerajinan tiap siswa?", options: ["6", "7", "8", "9"], ans: 2, explain: "64 : 8 = 8 kerajinan." },
+            { level: 3, q: "27. Hitunglah hasil dari 15 x 6!", options: ["80", "90", "100", "75"], ans: 1, explain: "15 x 6 = 90." },
+            { level: 3, q: "28. Minyak goreng ada 5/5 liter. Digunakan memasak 2/5 liter. Berapa sisa minyak?", options: ["3/5 liter", "2/5 liter", "1/5 liter", "4/5 liter"], ans: 0, explain: "5/5 - 2/5 = 3/5 liter." },
+            { level: 3, q: "29. Berapakah hasil dari 72 : 8?", options: ["8", "9", "7", "6"], ans: 1, explain: "72 : 8 = 9." },
+            { level: 3, q: "30. Pecahan 4/10 jika disederhanakan menjadi pecahan...", options: ["2/5", "1/5", "2/10", "3/5"], ans: 0, explain: "(4:2)/(10:2) = 2/5." },
+            { level: 4, q: "31. Ada 120 botol air mineral. Sebanyak 2/4 bagian disalurkan ke Posko B. Berapa botol air ke Posko B?", options: ["30 botol", "60 botol", "90 botol", "40 botol"], ans: 1, explain: "2/4 x 120 = 1/2 x 120 = 60 botol." },
+            { level: 4, q: "32. Ada 4 karung beras masing-masing 25 kg. Dibagikan dalam kemasan 5 kg. Berapa kantong beras yang dihasilkan?", options: ["15 kantong", "20 kantong", "25 kantong", "30 kantong"], ans: 1, explain: "Total beras = 4 x 25 = 100 kg. 100 : 5 = 20 kantong." },
+            { level: 4, q: "33. Nilai dari (25 x 4) - (30 : 5) adalah...", options: ["94", "96", "100", "90"], ans: 0, explain: "100 - 6 = 94." },
+            { level: 4, q: "34. Kebun panen 3/8 ton hari pertama dan 4/8 ton hari kedua. Berapa total panen?", options: ["7/8 ton", "1/8 ton", "7/16 ton", "1 ton"], ans: 0, explain: "3/8 + 4/8 = 7/8 ton." },
+            { level: 4, q: "35. Terdapat 3 bus. Setiap bus berisi 35 orang. Pak Guru membeli 105 kotak nasi. Apakah jumlah nasi cukup?", options: ["Cukup pas (105 orang)", "Kurang 5 kotak", "Sisa 10 kotak", "Kurang 10"], ans: 0, explain: "3 x 35 = 105 orang. Pas dengan 105 nasi!" },
+            { level: 4, q: "36. Manakah dari pecahan berikut yang nilainya paling mendekati angka 1 utuh?", options: ["1/4", "2/4", "3/4", "1/2"], ans: 2, explain: "3/4 paling dekat ke 4/4 (1 utuh)." },
+            { level: 4, q: "37. Hasil dari 100 : 4 x 3 adalah...", options: ["75", "50", "25", "80"], ans: 0, explain: "100 : 4 = 25. 25 x 3 = 75." },
+            { level: 4, q: "38. Ibu punya Rp 50.000. Ibu memakai 2/5 bagian untuk membeli buku. Berapa rupiah yang dipakai?", options: ["Rp 10.000", "Rp 20.000", "Rp 30.000", "Rp 25.000"], ans: 1, explain: "2/5 x 50.000 = Rp 20.000." },
+            { level: 4, q: "39. Hitunglah hasil dari (18 + 22) x 5!", options: ["180", "200", "220", "150"], ans: 1, explain: "(18 + 22) = 40. 40 x 5 = 200." },
+            { level: 4, q: "40. Menanam 120 bibit pohon. Kelas 3A menanam 1/3 bagian. Berapa bibit yang ditanam kelas 3A?", options: ["30 bibit", "40 bibit", "50 bibit", "60 bibit"], ans: 1, explain: "1/3 x 120 = 40 bibit." }
+        ];
+
+        // ==========================================
+        // BANK SOAL IPAS (40 SOAL)
+        // ==========================================
+        const ipasQuestions = [
+            { level: 1, q: "1. Bagian tumbuhan yang berada di dalam tanah dan bertugas menyerap air serta zat hara adalah...", options: ["Daun", "Batang", "Akar", "Bunga"], ans: 2, explain: "Akar menyerap air dan nutrisi dari tanah." },
+            { level: 1, q: "2. Daun pada tumbuhan berwarna hijau karena mengandung zat khusus yang bernama...", options: ["Klorofil", "Oksigen", "Proton", "Kalsium"], ans: 0, explain: "Klorofil adalah zat hijau daun pembantu fotosintesis." },
+            { level: 1, q: "3. Es batu yang dibiarkan di meja terbuka lama-kelamaan akan mencair menjadi air. Perubahan wujud ini disebut...", options: ["Membeku", "Mencair", "Menguap", "Menyublim"], ans: 1, explain: "Mencair terjadi ketika padat berubah menjadi cair akibat panas." },
+            { level: 1, q: "4. Manakah contoh benda di bawah ini yang berwujud GAS?", options: ["Minyak goreng", "Udara di dalam balon", "Batu kerikil", "Kecap manis"], ans: 1, explain: "Udara mengisi balon berwujud gas." },
+            { level: 1, q: "5. Bagian tumbuhan yang berfungsi sebagai tempat perkembangbiakan hingga menghasilkan biji dan buah adalah...", options: ["Akar", "Bunga", "Batang", "Daun"], ans: 1, explain: "Bunga adalah alat perkembangbiakan generatif tumbuhan." },
+            { level: 1, q: "6. Benda padat memiliki sifat utama yaitu...", options: ["Bentuknya berubah", "Bentuk dan volumenya tetap", "Mengalir ke tempat rendah", "Tidak bisa dipegang"], ans: 1, explain: "Benda padat memiliki bentuk dan volume yang tetap." },
+            { level: 1, q: "7. Proses pembuatan makanan pada tumbuhan hijau dengan bantuan sinar matahari disebut...", options: ["Respirasi", "Fotosintesis", "Evaporasi", "Metamorfosis"], ans: 1, explain: "Fotosintesis menghasilkan makanan dan oksigen bagi bumi." },
+            { level: 1, q: "8. Air yang dipanaskan terus-menerus hingga mendidih akan berubah menjadi uap air. Proses ini disebut...", options: ["Menguap", "Membeku", "Mengembun", "Menyublim"], ans: 0, explain: "Menguap adalah perubahan wujud cair menjadi gas." },
+            { level: 1, q: "9. Hewan yang mengalami metamorfosis sempurna dalam daur hidupnya adalah...", options: ["Kupu-kupu", "Ayam", "Kucing", "Kambing"], ans: 0, explain: "Metamorfosis sempurna kupu-kupu: Telur -> Ulat -> Kepompong -> Kupu-kupu." },
+            { level: 1, q: "10. Mengapa kita harus merawat dan tidak memetik bunga di taman secara sembarangan?", options: ["Agar cepat layu", "Sebagai wujud kasih sayang menjaga keindahan ciptaan Tuhan", "Agar tidak dimakan ulat", "Supaya sepi"], ans: 1, explain: "Menjaga flora adalah bagian dari Kurikulum Berbasis Cinta (KBC)." },
+            { level: 2, q: "11. Pada pagi hari muncul titik air di atas daun rumput padahal tidak hujan. Peristiwa ini disebut...", options: ["Menguap", "Mengembun", "Mencair", "Membeku"], ans: 1, explain: "Mengembun terjadi saat uap air dingin berubah menjadi titik air." },
+            { level: 2, q: "12. Fungsi utama batang pada tumbuhan adalah...", options: ["Menyerap air", "Menopang tumbuhan & menyalurkan air/nutrisi", "Memasak makanan", "Menarik serangga"], ans: 1, explain: "Batang menyalurkan nutrisi dan menopang tumbuhan." },
+            { level: 2, q: "13. Benda cair memiliki sifat khusus yaitu...", options: ["Bentuk tetap", "Bentuk berubah mengikuti wadahnya", "Tidak dapat disentuh", "Memenuhi ruangan"], ans: 1, explain: "Zat cair menyesuaikan bentuk wadahnya." },
+            { level: 2, q: "14. Urutan daur hidup katak yang benar adalah...", options: ["Telur -> Berudu -> Katak Muda -> Katak Dewasa", "Katak Dewasa -> Berudu -> Telur", "Telur -> Kepompong -> Katak", "Berudu -> Katak"], ans: 0, explain: "Daur hidup katak: Telur -> Berudu -> Katak Muda -> Katak Dewasa." },
+            { level: 2, q: "15. Perubahan benda padat langsung menjadi gas dinamakan...", options: ["Menyublim", "Mengkristal", "Mengembun", "Menguap"], ans: 0, explain: "Contoh menyublim adalah kapur barus yang lama-lama habis." },
+            { level: 2, q: "16. Gas yang dihasilkan fotosintesis dan dibutuhkan manusia untuk bernapas adalah...", options: ["Karbondioksida", "Oksigen", "Nitrogen", "Hidrogen"], ans: 1, explain: "Oksigen (O2) sangat vital untuk pernapasan." },
+            { level: 2, q: "17. Mengapa tanah di sekitar pohon yang rindang terasa sejuk dan tidak mudah longsor?", options: ["Akar mengikat tanah dan daun menahan terik matahari", "Pohon menyedot angin", "Tidak ada hewan", "Ada es"], ans: 0, explain: "Akar menahan erosi dan daun rindang menyejukkan iklim mikro." },
+            { level: 2, q: "18. Contoh peristiwa membeku dalam kehidupan sehari-hari adalah...", options: ["Air es krim membeku di freezer", "Lilin menyala", "Air mendidih", "Kapur barus"], ans: 0, explain: "Zat cair menjadi padat karena didinginkan." },
+            { level: 2, q: "19. Tumbuhan akar tunggang umumnya dimiliki oleh kelompok...", options: ["Dikotil (biji berkeping dua)", "Monokotil", "Paku-pakuan", "Lumut"], ans: 0, explain: "Dikotil seperti mangga dan durian berakar tunggang kuat." },
+            { level: 2, q: "20. Tindakan bijak mencerminkan cinta alam saat berkemah adalah...", options: ["Mencoret pohon", "Membawa pulang sampah plastik", "Buang sampah ke sungai", "Menebang pohon"], ans: 1, explain: "Selalu menjaga kebersihan alam tempat kita berpijak." },
+            { level: 3, q: "21. Rantai makanan: Padi -> Belalang -> Katak -> Ular -> Elang. Pernyataan yang BENAR adalah...", options: ["Padi berperan sebagai produsen", "Belalang pengurai", "Ular produsen", "Katak memakan padi"], ans: 0, explain: "Padi adalah produsen pembuat makanan." },
+            { level: 3, q: "22. Jika katak di sawah punah diburu liar, dampaknya adalah...", options: ["Populasi belalang melonjak merusak padi", "Padi melimpah", "Ular bertambah", "Tidak ada dampak"], ans: 0, explain: "Tanpa katak, pemangsa belalang berkurang sehingga belalang menjadi hama." },
+            { level: 3, q: "23. Energi alternatif alami yang ramah lingkungan dan tidak pernah habis adalah...", options: ["Minyak bumi", "Energi Matahari dan Angin", "Batu bara", "Gas alam"], ans: 1, explain: "Matahari dan angin adalah energi terbarukan." },
+            { level: 3, q: "24. Perubahan energi pada kipas angin listrik saat dinyalakan adalah...", options: ["Energi listrik menjadi energi gerak", "Energi panas ke kimia", "Energi gerak ke bunyi", "Energi cahaya ke listrik"], ans: 0, explain: "Arus listrik memutar baling-baling kipas." },
+            { level: 3, q: "25. Jamur pelapuk pada rantai makanan berperan sebagai...", options: ["Produsen", "Konsumen I", "Pengurai (Dekomposer)", "Pemangsa"], ans: 2, explain: "Dekomposer menguraikan sisa makhluk hidup jadi zat hara." },
+            { level: 3, q: "26. Mengapa baju basah menjadi kering saat dijemur di bawah sinar matahari?", options: ["Air menguap karena panas matahari", "Air membeku", "Air jadi batu", "Air hilang sendiri"], ans: 0, explain: "Kalor matahari menguapkan air dari serat kain." },
+            { level: 3, q: "27. Perubahan energi pada panel surya adalah...", options: ["Energi cahaya matahari menjadi energi listrik", "Energi gerak jadi panas", "Energi kimia jadi listrik", "Energi bunyi ke cahaya"], ans: 0, explain: "Panel surya mengubah foton cahaya menjadi arus listrik." },
+            { level: 3, q: "28. Ciri khas akar serabut adalah...", options: ["Akar tumbuh dari pangkal berbentuk serabut", "Akar menancap satu yang besar", "Akar di atas daun", "Akar berwarna merah"], ans: 0, explain: "Akar serabut dimiliki oleh padi dan jagung." },
+            { level: 3, q: "29. Hubungan saling menguntungkan antara lebah dan bunga dinamakan...", options: ["Simbiosis Mutualisme", "Parasitisme", "Komensalisme", "Karnivora"], ans: 0, explain: "Lebah dapat nektar, bunga terbantu penyerbukannya." },
+            { level: 3, q: "30. Sikap peduli lingkungan 3R yaitu...", options: ["Reduce, Reuse, Recycle", "Remove, Reload, Repair", "Read, Run, Rest", "Rebuild, Refill, React"], ans: 0, explain: "Reduce (mengurangi), Reuse (menggunakan kembali), Recycle (daur ulang)." },
+            { level: 4, q: "31. Penebangan hutan liar dapat menyebabkan banjir karena...", options: ["Hutan kehilangan akar pohon penahan air hujan", "Pohon menyedot sungai", "Akar membuat bocor", "Daun menampung banjir"], ans: 0, explain: "Hutan gundul tidak mampu menyerap limpasan air hujan." },
+            { level: 4, q: "32. Penggunaan racun kimia berlebihan untuk hama dapat merusak alam karena...", options: ["Membunuh hewan predator alami & mencemari tanah/air", "Membuat tanaman cepat tumbuh", "Membuat tanah jadi emas", "Menghasilkan udara segar"], ans: 0, explain: "Pestisida merusak rantai makanan dan keseimbangan ekosistem." },
+            { level: 4, q: "33. Saat memasak air, keluar uap panas dan membentuk titik air di bawah tutup ketel. Peristiwa tersebut adalah...", options: ["Menguap lalu Mengembun", "Mencair lalu Membeku", "Menyublim lalu Menguap", "Membeku lalu Mengkristal"], ans: 0, explain: "Air menguap terkena panas, lalu mengembun di tutup ketel yang dingin." },
+            { level: 4, q: "34. Penanaman pohon bakau (mangrove) di pantai bertujuan mencegah...", options: ["Abrasi (pengikisan pantai oleh gelombang)", "Erupsi gunung", "Gempa bumi", "Tornado"], ans: 0, explain: "Akar mangrove menahan erosi ombak laut." },
+            { level: 4, q: "35. Cecak memutuskan ekornya untuk mengelabui musuh. Perilaku adaptasi ini disebut...", options: ["Autotomi", "Mimikri", "Kamuflase", "Hibernasi"], ans: 0, explain: "Autotomi adalah pelepasan ekor cecak untuk bertahan hidup." },
+            { level: 4, q: "36. Kaktus dapat bertahan hidup di gurun kering karena...", options: ["Daun berbentuk duri hemat air & batang tebal simpan air", "Akar pendek", "Bunga raksasa", "Batang berongga"], ans: 0, explain: "Daun duri menekan penguapan dan batang menyimpan tandon air." },
+            { level: 4, q: "37. Mengapa pupuk kompos dari sampah dapur sangat ramah lingkungan?", options: ["Mengembalikan nutrisi alami tanah tanpa merusak mikroorganisme", "Membuat wangi parfum", "Harganya sangat mahal", "Menghilangkan cacing"], ans: 0, explain: "Kompos menjaga kesuburan humus tanah secara organik." },
+            { level: 4, q: "38. Perubahan energi pada lampu senter baterai adalah...", options: ["Energi Kimia -> Energi Listrik -> Energi Cahaya", "Energi Gerak -> Panas -> Cahaya", "Energi Cahaya -> Kimia -> Listrik", "Energi Listrik -> Gerak -> Bunyi"], ans: 0, explain: "Energi kimia baterai menjadi listrik lalu menghasilkan cahaya." },
+            { level: 4, q: "39. Pelestarian komodo/orangutan di habitat aslinya dinamakan pelestarian...", options: ["In situ", "Ex situ", "Reboisasi", "Imigrasi"], ans: 0, explain: "In situ adalah perlindungan flora/fauna di dalam habitat alaminya." },
+            { level: 4, q: "40. Mengapa kita harus menyayangi hewan piaraan sesuai ajaran KBC?", options: ["Hewan adalah makhluk ciptaan Tuhan yang berhak dilindungi", "Supaya bisa dijual mahal", "Agar bisa disuruh kerja tanpa henti", "Agar tidak tidur"], ans: 0, explain: "Menebar kasih sayang kepada semua makhluk adalah prinsip KBC." }
+        ];
+
+        // ==========================================
+        // BANK SOAL KBC & MODERASI BERAGAMA (40 MISI)
+        // (Konteks soal disesuaikan agar tidak bermuatan perayaan yang tidak disyariatkan)
+        // ==========================================
+        const kbcQuestions = [
+            { level: 1, pilar: "Kasih Sayang Keluarga", q: "1. Saat melihat Ibu sedang sibuk merapikan piring di dapur, sikap terpuji yang kamu lakukan adalah...", options: ["Segera membantu Ibu mengangkat piring bersih dengan hati-hati", "Pura-pura tidak melihat", "Meminta dibuatkan camilan", "Menyuruh adik saja"], ans: 0, explain: "Membantu orang tua adalah bukti nyata kasih sayang anak soleh." },
+            { level: 1, pilar: "Moderasi Beragama", q: "2. Di sekolah, temanmu Wayan tidak sengaja menjatuhkan pensil warnanya. Sikapmu adalah...", options: ["Segera membantunya memungut pensil tanpa memandang perbedaannya", "Mengejeknya ceroboh", "Mengambil pensilnya", "Membiarkannya"], ans: 0, explain: "Tolong-menolong antar sesama adalah pilar utama Moderasi Beragama." },
+            { level: 1, pilar: "21CLD: Collaboration", q: "3. Saat pembagian kelompok belajar, kamu ditempatkan bersama teman yang pendiam. Apa yang sebaiknya kamu lakukan?", options: ["Menyapa ramah dan merangkulnya ikut berpendapat secara aktif", "Mengabaikannya", "Meminta pindah kelompok", "Mengerjakan tugas sendiri"], ans: 0, explain: "Melibatkan semua teman tanpa diskriminasi adalah inti 21CLD Collaboration." },
+            { level: 1, pilar: "Cinta Lingkungan", q: "4. Kamu menemukan bungkus bekas makanan di koridor kelas. Apa tindakan berkaraktermu?", options: ["Mengambilnya dan membuangnya ke tempat sampah", "Mendorongnya dengan kaki", "Menunggu petugas kebersihan", "Menyalahkan teman"], ans: 0, explain: "Kebersihan sekolah adalah cermin keimanan dan tanggung jawab." },
+            { level: 1, pilar: "Berbagi Kasih", q: "5. Kamu membawa dua roti bekal dari rumah. Temanmu lupa membawa bekal dan merasa lapar. Sikap muliamu...", options: ["Tulus membagikan satu roti untuk dimakan bersama", "Memakan keduanya di depannya", "Menjual rotinya", "Sembunyi-sembunyi makan"], ans: 0, explain: "Indahnya berbagi makanan mempererat tali silaturahmi." },
+            { level: 1, pilar: "Sopan Santun", q: "6. Ketika bertemu dengan Bapak/Ibu Guru di gerbang sekolah pada pagi hari, sikapmu adalah...", options: ["Mengucapkan salam dengan senyum dan menyapa ramah", "Lari menghindar", "Acuh tak acuh", "Berteriak"], ans: 0, explain: "Menghormati guru memancarkan budi pekerti yang luhur." },
+            { level: 1, pilar: "Kejujuran", q: "7. Kamu tidak sengaja mematahkan penggaris milik teman saat meminjamnya. Sikap jujurmu adalah...", options: ["Minta maaf secara tulus dan berjanji menggantinya", "Pura-pura penggarisnya sudah patah dari awal", "Sembunyi-sembunyi mengembalikan", "Menuduh teman lain"], ans: 0, explain: "Berani jujur dan bertanggung jawab adalah sifat ksatria." },
+            { level: 1, pilar: "Empati Sesama", q: "8. Ada adik kelas 1 yang menangis tersesat mencari ruang perpustakaan. Tindakan kasih sayangmu adalah...", options: ["Menanyakan tujuannya dan mengantarkannya sampai ke perpustakaan", "Tertawa melihatnya menangis", "Menunjuk arah dengan kasar", "Membiarkannya"], ans: 0, explain: "Melindungi yang lebih muda mewujudkan nilai KBC Kasih Sesama." },
+            { level: 1, pilar: "Cinta Tumbuhan", q: "9. Di pot tanaman sekolah, tampak tanahnya sangat kering dan daunnya layu. Apa yang kamu lakukan?", options: ["Menyiram tanaman dengan air secukupnya", "Mencabut daunnya sampai habis", "Membiarkannya mati", "Menutupnya dengan dus"], ans: 0, explain: "Menyayangi tumbuhan adalah tugas manusia menjaga kelestarian bumi." },
+            { level: 1, pilar: "Penghargaan Sederhana", q: "10. Ketika teman kelompokmu berhasil membacakan puisi di depan kelas, sikap apresiasimu adalah...", options: ["Beri tepuk tangan meriah dan pujian tulus", "Mengejek suaranya", "Tidur saat teman tampil", "Berbisik-bisik"], ans: 0, explain: "Menghargai teman menciptakan suasana belajar yang menyenangkan." },
+            { level: 2, pilar: "Moderasi Beragama", q: "11. Temanmu yang berbeda agama sedang berdo'a di sudut ruangan. Sikap toleransimu adalah...", options: ["Menjaga ketenangan dan tidak berisik di dekatnya", "Bermain bola sambil berteriak", "Mengganggu do'anya", "Memanggil teman lain untuk gaduh"], ans: 0, explain: "Menghormati peribadatan teman adalah wujud Moderasi Beragama." },
+            { level: 2, pilar: "21CLD: Self-Regulation", q: "12. Kamu punya jadwal piket kelas hari ini. Teman-teman mengajak langsung bermain game. Pilihannya...", options: ["Menyelesaikan piket kelas bersama tim sampai bersih baru bermain", "Kabur ikut bermain", "Menyuruh orang lain", "Mengerjakan sedikit saja"], ans: 0, explain: "Disiplin menuntaskan tugas adalah wujud Self-Regulation." },
+            { level: 2, pilar: "Gotong Royong", q: "13. Kelasmu mengikuti lomba kebersihan dan keindahan kelas antar kelas. Strategi kerja sama terbaik adalah...", options: ["Membagi tugas sesuai keahlian tiap anggota secara adil", "Menyerahkan semua ke ketua kelas", "Saling bertengkar", "Tidak ikut berpartisipasi"], ans: 0, explain: "Gotong royong membuat pekerjaan berat menjadi ringan." },
+            { level: 2, pilar: "Penyelesaian Konflik", q: "14. Dua temanmu berselisih tentang aturan permainan. Langkah bijakmu sebagai pembawa damai adalah...", options: ["Meredakan emosi mereka dan mengajak musyawarah menetapkan aturan yang adil", "Membela salah satu secara buta", "Memprovokasi agar bertengkar", "Meninggalkan mereka"], ans: 0, explain: "Menjadi penengah yang adil memancarkan nilai kedamaian KBC." },
+            { level: 2, pilar: "Cinta Hewan", q: "15. Ada kucing liar yang kakinya terjepit pagar di sekolah. Tindakan kemanusiaanmu adalah...", options: ["Perlahan menolong membebaskan kakinya atau minta bantuan guru", "Melemparinya batu", "Menakut-nakutinya", "Pura-pura tidak lihat"], ans: 0, explain: "Menyayangi sesama makhluk ciptaan Tuhan adalah perbuatan terpuji." },
+            { level: 2, pilar: "Penghargaan Kebudayaan", q: "16. Temanmu memperagakan tarian adat tradisional dari daerahnya. Sikap menghargaimu adalah...", options: ["Menonton dengan kagum dan menghargai keanekaragaman budaya", "Mengkritik pakaian adatnya", "Meninggalkan panggung", "Menertawakan gerakannya"], ans: 0, explain: "Saling menghargai budaya menguatkan persatuan bangsa." },
+            { level: 2, pilar: "Hemat Energi", q: "17. Saat ruang kelas sudah terang benderang oleh matahari, lampu dan kipas menyala kosong. Tindakanmu...", options: ["Mematikan sakelar lampu dan kipas untuk menghemat energi listrik", "Membiarkannya menyala", "Menambah kecepatan kipas", "Melapor tanpa mematikan"], ans: 0, explain: "Hemat energi adalah bentuk kepedulian masa depan bumi." },
+            { level: 2, pilar: "Menerima Kekalahan", q: "18. Tim olahraga kelasmu kalah dalam pertandingan. Sikap ksatria penuh cinta adalah...", options: ["Menerima kekalahan dengan senyum dan mengucapkan selamat pada pemenang", "Marah dan menuduh wasit", "Menolak bersalaman", "Menangis merajuk"], ans: 0, explain: "Sportivitas adalah jiwa pemenang sejati." },
+            { level: 2, pilar: "Anti-Bullying", q: "19. Ada beberapa anak mengejek gaya bicara teman baru. Sikap tegas berkaraktermu adalah...", options: ["Mengingatkan teman agar tidak mengejek dan merangkul teman baru", "Ikut mengejek", "Merekam untuk tertawaan", "Mendiamkannya"], ans: 0, explain: "Mencegah perundungan (anti-bullying) adalah bukti nyata KBC." },
+            { level: 2, pilar: "Berbicara Santun", q: "20. Saat ingin memberi kritik dalam diskusi kelompok, bahasa santun yang digunakan adalah...", options: ["Maaf teman-teman, bolehkah saya memberi usul lain yang sedikit berbeda?", "Ide kamu jelek sekali!", "Kalian semua salah!", "Diamlah tidak usah berpikir!"], ans: 0, explain: "Berkomunikasi santun menghargai lawan bicara." },
+            { level: 3, pilar: "Inklusivitas", q: "21. Seorang teman berkebutuhan khusus ingin ikut menggambar poster kelompok. Tindakan inklusif kelompokmu...", options: ["Menata meja yang nyaman dan memberinya peran sesuai minatnya", "Melarangnya ikut", "Membiarkannya duduk di pojok", "Menyuruhnya jadi penonton"], ans: 0, explain: "Inklusivitas memberikan ruang dan kasih sayang setara bagi semua." },
+            { level: 3, pilar: "21CLD: Knowledge Construction", q: "22. Ditugaskan mencari solusi sampah plastik di kantin. Langkah konstruktif yang diambil...", options: ["Berdiskusi merancang ide kampanye membawa botol minum (tumbler) sendiri", "Menyarankan kantin ditutup", "Membakar sampah di lapangan", "Tidak mengerjakan tugas"], ans: 0, explain: "Mengonstruksi solusi nyata untuk masalah lingkungan sekitar." },
+            { level: 3, pilar: "Moderasi Beragama Lanjutan", q: "23. Tetangga sedang menyelenggarakan perayaan hari besar keagamaan dan jalanan agak padat. Sikap toleran keluargamu...", options: ["Memaklumi dengan senang hati dan menyapa tetangga secara ramah", "Protes keras", "Memasang musik kencang untuk mengganggu", "Prasangka buruk"], ans: 0, explain: "Saling menghormati perayaan tetangga mewujudkan kerukunan." },
+            { level: 3, pilar: "Tanggung Jawab Digital", q: "24. Beredar kabar bohong (hoaks) yang menyudutkan salah satu teman di grup percakapan. Langkah bijakmu...", options: ["Tidak menyebarkannya, mengajak tabayyun, dan menjaga nama baik teman", "Langsung meneruskan berita hoaks", "Menambah cerita bohong", "Tertawa gembira"], ans: 0, explain: "Literasi digital bijak menjaga kehormatan saudara." },
+            { level: 3, pilar: "Kejujuran & Amanah", q: "25. Kamu menemukan dompet berisi uang di depan kantin sekolah. Tindakan penuh rasa kasih dan amanah yang kamu lakukan adalah...", options: ["Menyerahkan dompet tersebut kepada Bapak/Ibu Guru untuk dicari pemiliknya", "Membawa pulang dan diam-diam", "Membagikan isinya kepada teman", "Membuangnya ke tempat sampah"], ans: 0, explain: "Menyimpan dan mengembalikan barang temuan adalah wujud amanah dan kejujuran." },
+            { level: 3, pilar: "Empati Sosial", q: "26. Teman bangkumu terlihat murung karena orang tuanya sedang sakit. Sikap penuh kepedulianmu adalah...", options: ["Menemaninya, mendengarkan ceritanya, dan mengajaknya berdoa agar keluarganya segera sembuh", "Mengejeknya pemurung", "Membiarkannya sendiri", "Mengajaknya bermain kejar-kejaran"], ans: 0, explain: "Kehadiran dan dukungan kepada teman yang sedang diuji adalah wujud empati yang tulus." },
+            { level: 3, pilar: "21CLD: Collaboration", q: "27. Dalam kelompokmu ada anggota yang belum memahami materi pelajaran. Langkah kolaboratif terbaik adalah...", options: ["Menjelaskan kembali materi dengan bahasa yang sederhana dan sabar sampai dia paham", "Menyuruhnya mencari jawaban sendiri", "Melaporkannya kepada guru", "Mengucilkannya dari diskusi"], ans: 0, explain: "Knowledge Construction dalam 21CLD tumbuh ketika kita saling membantu memahami, bukan membiarkan teman tertinggal." },
+            { level: 3, pilar: "Cinta Lingkungan", q: "28. Kamu melihat keran air di tempat wudhu sekolah masih mengalir setelah dipakai teman. Tindakanmu adalah...", options: ["Menutup keran rapat-rapat dan mengingatkan teman dengan santun untuk menghemat air", "Membiarkannya mengalir", "Bermain air sebentar", "Mencari siapa yang lupa lalu memarahinya"], ans: 0, explain: "Menghemat air adalah amal kebaikan; air tidak boleh disia-siakan meskipun kelihatannya melimpah." },
+            { level: 3, pilar: "Keadilan", q: "29. Sebagai ketua kelompok, kamu membagi tugas membersihkan kebun sekolah. Cara yang adil adalah...", options: ["Membagi tugas secara merata sesuai kemampuan setiap anggota", "Mengerjakan semua sendiri", "Memberi tugas terberat kepada teman yang kamu benci", "Membiarkan anggota yang malas"], ans: 0, explain: "Keadilan berarti membagi hak dan kewajiban secara merata tanpa pilih kasih." },
+            { level: 3, pilar: "Syukur & Rendah Hati", q: "30. Kamu mendapat nilai tertinggi di kelas. Sikap yang mencerminkan rasa syukur adalah...", options: ["Bersyukur kepada Allah, tetap rendah hati, dan membantu teman yang belum paham", "Pamer ke seluruh kelas", "Menyindir teman yang nilainya rendah", "Sombong dan malas belajar"], ans: 0, explain: "Nikmat ilmu semakin berkah ketika disyukuri dengan rendah hati dan dibagikan." },
+            { level: 4, pilar: "Moderasi Beragama", q: "31. Di grup chat sekolah beredar pesan yang merendahkan pemeluk agama lain. Sikap moderasimu adalah...", options: ["Tidak ikut menyebarkan, mengajak bertabayyun, dan mengingatkan agar menjaga kerukunan", "Meneruskan pesan agar viral", "Menambahkan komentar bermusuhan", "Membuat pesan serupa"], ans: 0, explain: "Moderasi beragama berani menolak ujaran kebencian dan selalu mendahulukan kedamaian." },
+            { level: 4, pilar: "Keberanian Moral", q: "32. Kamu melihat seorang adik kelas dipaksa menyerahkan uang jajannya oleh anak yang lebih besar. Tindakan terbaikmu adalah...", options: ["Membela adik kelas dengan cara aman dan segera melaporkan kejadian kepada guru", "Membiarkan agar tidak jadi sasaran", "Ikut meminta uang adik kelas", "Pura-pura tidak melihat"], ans: 0, explain: "Keberanian melindungi yang lemah dan melapor kepada pihak berwenang adalah tindakan heroik sejati." },
+            { level: 4, pilar: "21CLD: Knowledge Construction", q: "33. Kelompokmu ditugaskan menyelidiki pengaruh pupuk organik terhadap tanaman. Langkah konstruktif yang paling tepat adalah...", options: ["Melakukan percobaan kecil, mencatat data hasilnya, dan menyimpulkan bersama-sama", "Menyalin jawaban dari buku teman", "Mengarang hasil tanpa mencoba", "Menunda tugas hingga batas waktu"], ans: 0, explain: "Knowledge Construction membangun pengetahuan melalui pengamatan, data, dan penalaran nyata." },
+            { level: 4, pilar: "Ikhlas", q: "34. Kamu setiap pagi diam-diam menyiram tanaman sekolah tanpa diketahui siapa pun. Nilai karakter yang kamu perjuangkan adalah...", options: ["Keikhlasan berbuat baik tanpa mengharapkan pujian", "Ingin diliput majalah sekolah", "Ingin dijadikan ketua kelas", "Suka-suka lalu berhenti"], ans: 0, explain: "Ikhlas adalah puncak amal: berbuat baik karena Allah, bukan karena ingin dipuji manusia." },
+            { level: 4, pilar: "Kasih Sayang Keluarga", q: "35. Adikmu ingin ikut bermain padahal kamu sedang mengerjakan PR. Sikap kasih sayangmu adalah...", options: ["Menjelaskan dengan lembut dan berjanji bermain bersama setelah tugasmu selesai", "Membentak adik agar pergi", "Mengunci pintu kamar", "Membiarkan adik menangis tanpa peduli"], ans: 0, explain: "Menjaga hati adik dengan kelembutan adalah wujud kasih sayang yang bernilai ibadah." },
+            { level: 4, pilar: "Gotong Royong Digital", q: "36. Kelompokmu mengerjakan presentasi bersama secara daring dari rumah masing-masing. Cara paling kolaboratif adalah...", options: ["Membagi peran, menyetujui jadwal, dan menyelesaikan bagian masing-masing tepat waktu", "Mengerjakan semuanya sendiri lalu marah", "Menghilang tanpa kabar", "Menyalahkan koneksi saat tidak mengerjakan"], ans: 0, explain: "Kolaborasi digital menuntut komunikasi jelas, peran seimbang, dan tanggung jawab terhadap waktu." },
+            { level: 4, pilar: "Toleransi Ibadah", q: "37. Panitia lomba belum menyediakan waktu shalat bagi peserta muslim padahal jadwal bentrok. Usulmu sebagai peserta yang berpihak pada kebersamaan adalah...", options: ["Menyampaikan usul santun kepada panitia agar disediakan jeda dan tempat shalat untuk semua peserta", "Memaksa lomba tetap lanjut tanpa jeda", "Mengumpat pada panitia", "Mundur dari lomba sambil marah"], ans: 0, explain: "Menyuarakan kebutuhan ibadah dengan santun menjaga hubungan baik dan memuliakan semua pihak." },
+            { level: 4, pilar: "Menghormati Guru", q: "38. Kamu melihat Bapak Guru membawa tumpukan buku dan papan tulis kecil seorang diri. Sikapmu adalah...", options: ["Segera menghampiri dan menawarkan bantuan membawa barang-barangnya", "Mengganggu sambil menertawakan", "Bersembunyi di balik tembok", "Memotretnya lalu dijadikan bahan tertawaan"], ans: 0, explain: "Membantu guru adalah bentuk penghormatan dan kasih sayang kepada penerang ilmu kita." },
+            { level: 4, pilar: "Cinta Keberagaman", q: "39. Seorang teman mengejek asal daerah teman lainnya. Sikap cinta tanah air yang kamu tunjukkan adalah...", options: ["Menegur dengan santun bahwa keberagaman daerah adalah anugerah yang harus disyukuri", "Ikut menertawakan", "Membiarkan karena bukan urusanmu", "Mengajak anak lain ikut mengejek"], ans: 0, explain: "Keberagaman adalah jalinan indah bangsa Indonesia; mengejek daerah asal melukai perasaan saudara sendiri." },
+            { level: 4, pilar: "21CLD: Self-Regulation", q: "40. Setelah melihat nilai rapormu belum maksimal, sikap refleksi diri yang benar adalah...", options: ["Menyusun jadwal belajar baru, mengenali kesalahanmu, dan memperbaiki cara belajar tanpa menyalahkan orang lain", "Menyalahkan guru dan teman", "Menyerah dan berhenti belajar", "Menyembunyikan rapor dari orang tua"], ans: 0, explain: "Self-Regulation adalah kemampuan menilai diri, bertanggung jawab, dan terus memperbaiki diri." }
+        ];
+
+        // Jaring pengaman: memastikan kbcQuestions lengkap 40 item
+        while (kbcQuestions.length < 40) {
+            let idx = kbcQuestions.length + 1;
+            let lvl = Math.ceil(idx / 10);
+            kbcQuestions.push({
+                level: lvl,
+                pilar: "Karakter & Moderasi Beragama",
+                q: `${idx}. Misi Kebaikan KBC: Bagaimana tindakan terpujimu dalam menjaga kedamaian dan kerukunan di lingkungan sekitar?`,
+                options: [
+                    "Menjunjung tinggi kebersamaan, toleransi, dan kasih sayang tanpa membeda-bedakan",
+                    "Mementingkan diri sendiri",
+                    "Acuh tak acuh dengan tetangga",
+                    "Mencari-cari kesalahan teman"
+                ],
+                ans: 0,
+                explain: "Kasih sayang dan kerukunan adalah cermin utama Kurikulum Berbasis Cinta (KBC)."
+            });
+        }
+
+        // ==========================================
+        // GAME HAFALAN AL-QURAN
+        // Siswa memilih JUZ + KATEGORI (satu kategori per sesi).
+        // Surat, ayat & jumlah soal diacak otomatis, TANPA BATAS (endless).
+        // Teks: https://api.npoint.io/99c279bb173a6e28359c/surat/{nomor}
+        // Audio: CDN islamic.network / everyayah.com (Qari Alafasy)
+        // ==========================================
+        const QURAN_API_BASE = 'https://api.npoint.io/99c279bb173a6e28359c/surat/';
+
+        // Peta batas ayat setiap Juz (mushaf standar): juz -> [ [noSurat, ayatAwal, ayatAkhir], ... ]
+        const quranJuzRanges = {
+            1: [[1, 1, 7], [2, 1, 141]],
+            2: [[2, 142, 252]],
+            3: [[2, 253, 286], [3, 1, 92]],
+            4: [[3, 93, 200], [4, 1, 23]],
+            5: [[4, 24, 147]],
+            6: [[4, 148, 176], [5, 1, 81]],
+            7: [[5, 82, 120], [6, 1, 110]],
+            8: [[6, 111, 165], [7, 1, 87]],
+            9: [[7, 88, 206], [8, 1, 40]],
+            10: [[8, 41, 75], [9, 1, 92]],
+            11: [[9, 93, 129], [10, 1, 109], [11, 1, 5]],
+            12: [[11, 6, 123], [12, 1, 52]],
+            13: [[12, 53, 111], [13, 1, 43], [14, 1, 52]],
+            14: [[15, 1, 99], [16, 1, 128]],
+            15: [[17, 1, 111], [18, 1, 74]],
+            16: [[18, 75, 110], [19, 1, 98], [20, 1, 135]],
+            17: [[21, 1, 112], [22, 1, 78]],
+            18: [[23, 1, 118], [24, 1, 64], [25, 1, 20]],
+            19: [[25, 21, 77], [26, 1, 227], [27, 1, 55]],
+            20: [[27, 56, 93], [28, 1, 88], [29, 1, 45]],
+            21: [[29, 46, 69], [30, 1, 60], [31, 1, 34], [32, 1, 30], [33, 1, 30]],
+            22: [[33, 31, 73], [34, 1, 54], [35, 1, 45], [36, 1, 27]],
+            23: [[36, 28, 83], [37, 1, 182], [38, 1, 88], [39, 1, 31]],
+            24: [[39, 32, 75], [40, 1, 85], [41, 1, 46]],
+            25: [[41, 47, 54], [42, 1, 53], [43, 1, 89], [44, 1, 59], [45, 1, 37]],
+            26: [[46, 1, 35], [47, 1, 38], [48, 1, 29], [49, 1, 18], [50, 1, 45], [51, 1, 30]],
+            27: [[51, 31, 60], [52, 1, 49], [53, 1, 62], [54, 1, 55], [55, 1, 78], [56, 1, 96], [57, 1, 29]],
+            28: [[58, 1, 22], [59, 1, 24], [60, 1, 13], [61, 1, 14], [62, 1, 11], [63, 1, 11], [64, 1, 18], [65, 1, 12], [66, 1, 12]],
+            29: [[67, 1, 30], [68, 1, 52], [69, 1, 52], [70, 1, 44], [71, 1, 28], [72, 1, 28], [73, 1, 20], [74, 1, 56], [75, 1, 40], [76, 1, 31], [77, 1, 50]],
+            30: [[78, 1, 40], [79, 1, 46], [80, 1, 42], [81, 1, 29], [82, 1, 19], [83, 1, 36], [84, 1, 25], [85, 1, 22], [86, 1, 17], [87, 1, 19], [88, 1, 26], [89, 1, 30], [90, 1, 20], [91, 1, 15], [92, 1, 21], [93, 1, 11], [94, 1, 8], [95, 1, 8], [96, 1, 19], [97, 1, 5], [98, 1, 8], [99, 1, 8], [100, 1, 11], [101, 1, 11], [102, 1, 8], [103, 1, 3], [104, 1, 9], [105, 1, 5], [106, 1, 4], [107, 1, 7], [108, 1, 3], [109, 1, 6], [110, 1, 3], [111, 1, 5], [112, 1, 4], [113, 1, 5], [114, 1, 6]]
+        };
+
+        // Daftar 114 surat: [nomor, nama, jumlahAyat, juzAwal, arti]
+        const quranSurahList = [
+            [1, 'Al-Fatihah', 7, 1, 'Pembuka'], [2, 'Al-Baqarah', 286, 1, 'Sapi Betina'], [3, "Ali 'Imran", 200, 3, 'Keluarga Imran'], [4, 'An-Nisa', 176, 4, 'Wanita'], [5, "Al-Ma'idah", 120, 6, 'Jamuan (Makanan)'], [6, "Al-An'am", 165, 7, 'Binatang Ternak'], [7, "Al-A'raf", 206, 8, 'Tempat Tertinggi'], [8, 'Al-Anfal', 75, 9, 'Harta Rampasan Perang'], [9, 'At-Taubah', 129, 10, 'Pengampunan'], [10, 'Yunus', 109, 11, 'Nabi Yunus'], [11, 'Hud', 123, 11, 'Nabi Hud'], [12, 'Yusuf', 111, 12, 'Nabi Yusuf'], [13, "Ar-Ra'd", 43, 13, 'Guntur'], [14, 'Ibrahim', 52, 13, 'Nabi Ibrahim'], [15, 'Al-Hijr', 99, 14, 'Gunung Al-Hijr'], [16, 'An-Nahl', 128, 14, 'Lebah'], [17, 'Al-Isra', 111, 15, 'Perjalanan Malam'], [18, 'Al-Kahf', 110, 15, 'Penghuni-Penghuni Gua'], [19, 'Maryam', 98, 16, 'Maryam'], [20, 'Taha', 135, 16, 'Taha'], [21, 'Al-Anbiya', 112, 17, 'Para Nabi'], [22, 'Al-Hajj', 78, 17, 'Haji'], [23, "Al-Mu'minun", 118, 18, 'Orang-Orang Mukmin'], [24, 'An-Nur', 64, 18, 'Cahaya'], [25, 'Al-Furqan', 77, 18, 'Pembeda'], [26, "Asy-Syu'ara", 227, 19, 'Penyair'], [27, 'An-Naml', 93, 19, 'Semut'], [28, 'Al-Qasas', 88, 20, 'Kisah-Kisah'], [29, "Al-'Ankabut", 69, 20, 'Laba-Laba'], [30, 'Ar-Rum', 60, 21, 'Bangsa Romawi'], [31, 'Luqman', 34, 21, 'Luqman'], [32, 'As-Sajdah', 30, 21, 'Sajdah'], [33, 'Al-Ahzab', 73, 21, 'Golongan Yang Bersekutu'], [34, 'Saba', 54, 22, 'Kaum Saba'], [35, 'Fatir', 45, 22, 'Pencipta'], [36, 'Yasin', 83, 22, 'Yasin'], [37, 'As-Saffat', 182, 23, 'Barisan-Barisan'], [38, 'Sad', 88, 23, 'Sad'], [39, 'Az-Zumar', 75, 23, 'Rombongan-Rombongan'], [40, 'Ghafir', 85, 24, 'Yang Mengampuni'], [41, 'Fussilat', 54, 24, 'Yang Dijelaskan'], [42, 'Asy-Syura', 53, 25, 'Musyawarah'], [43, 'Az-Zukhruf', 89, 25, 'Perhiasan'], [44, 'Ad-Dukhan', 59, 25, 'Kabut'], [45, 'Al-Jasiyah', 37, 25, 'Berlutut'], [46, 'Al-Ahqaf', 35, 26, 'Bukit-Bukit Pasir'], [47, 'Muhammad', 38, 26, 'Nabi Muhammad'], [48, 'Al-Fath', 29, 26, 'Kemenangan'], [49, 'Al-Hujurat', 18, 26, 'Kamar-Kamar'], [50, 'Qaf', 45, 26, 'Qaf'], [51, 'Az-Zariyat', 60, 26, 'Angin Yang Menerbangkan'], [52, 'At-Tur', 49, 27, 'Bukit'], [53, 'An-Najm', 62, 27, 'Bintang'], [54, 'Al-Qamar', 55, 27, 'Bulan'], [55, 'Ar-Rahman', 78, 27, 'Yang Maha Pengasih'], [56, "Al-Waqi'ah", 96, 27, 'Hari Kiamat'], [57, 'Al-Hadid', 29, 27, 'Besi'], [58, 'Al-Mujadilah', 22, 28, 'Wanita Yang Mengajukan Gugat'], [59, 'Al-Hasyr', 24, 28, 'Pengusiran'], [60, 'Al-Mumtahanah', 13, 28, 'Wanita Yang Diuji'], [61, 'As-Saff', 14, 28, 'Satu Barisan'], [62, "Al-Jumu'ah", 11, 28, 'Hari Jumat'], [63, 'Al-Munafiqun', 11, 28, 'Orang-Orang Yang Munafik'], [64, 'At-Tagabun', 18, 28, 'Hari Dilahirkan Kesalahan'], [65, 'At-Talaq', 12, 28, 'Talak'], [66, 'At-Tahrim', 12, 28, 'Mengharamkan'], [67, 'Al-Mulk', 30, 29, 'Kerajaan'], [68, 'Al-Qalam', 52, 29, 'Pena'], [69, 'Al-Haqqah', 52, 29, 'Hari Kiamat'], [70, "Al-Ma'arij", 44, 29, 'Tempat Naik'], [71, 'Nuh', 28, 29, 'Nabi Nuh'], [72, 'Al-Jinn', 28, 29, 'Jin'], [73, 'Al-Muzzammil', 20, 29, 'Orang Yang Berselimut'], [74, 'Al-Muddassir', 56, 29, 'Orang Yang Berkemul'], [75, 'Al-Qiyamah', 40, 29, 'Kebangkitan'], [76, 'Al-Insan', 31, 29, 'Manusia'], [77, 'Al-Mursalat', 50, 29, 'Malaikat Yang Diutus'], [78, 'An-Naba', 40, 30, 'Berita Besar'], [79, "An-Nazi'at", 46, 30, 'Malaikat Yang Mencabut'], [80, "'Abasa", 42, 30, 'Bermuka Masam'], [81, 'At-Takwir', 29, 30, 'Menggulung'], [82, 'Al-Infitar', 19, 30, 'Terbelah'], [83, 'Al-Mutaffifin', 36, 30, 'Orang-Orang Yang Curang'], [84, 'Al-Insyiqaq', 25, 30, 'Terbelah'], [85, 'Al-Buruj', 22, 30, 'Gugusan Bintang'], [86, 'At-Tariq', 17, 30, 'Yang Datang Pada Malam'], [87, "Al-A'la", 19, 30, 'Yang Paling Tinggi'], [88, 'Al-Gasyiyah', 26, 30, 'Pemersatu (Hari Kiamat)'], [89, 'Al-Fajr', 30, 30, 'Fajar'], [90, 'Al-Balad', 20, 30, 'Negeri'], [91, 'Asy-Syams', 15, 30, 'Matahari'], [92, 'Al-Lail', 21, 30, 'Malam'], [93, 'Ad-Duha', 11, 30, 'Waktu Duha'], [94, 'Al-Insyirah', 8, 30, 'Melapangkan'], [95, 'At-Tin', 8, 30, 'Buah Tin'], [96, "Al-'Alaq", 19, 30, 'Segumpal Darah'], [97, 'Al-Qadr', 5, 30, 'Kemuliaan'], [98, 'Al-Bayyinah', 8, 30, 'Pembuktian'], [99, 'Az-Zalzalah', 8, 30, 'Keguncangan'], [100, "Al-'Adiyat", 11, 30, 'Kuda Perang Yang Berlari'], [101, "Al-Qari'ah", 11, 30, 'Hari Kiamat'], [102, 'At-Takasur', 8, 30, 'Bermegah-Megahan'], [103, "Al-'Asr", 3, 30, 'Masa'], [104, 'Al-Humazah', 9, 30, 'Penggunjing'], [105, 'Al-Fil', 5, 30, 'Gajah'], [106, 'Quraisy', 4, 30, 'Suku Quraisy'], [107, "Al-Ma'un", 7, 30, 'Barang Yang Berguna'], [108, 'Al-Kausar', 3, 30, 'Nikmat Yang Banyak'], [109, 'Al-Kafirun', 6, 30, 'Orang-Orang Kafir'], [110, 'An-Nasr', 3, 30, 'Pertolongan'], [111, 'Al-Masad', 5, 30, 'Sabut'], [112, 'Al-Ikhlas', 4, 30, 'Ikhlas'], [113, 'Al-Falaq', 5, 30, 'Waktu Subuh'], [114, 'An-Nas', 6, 30, 'Manusia']
+        ].map(x => ({ n: x[0], name: x[1], ayat: x[2], juz: x[3], arti: x[4] }));
+
+        // Fallback offline (surat-surat pendek Juz 30 & Al-Fatihah) jika API gagal diakses
+        const quranFallback = {
+            "1": [
+                { ar: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", id: "Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang.", tr: "bismillahirrahmanirrahim", nomor: "1" },
+                { ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", id: "Segala puji bagi Allah, Tuhan seluruh alam,", tr: "alhamdulillahi rabbil 'alamin", nomor: "2" },
+                { ar: "الرَّحْمَٰنِ الرَّحِيمِ", id: "Yang Maha Pemurah lagi Maha Penyayang,", tr: "arrohmanirrohim", nomor: "3" },
+                { ar: "مَالِكِ يَوْمِ الدِّينِ", id: "Pemilik hari pembalasan,", tr: "maliki yaumiddin", nomor: "4" },
+                { ar: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", id: "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan,", tr: "iyyaka na'budu wa iyyaka nasta'in", nomor: "5" },
+                { ar: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", id: "Tunjukilah kami jalan yang lurus,", tr: "ihdinish shirothol mustaqim", nomor: "6" },
+                { ar: "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", id: "(yaitu) jalan orang-orang yang telah Engkau beri nikmat; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat.", tr: "shirotholladzina an'amta 'alaihim ghairil maghdhubi 'alaihim wa ladhdhaallin", nomor: "7" }
+            ],
+            "97": [
+                { ar: "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ", id: "Sungguh, Kami telah menurunkannya (Al-Qur'an) pada malam qadar.", tr: "innaa anzalnaahu fii lailatil qadr", nomor: "1" },
+                { ar: "وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ", id: "Dan tahukah kamu apakah malam qadar itu?", tr: "wa maa adraaka maa lailatul qadr", nomor: "2" },
+                { ar: "لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ", id: "Malam qadar lebih baik daripada seribu bulan.", tr: "lailatul qadri khairun min alfi syahr", nomor: "3" },
+                { ar: "تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ", id: "Pada malam itu turun para malaikat dan Ruh (Jibril) dengan izin Tuhannya untuk mengatur segala urusan.", tr: "tanazzalul malaaikatu war ruuhu fiihaa bi idzni rabbihim min kulli amr", nomor: "4" },
+                { ar: "سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ", id: "Sejahteralah (malam itu) sampai terbit fajar.", tr: "salaamun hiya hattaa mathla'il fajr", nomor: "5" }
+            ],
+            "99": [
+                { ar: "إِذَا زُلْزِلَتِ الْأَرْضُ زِلْزَالَهَا", id: "Apabila bumi diguncang dengan guncangan (yang keras),", tr: "idzaa zulzilatil ardu zilzaalahaa", nomor: "1" },
+                { ar: "وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا", id: "dan bumi telah mengeluarkan beban-beban berat (isi)nya,", tr: "wa akhrajatil ardu atqaalahaa", nomor: "2" },
+                { ar: "وَقَالَ الْإِنْسَانُ مَا لَهَا", id: "dan manusia bertanya, 'Mengapa bumi (menjadi begini)?'", tr: "wa qaalan insaanu maa lahaa", nomor: "3" },
+                { ar: "يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا", id: "Pada hari itu bumi menceritakan beritanya,", tr: "yauma'idzin tuhadditsu akhbaarahaa", nomor: "4" },
+                { ar: "بِأَنَّ رَبَّكَ أَوْحَىٰ لَهَا", id: "karena Tuhanmu telah memerintahkannya (yang demikian).", tr: "bi anna rabbaka awhaa lahaa", nomor: "5" },
+                { ar: "يَوْمَئِذٍ يَصْدُرُ النَّاسُ أَشْتَاتًا لِيُرَوْا أَعْمَالَهُمْ", id: "Pada hari itu manusia keluar dari kuburnya dalam keadaan bermacam-macam untuk diperlihatkan kepada mereka (balasan) amal mereka.", tr: "yauma'idzin yashdurun naasu ashtaal liyuraw a'maalahum", nomor: "6" },
+                { ar: "فَمَنْ يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ", id: "Barangsiapa mengerjakan kebaikan seberat dzarrah, niscaya dia akan melihat (balasan)nya.", tr: "faman ya'mal mitsqaala dzarratin khairan yarah", nomor: "7" },
+                { ar: "وَمَنْ يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُ", id: "Dan barangsiapa mengerjakan kejahatan seberat dzarrah, niscaya dia akan melihat (balasan)nya.", tr: "wa man ya'mal mitsqaala dzarratin syarran yarah", nomor: "8" }
+            ],
+            "102": [
+                { ar: "أَلْهَاكُمُ التَّكَاثُرُ", id: "Bermegah-megahan telah melalaikan kamu,", tr: "alhaakumut takaatsur", nomor: "1" },
+                { ar: "حَتَّىٰ زُرْتُمُ الْمَقَابِرَ", id: "sampai kamu masuk ke dalam kubur.", tr: "hattaa zurtumul maqaabir", nomor: "2" },
+                { ar: "كَلَّا سَوْفَ تَعْلَمُونَ", id: "Sekali-kali tidak! Kelak kamu akan mengetahui (akibatnya),", tr: "kallaa saufa ta'lamuun", nomor: "3" },
+                { ar: "ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ", id: "Kemudian sekali-kali tidak! Kelak kamu akan mengetahui.", tr: "tsumma kallaa saufa ta'lamuun", nomor: "4" },
+                { ar: "كَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ", id: "Sekali-kali tidak! Sekiranya kamu mengetahui dengan pasti,", tr: "kallaa lau ta'lamuuna 'ilmal yaqiin", nomor: "5" },
+                { ar: "لَتَرَوُنَّ الْجَحِيمَ", id: "niscaya kamu benar-benar akan melihat neraka Jahiim,", tr: "latarawunnal jahiim", nomor: "6" },
+                { ar: "ثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ", id: "Kemudian niscaya kamu benar-benar akan melihatnya dengan mata kepala sendiri.", tr: "tsumma latarawunnahaa 'ainal yaqiin", nomor: "7" },
+                { ar: "ثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ", id: "Kemudian niscaya kamu benar-benar akan ditanya pada hari itu tentang kenikmatan.", tr: "tsumma latus'alunna yauma'idzin 'anin na'iim", nomor: "8" }
+            ],
+            "103": [
+                { ar: "وَالْعَصْرِ", id: "Demi masa,", tr: "wal-'ashr", nomor: "1" },
+                { ar: "إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ", id: "sungguh, manusia berada dalam kerugian,", tr: "innal insaana lafii khusr", nomor: "2" },
+                { ar: "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ", id: "kecuali orang-orang yang beriman dan mengerjakan kebajikan serta saling menasihati untuk kebenaran dan saling menasihati untuk kesabaran.", tr: "illal ladziina aamanuu wa 'amilush shaalihaati wa tawaashau bil haqqi wa tawaashau bish shabr", nomor: "3" }
+            ],
+            "104": [
+                { ar: "وَيْلٌ لِكُلِّ هُمَزَةٍ لُمَزَةٍ", id: "Celakalah bagi setiap pengumpat dan pencela,", tr: "wailul likulli humazatil lumazah", nomor: "1" },
+                { ar: "الَّذِي جَمَعَ مَالًا وَعَدَّدَهُ", id: "yang mengumpulkan harta dan menghitung-hitungnya,", tr: "alladzii jama'a maalan wa 'addadah", nomor: "2" },
+                { ar: "يَحْسَبُ أَنَّ مَالَهُ أَخْلَدَهُ", id: "dia (manusia) mengira bahwa hartanya itu dapat mengekalkannya.", tr: "yahsabu anna maalahuu akhladah", nomor: "3" },
+                { ar: "كَلَّا ۖ لَيَنْبَذَنَّ فِي الْحُطَمَةِ", id: "Sekali-kali tidak! Pasti dia akan dilemparkan ke dalam (neraka) Huthamah.", tr: "kallaa; layanbadzannal huthaamah", nomor: "4" },
+                { ar: "وَمَا أَدْرَاكَ مَا الْحُطَمَةُ", id: "Dan tahukah kamu apakah (neraka) Huthamah itu?", tr: "wa maa adraaka mal huthaamah", nomor: "5" },
+                { ar: "نَارُ اللَّهِ الْمُوقَدَةُ", id: "(Itu adalah) api (azab) Allah yang dinyalakan,", tr: "naarullaahil muuqadah", nomor: "6" },
+                { ar: "الَّتِي تَطَّلِعُ عَلَى الْأَفْئِدَةِ", id: "yang (membakar sampai) ke hati.", tr: "allatii taththali'u 'alal af'idah", nomor: "7" },
+                { ar: "إِنَّهَا عَلَيْهِمْ مُؤْصَدَةٌ", id: "Sesungguhnya api itu ditutup rapat atas (diri) mereka,", tr: "innahaa 'alaihim muushadah", nomor: "8" },
+                { ar: "فِي عَمَدٍ مُمَدَّدَةٍ", id: "(sedang mereka itu) diikat pada tiang-tiang yang panjang.", tr: "fii 'amadim mumaddadah", nomor: "9" }
+            ],
+            "105": [
+                { ar: "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ", id: "Tidakkah kamu (Muhammad) perhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah?", tr: "alam tara kaifa fa'ala rabbuka bi ashaabil fiil", nomor: "1" },
+                { ar: "أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ", id: "Bukankah Dia telah menjadikan tipu daya mereka itu sia-sia?", tr: "alam yaj'al kaidahum fii thadhliil", nomor: "2" },
+                { ar: "وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ", id: "Dan Dia mengirimkan kepada mereka burung yang berbondong-bondong,", tr: "wa arsala 'alaihim thairan abaabiil", nomor: "3" },
+                { ar: "تَرْمِيهِمْ بِحِجَارَةٍ مِنْ سِجِّيلٍ", id: "yang melempari mereka dengan batu dari tanah liat yang dibakar,", tr: "tarmiihim bi hijaaratim min sijjiil", nomor: "4" },
+                { ar: "فَجَعَلَهُمْ كَعَصْفٍ مَأْكُولٍ", id: "sehingga mereka dijadikan-Nya seperti daun-daun yang dimakan (ulat).", tr: "faja'alahum ka 'ashfim maa'kuul", nomor: "5" }
+            ],
+            "106": [
+                { ar: "لِإِيلَافِ قُرَيْشٍ", id: "Karena kebiasaan orang-orang Quraisy,", tr: "li iilaafi quraish", nomor: "1" },
+                { ar: "إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ", id: "(yaitu) kebiasaan mereka bepergian pada musim dingin dan musim panas.", tr: "iilaafihim rihlatasy syitaa'i wash shhaif", nomor: "2" },
+                { ar: "فَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ", id: "Maka hendaklah mereka menyembah Tuhan (pemilik) rumah ini (Ka'bah),", tr: "falya'buduu rabba haadzal bait", nomor: "3" },
+                { ar: "الَّذِي أَطْعَمَهُمْ مِنْ جُوعٍ وَآمَنَهُمْ مِنْ خَوْفٍ", id: "yang telah memberi makanan kepada mereka untuk menghilangkan lapar dan mengamankan mereka dari rasa ketakutan.", tr: "alladzii ath'amahum min juu'in wa aamanahum min khauuf", nomor: "4" }
+            ],
+            "107": [
+                { ar: "أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ", id: "Tahukah kamu (orang) yang mendustakan agama?", tr: "ara'aital ladzii yukadzdzibu bid diin", nomor: "1" },
+                { ar: "فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ", id: "Maka itulah orang yang menghardik anak yatim,", tr: "fadzaalikal ladzii yadu''ul yatiim", nomor: "2" },
+                { ar: "وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ", id: "dan tidak menganjurkan memberi makan orang miskin.", tr: "wa laa yahuddu 'alaa tha'aamil miskiin", nomor: "3" },
+                { ar: "فَوَيْلٌ لِلْمُصَلِّينَ", id: "Maka celakalah orang yang salat,", tr: "fawailul lilmushalliin", nomor: "4" },
+                { ar: "الَّذِينَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَ", id: "(yaitu) orang-orang yang lalai terhadap salatnya,", tr: "alladziina hum 'an shalaatihim saahuun", nomor: "5" },
+                { ar: "الَّذِينَ هُمْ يُرَاءُونَ", id: "yang berbuat riya (pamer),", tr: "alladziina hum yuraa'uun", nomor: "6" },
+                { ar: "وَيَمْنَعُونَ الْمَاعُونَ", id: "dan enggan (memberikan) bantuan.", tr: "wa yamna'uunal maa'uun", nomor: "7" }
+            ],
+            "108": [
+                { ar: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ", id: "Sungguh, Kami telah memberimu (Muhammad) nikmat yang banyak.", tr: "innaa a'thoinaakal kautsar", nomor: "1" },
+                { ar: "فَصَلِّ لِرَبِّكَ وَانْحَرْ", id: "Maka laksanakanlah salat karena Tuhanmu, dan berkurbanlah.", tr: "fashalli lirabbika wanhar", nomor: "2" },
+                { ar: "إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", id: "Sungguh, orang-orang yang membencimu dialah yang terputus (dari rahmat Allah).", tr: "inna shaani'aka huwal abtar", nomor: "3" }
+            ],
+            "109": [
+                { ar: "قُلْ يَا أَيُّهَا الْكَافِرُونَ", id: "Katakanlah (Muhammad), 'Wahai orang-orang kafir!'", tr: "qul yaa ayyuhal kaafiruun", nomor: "1" },
+                { ar: "لَا أَعْبُدُ مَا تَعْبُدُونَ", id: "Aku tidak akan menyembah apa yang kamu sembah.", tr: "laa a'budu maa ta'buduun", nomor: "2" },
+                { ar: "وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ", id: "Dan kamu bukan penyembah apa yang aku sembah.", tr: "wa laa antum 'aabiduuna maa a'bud", nomor: "3" },
+                { ar: "وَلَا أَنَا عَابِدٌ مَا عَبَدْتُمْ", id: "Dan aku tidak pernah menjadi penyembah apa yang kamu sembah.", tr: "wa laa ana 'aabidun maa 'abadtum", nomor: "4" },
+                { ar: "وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ", id: "Dan kamu tidak pernah (pula) menjadi penyembah apa yang aku sembah.", tr: "wa laa antum 'aabiduuna maa a'bud", nomor: "5" },
+                { ar: "لَكُمْ دِينُكُمْ وَلِيَ دِينِ", id: "Untukmu agamamu, dan untukku agamaku.", tr: "lakum diinukum wa liya diin", nomor: "6" }
+            ],
+            "110": [
+                { ar: "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ", id: "Apabila telah datang pertolongan Allah dan kemenangan,", tr: "idzaa jaa'a nashrullaahi wal fath", nomor: "1" },
+                { ar: "وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا", id: "dan kamu melihat manusia berbondong-bondong masuk agama Allah,", tr: "wa ra'aitan naasa yadkhuluuna fii diinillaahi afwaajaa", nomor: "2" },
+                { ar: "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا", id: "maka bertasbihlah dengan menyebut nama Tuhanmu dan mohonlah ampunan kepada-Nya. Sungguh, Dia Maha Penerima tobat.", tr: "fasabbih bi hamdi rabbika wastaghfirhu; innahu kaana tawwaabaa", nomor: "3" }
+            ],
+            "112": [
+                { ar: "قُلْ هُوَ اللَّهُ أَحَدٌ", id: "Katakanlah (Muhammad), 'Dialah Allah, Yang Maha Esa.", tr: "qul huwallaahu ahad", nomor: "1" },
+                { ar: "اللَّهُ الصَّمَدُ", id: "Allah tempat meminta segala sesuatu.", tr: "allaahush shhamad", nomor: "2" },
+                { ar: "لَمْ يَلِدْ وَلَمْ يُولَدْ", id: "(Allah) tidak beranak dan tidak pula diperanakkan.", tr: "lam yalid wa lam yuulad", nomor: "3" },
+                { ar: "وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", id: "Dan tidak ada sesuatu yang setara dengan Dia.'", tr: "wa lam yakul lahuu kufuwan ahad", nomor: "4" }
+            ],
+            "113": [
+                { ar: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ", id: "Katakanlah (Muhammad), 'Aku berlindung kepada Tuhan yang menguasai subuhan (fajar),", tr: "qul a'uudzu birabbil falaq", nomor: "1" },
+                { ar: "مِنْ شَرِّ مَا خَلَقَ", id: "dari kejahatan (makhluk yang) Dia ciptakan,", tr: "min syarri maa khalaq", nomor: "2" },
+                { ar: "وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ", id: "dan dari kejahatan malam apabila telah gelap gulita,", tr: "wa min syarri ghaasiqin idzaa waqab", nomor: "3" },
+                { ar: "وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ", id: "dan dari kejahatan (perempuan-perempuan) penyihir yang meniup pada buhul-buhul,", tr: "wa min syarrin naffaatsaati fil 'uqad", nomor: "4" },
+                { ar: "وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ", id: "dan dari kejahatan orang yang dengki apabila dia dengki.'", tr: "wa min syarri haasidin idzaa hasad", nomor: "5" }
+            ],
+            "114": [
+                { ar: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ", id: "Katakanlah (Muhammad), 'Aku berlindung kepada Tuhan manusia,", tr: "qul a'uudzu birabbin naas", nomor: "1" },
+                { ar: "مَلِكِ النَّاسِ", id: "Raja manusia,", tr: "malikin naas", nomor: "2" },
+                { ar: "إِلَٰهِ النَّاسِ", id: "sembahan manusia,", tr: "ilaahin naas", nomor: "3" },
+                { ar: "مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ", id: "dari kejahatan (bisikan) setan yang bersembunyi,", tr: "min syarril waswaasil khannaas", nomor: "4" },
+                { ar: "الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ", id: "yang membisikkan (kejahatan) ke dalam dada manusia,", tr: "alladzii yuwaswisu fii shuduurin naas", nomor: "5" },
+                { ar: "مِنَ الْجِنَّةِ وَالنَّاسِ", id: "dari (golongan) jin dan manusia.'", tr: "minal jinnati wan naas", nomor: "6" }
+            ]
+        };
+
+        // Meta tipe soal (kategori), hadiah & state sesi game
+        const quranTypeNames = { next: '🔮 Lanjutkan Ayat', words: '🧩 Susun Kata Ayat', meaning: '💡 Tebak Arti Ayat' };
+        const quranTypeRewards = { next: [2, 20], words: [3, 25], meaning: [2, 20] };
+        let quranSession = { active: false, mode: 'next' };
+
+        // ==================== AUDIO TILAWAH (QARI ALAFASY) ====================
+        let quranAudio = null;
+
+        function stopQuranAudio() {
+            if (quranAudio) {
+                try { quranAudio.pause(); } catch (e) { }
+                quranAudio = null;
+            }
+            document.querySelectorAll('.quran-play-btn').forEach(b => b.classList.remove('audio-playing'));
+        }
+
+        // Nomor ayat global (untuk CDN islamic.network)
+        function globalAyahNumber(surahNo, ayahNo) {
+            let total = 0;
+            for (let i = 0; i < surahNo - 1; i++) total += quranSurahList[i].ayat;
+            return total + ayahNo;
+        }
+
+        function playVerseAudio(surahNo, ayahNo) {
+            stopQuranAudio();
+            const pad = n => String(n).padStart(3, '0');
+            const sources = [
+                `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${globalAyahNumber(surahNo, ayahNo)}.mp3`,
+                `https://everyayah.com/data/Alafasy_128kbps/Alafasy_${pad(surahNo)}${pad(ayahNo)}.mp3`
+            ];
+            quranAudio = new Audio(sources[0]);
+            // Tandai tombol pemutar aktif agar berdenyut
+            setTimeout(() => {
+                const btn = document.querySelector(`.quran-play-btn[data-surah="${surahNo}"][data-ayah="${ayahNo}"]`);
+                if (btn) btn.classList.add('audio-playing');
+            }, 50);
+            quranAudio.addEventListener('ended', stopQuranAudio);
+            quranAudio.addEventListener('error', () => {
+                // Fallback ke CDN alternatif (everyayah)
+                if (sources[1] && quranAudio) {
+                    quranAudio.src = sources[1];
+                    quranAudio.play().catch(() => stopQuranAudio());
+                } else {
+                    stopQuranAudio();
+                }
+            });
+            quranAudio.play().catch(() => {
+                // Autoplay diblokir browser → pengguna bisa klik tombol manual
+                stopQuranAudio();
+            });
+        }
+
+        // Tombol "Dengarkan Ayat" yang dapat ditanam di HTML dinamis
+        function audioBtnHtml(verse, extraClass) {
+            return `<button onclick="playVerseAudio(${verse.surahNo}, ${parseInt(verse.nomor)})" data-surah="${verse.surahNo}" data-ayah="${parseInt(verse.nomor)}" class="quran-play-btn inline-flex items-center gap-2 px-4 py-2 mt-3 bg-emerald-100 text-emerald-700 rounded-full font-bold text-xs hover:bg-emerald-200 transition shadow-sm ${extraClass || ''}">
+                <i class="fa-solid fa-volume-high"></i> Dengarkan Ayat
+            </button>`;
+        }
+
+        async function fetchSurah(no) {
+            if (!window.__quranCache) window.__quranCache = {};
+            if (window.__quranCache[no]) return window.__quranCache[no];
+            try {
+                const res = await fetch(QURAN_API_BASE + no);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                if (!Array.isArray(data) || data.length === 0) throw new Error('Data surat kosong');
+                const verses = data.map(v => ({ ar: v.ar || '', id: v.id || '', tr: v.tr || '', nomor: String(v.nomor || '') }));
+                window.__quranCache[no] = verses;
+                return verses;
+            } catch (e) {
+                if (quranFallback[no]) {
+                    window.__quranCache[no] = quranFallback[no];
+                    return quranFallback[no];
+                }
+                throw e;
+            }
+        }
+
+        function initQuranSetup() {
+            const juzSel = document.getElementById('quranJuzSelect');
+            let opts = '';
+            for (let j = 1; j <= 30; j++) opts += `<option value="${j}" ${j === 30 ? 'selected' : ''}>Juz ${j}</option>`;
+            juzSel.innerHTML = opts;
+            updateQuranJuzInfo();
+            setQuranMode(quranSession.mode || 'next');
+        }
+
+        // Tampilkan info isi juz yang dipilih (surat & rentang ayat)
+        function updateQuranJuzInfo() {
+            const juz = parseInt(document.getElementById('quranJuzSelect').value);
+            const segs = quranJuzRanges[juz] || [];
+            const names = [];
+            let totalAyat = 0;
+            segs.forEach(([s, f, t]) => {
+                const meta = quranSurahList[s - 1];
+                totalAyat += (t - f + 1);
+                const label = (f === 1 && t >= meta.ayat) ? `${s}. ${meta.name}` : `${s}. ${meta.name} (ayat ${f}-${t})`;
+                names.push(label);
+            });
+            document.getElementById('quranInfoJuzNo').innerText = `Juz ${juz}`;
+            document.getElementById('quranJuzInfo').innerHTML =
+                `<b>${segs.length} bagian surat</b> • total ± <b>${totalAyat} ayat</b>.<br>` +
+                names.map(n => `<span class="inline-block bg-white border border-emerald-200 rounded-full px-2 py-0.5 m-0.5 text-[10px] font-bold text-emerald-700">${n}</span>`).join(' ');
+        }
+
+        // Pilih kategori permainan (satu kategori per sesi)
+        function setQuranMode(m) {
+            playSound('click');
+            quranSession.mode = m;
+            ['next', 'words', 'meaning'].forEach(k => {
+                const el = document.getElementById('quranMode-' + k);
+                el.className = (k === m)
+                    ? "p-4 rounded-2xl border-4 border-emerald-500 bg-emerald-50 text-left shadow-lg transition bounce-hover"
+                    : "p-4 rounded-2xl border-2 border-slate-200 bg-white text-left shadow hover:border-emerald-300 transition bounce-hover";
+            });
+        }
+
+        function showQuranError(msg) {
+            const box = document.getElementById('quranErrorBox');
+            box.innerText = '⚠️ ' + msg;
+            box.classList.remove('hidden');
+            playSound('wrong');
+        }
+
+        function hideQuranError() {
+            document.getElementById('quranErrorBox').classList.add('hidden');
+        }
+
+        // MULAI SESI: fetch semua surat dalam juz, bangun pool sesuai kategori, lalu soal pertama
+        async function startQuranGame() {
+            playSound('click');
+            hideQuranError();
+            stopQuranAudio();
+            const juz = parseInt(document.getElementById('quranJuzSelect').value);
+            const mode = quranSession.mode || 'next';
+            const segs = quranJuzRanges[juz] || [];
+            if (!segs.length) { showQuranError('Juz tidak valid.'); return; }
+
+            document.getElementById('quranSetupPanel').classList.add('hidden');
+            document.getElementById('quranResultPanel').classList.add('hidden');
+            document.getElementById('quranGamePanel').classList.remove('hidden');
+            document.getElementById('quranLoading').classList.remove('hidden');
+            document.getElementById('quranGameInner').classList.add('hidden');
+
+            const surahNums = [...new Set(segs.map(s => s[0]))];
+            document.getElementById('quranLoadingText').innerText = `Mengambil ${surahNums.length} surat dari server Al-Qur'an (Juz ${juz})...`;
+
+            try {
+                const results = await Promise.allSettled(surahNums.map(n => fetchSurah(n)));
+                const versesBySurah = {};
+                let ok = 0;
+                results.forEach((r, i) => {
+                    if (r.status === 'fulfilled') { versesBySurah[surahNums[i]] = r.value; ok++; }
+                });
+                if (ok === 0) throw new Error('Tidak ada surat yang berhasil dimuat');
+
+                quranSession = buildQuranSession(juz, versesBySurah, mode);
+                if (!quranSession.juzVerses.length) throw new Error('Ayat juz tidak dapat dibangun');
+                if (!quranSession.pools[mode] || quranSession.pools[mode].length === 0) {
+                    throw new Error('Kategori ini tidak memiliki soal untuk Juz ' + juz + ' — silakan pilih kategori lain');
+                }
+
+                document.getElementById('quranLoading').classList.add('hidden');
+                document.getElementById('quranGameInner').classList.remove('hidden');
+                document.getElementById('quranGameTypeBadge').innerText = quranTypeNames[mode];
+                document.getElementById('quranGameJuzBadge').innerText = `Juz ${juz} • ${quranSession.segments.length} bagian surat`;
+                updateQuranSessionBar();
+                renderQuranQuestion();
+                playSound('star');
+            } catch (err) {
+                document.getElementById('quranLoading').classList.add('hidden');
+                document.getElementById('quranGamePanel').classList.add('hidden');
+                document.getElementById('quranSetupPanel').classList.remove('hidden');
+                showQuranError('Gagal memuat data ayat (' + (err.message || 'kesalahan jaringan') + '). Periksa koneksi lalu coba lagi. Surat pendek Juz 30 & Al-Fatihah tersedia offline.');
+            }
+        }
+
+        // Bangun sesi: kumpulkan seluruh ayat juz (urut) + pool kandidat soal per kategori
+        function buildQuranSession(juz, versesBySurah, mode) {
+            const segsRaw = quranJuzRanges[juz];
+            const juzVerses = [];
+            const segments = [];
+            segsRaw.forEach(([s, f, t]) => {
+                const vs = versesBySurah[s];
+                if (!vs) return; // lewati surat yang gagal dimuat
+                const meta = quranSurahList[s - 1];
+                const to = Math.min(t, vs.length);
+                for (let i = f; i <= to; i++) {
+                    juzVerses.push({ ar: vs[i - 1].ar, id: vs[i - 1].id, tr: vs[i - 1].tr, nomor: String(i), surahNo: s, name: meta.name });
+                }
+                segments.push({ surahNo: s, name: meta.name, from: f, to: to });
+            });
+
+            const pools = { next: [], meaning: [], words: [] };
+            for (let i = 0; i < juzVerses.length; i++) {
+                pools.meaning.push(i);
+                const wc = juzVerses[i].ar.trim().split(/\s+/).filter(Boolean).length;
+                if (wc >= 3 && wc <= 12) pools.words.push(i);
+                // pasangan "lanjutkan ayat" hanya jika ayat berikutnya masih dalam surat yang sama
+                if (i + 1 < juzVerses.length && juzVerses[i].surahNo === juzVerses[i + 1].surahNo) pools.next.push(i);
+            }
+
+            return {
+                active: true,
+                juz: juz,
+                mode: mode,
+                juzVerses: juzVerses,
+                segments: segments,
+                pools: pools,
+                used: { next: new Set(), meaning: new Set(), words: new Set() },
+                q: null,
+                answered: false,
+                answeredCount: 0,
+                correctCount: 0,
+                streak: 0,
+                bestStreak: 0
+            };
+        }
+
+        // Helper: ambil n ayat acak unik berdasarkan field (untuk pengecoh)
+        function pickDistractors(count, field, excludeVals) {
+            const S = quranSession;
+            const out = [];
+            for (const v of shuffleArr(S.juzVerses)) {
+                if (out.length >= count) break;
+                if (excludeVals.includes(v[field])) continue;
+                if (out.some(x => x[field] === v[field])) continue;
+                out.push(v);
+            }
+            if (out.length < count) { // cadangan: ayat dari surat pendek offline
+                const g = [];
+                Object.keys(quranFallback).forEach(k => {
+                    if (!S.segments.some(sg => sg.surahNo === Number(k))) quranFallback[k].forEach(v => g.push(v));
+                });
+                for (const v of shuffleArr(g)) {
+                    if (out.length >= count) break;
+                    if (excludeVals.includes(v[field])) continue;
+                    if (out.some(x => x[field] === v[field])) continue;
+                    out.push(v);
+                }
+            }
+            return out;
+        }
+
+        // Buat 1 soal acak SESUAI KATEGORI sesi (surat & ayat tetap diacak, tanpa batas)
+        function makeQuranQuestion() {
+            const S = quranSession;
+            const t = S.mode;
+
+            // Jika seluruh kandidat kategori ini sudah pernah keluar → reset agar latihan berlanjut tanpa batas
+            if (S.pools[t].length <= S.used[t].size) {
+                S.used[t] = new Set();
+            }
+
+            const pool = S.pools[t];
+            const avail = pool.filter(i => !S.used[t].has(i));
+            const pickIdx = avail[Math.floor(Math.random() * avail.length)];
+            S.used[t].add(pickIdx);
+
+            const v = S.juzVerses[pickIdx];
+            const q = { type: t, ayah: v };
+
+            if (t === 'next') {
+                const correct = S.juzVerses[pickIdx + 1];
+                const ds = pickDistractors(2, 'ar', [correct.ar, v.ar]);
+                const options = shuffleArr([{ label: correct.ar, correct: true }, ...ds.map(x => ({ label: x.ar, correct: false }))]);
+                q.correctAyah = correct;
+                q.options = options;
+                q.answerIdx = options.findIndex(o => o.correct);
+            } else if (t === 'meaning') {
+                const ds = pickDistractors(2, 'id', [v.id]);
+                const options = shuffleArr([{ label: v.id, correct: true }, ...ds.map(x => ({ label: x.id, correct: false }))]);
+                q.options = options;
+                q.answerIdx = options.findIndex(o => o.correct);
+            } else { // words
+                const words = v.ar.trim().split(/\s+/).map(w => w.trim()).filter(Boolean);
+                let shuf = shuffleArr(words);
+                let tries = 0;
+                while (tries < 10 && words.length > 1 && shuf.join(' ') === words.join(' ')) { shuf = shuffleArr(words); tries++; }
+                q.originalWords = words;
+                q.tokens = shuf;
+            }
+            return q;
+        }
+
+        function updateQuranSessionBar() {
+            const S = quranSession;
+            document.getElementById('quranGameScore').innerText = S.correctCount;
+            document.getElementById('quranGameAnswered').innerText = S.answeredCount;
+            document.getElementById('quranGameStreak').innerText = S.streak;
+            document.getElementById('quranGameBestStreak').innerText = S.bestStreak;
+        }
+
+        function renderQuranQuestion() {
+            const S = quranSession;
+            stopQuranAudio();
+            S.q = makeQuranQuestion();
+            const q = S.q;
+            S.answered = false;
+
+            const qArea = document.getElementById('quranQuestionArea');
+            const opts = document.getElementById('quranOptionsContainer');
+            const wordsArea = document.getElementById('quranWordsArea');
+            const fb = document.getElementById('quranFeedbackBox');
+            fb.classList.add('hidden');
+            opts.innerHTML = '';
+            opts.classList.add('hidden');
+            wordsArea.classList.add('hidden');
+
+            const surahBadge = `<div class="text-center mb-2"><span class="level-badge bg-sky-100 text-sky-700">QS. ${q.ayah.name} : Ayat ${q.ayah.nomor}</span></div>`;
+
+            if (q.type === 'words') {
+                // Kategori Susun Kata: audio TIDAK diputar & tombol audio disembunyikan sebelum menjawab (mencegah bocor)
+                qArea.innerHTML = `${surahBadge}
+                    <p class="text-center text-xs md:text-sm text-slate-500 mb-1"><b>Arti:</b> ${q.ayah.id}</p>
+                    ${q.ayah.tr ? `<p class="text-center text-[11px] text-slate-400 italic mb-1">(${q.ayah.tr})</p>` : ''}
+                    <p class="text-center text-sm font-bold text-brand-purple mt-2">🧩 Susun potongan kata Arab di bawah menjadi ayat yang utuh & berurutan!</p>
+                    <p class="text-center text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-volume-xmark"></i> Audio ayat muncul setelah kamu menjawab</p>`;
+                wordsArea.classList.remove('hidden');
+                S.wordBank = q.tokens.slice();
+                S.picked = [];
+                renderQuranWords();
+            } else {
+                const promptHtml = q.type === 'next'
+                    ? `${surahBadge}
+                       <p class="arab-text text-2xl md:text-3xl text-slate-800 text-center">${q.ayah.ar}</p>
+                       <div class="text-center">${audioBtnHtml(q.ayah)}</div>
+                       <p class="text-center text-xs text-slate-500 mt-3"><b>Arti:</b> ${q.ayah.id}</p>
+                       <p class="text-center text-sm font-bold text-brand-purple mt-3"><i class="fa-solid fa-arrow-down"></i> Pilih AYAT BERIKUTNYA yang tepat!</p>`
+                    : `${surahBadge}
+                       <p class="arab-text text-2xl md:text-3xl text-slate-800 text-center">${q.ayah.ar}</p>
+                       <div class="text-center">${audioBtnHtml(q.ayah)}</div>
+                       ${q.ayah.tr ? `<p class="text-center text-[11px] text-slate-400 italic mt-1">(${q.ayah.tr})</p>` : ''}
+                       <p class="text-center text-sm font-bold text-brand-purple mt-3">💡 Pilih ARTI yang paling tepat!</p>`;
+                qArea.innerHTML = promptHtml;
+                opts.classList.remove('hidden');
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-3.5 bg-white border-2 border-emerald-100 hover:border-brand-green rounded-xl transition font-bold text-xs md:text-sm text-slate-700 flex items-start gap-3";
+                    btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 font-fredoka flex items-center justify-center text-xs shrink-0 mt-0.5">${String.fromCharCode(65 + idx)}</span><span class="${q.type === 'next' ? 'arab-text text-xl leading-loose text-right flex-1' : ''}">${opt.label}</span>`;
+                    btn.onclick = () => answerQuran(idx);
+                    opts.appendChild(btn);
+                });
+                // Audio otomatis (jika diaktifkan) untuk kategori Lanjutkan Ayat & Tebak Arti
+                const autoplayOn = document.getElementById('quranAutoplayCheck').checked;
+                if (autoplayOn) {
+                    setTimeout(() => playVerseAudio(q.ayah.surahNo, parseInt(q.ayah.nomor)), 400);
+                }
+            }
+        }
+
+        function renderQuranWords() {
+            const S = quranSession;
+            const slot = document.getElementById('quranWordsSlot');
+            const bank = document.getElementById('quranWordsBank');
+            slot.innerHTML = S.picked.length ? '' : '<span class="text-xs text-slate-400 py-3">Klik kata di bawah untuk mulai menyusun ayat...</span>';
+            S.picked.forEach((w, i) => {
+                const b = document.createElement('button');
+                b.className = 'px-4 py-2 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-slate-800 font-bold text-lg md:text-xl arab-text shadow-sm hover:bg-rose-50 hover:border-rose-400 transition';
+                b.innerHTML = w;
+                b.title = 'Klik untuk mengembalikan kata';
+                b.onclick = () => unpickWord(i);
+                slot.appendChild(b);
+            });
+            bank.innerHTML = '';
+            S.wordBank.forEach((w, i) => {
+                const b = document.createElement('button');
+                b.className = 'px-4 py-2 rounded-xl border-2 border-slate-200 bg-white text-slate-800 font-bold text-lg md:text-xl arab-text shadow-sm hover:border-brand-green hover:-translate-y-0.5 transition';
+                b.innerHTML = w;
+                b.onclick = () => pickWord(i);
+                bank.appendChild(b);
+            });
+            document.getElementById('quranCheckWordsBtn').disabled = (S.picked.length === 0);
+        }
+
+        function pickWord(i) {
+            const S = quranSession;
+            if (!S.active || S.answered) return;
+            const w = S.wordBank[i];
+            S.picked.push(w);
+            S.wordBank.splice(i, 1);
+            playSound('click');
+            renderQuranWords();
+        }
+
+        function unpickWord(i) {
+            const S = quranSession;
+            if (!S.active || S.answered) return;
+            S.wordBank.push(S.picked[i]);
+            S.picked.splice(i, 1);
+            playSound('click');
+            renderQuranWords();
+        }
+
+        function checkQuranWords() {
+            const S = quranSession;
+            if (!S.active || S.answered) return;
+            const q = S.q;
+            if (S.picked.length < q.originalWords.length) {
+                playSound('wrong');
+                return;
+            }
+            S.answered = true;
+            document.getElementById('quranCheckWordsBtn').disabled = true;
+            const isCorrect = S.picked.join(' ') === q.originalWords.join(' ');
+            handleQuranAnswerResult(isCorrect, q);
+        }
+
+        function answerQuran(idx) {
+            const S = quranSession;
+            if (!S.active || S.answered) return;
+            S.answered = true;
+            const q = S.q;
+            const isCorrect = (idx === q.answerIdx);
+            const btns = document.getElementById('quranOptionsContainer').children;
+            for (let i = 0; i < btns.length; i++) {
+                const b = btns[i];
+                b.disabled = true;
+                if (i === q.answerIdx) {
+                    b.className = "w-full text-left p-3.5 bg-emerald-50 border-2 border-emerald-500 rounded-xl font-bold text-xs md:text-sm text-emerald-800 flex items-start gap-3";
+                } else if (i === idx) {
+                    b.className = "w-full text-left p-3.5 bg-rose-50 border-2 border-rose-400 rounded-xl font-bold text-xs md:text-sm text-rose-800 flex items-start gap-3";
+                } else {
+                    b.className = "w-full text-left p-3.5 bg-slate-50 border-2 border-slate-200 rounded-xl font-bold text-xs md:text-sm text-slate-400 opacity-60 flex items-start gap-3";
+                }
+            }
+            handleQuranAnswerResult(isCorrect, q);
+        }
+
+        function handleQuranAnswerResult(isCorrect, q) {
+            const S = quranSession;
+            const fb = document.getElementById('quranFeedbackBox');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-red-50', 'border-emerald-200', 'border-red-200');
+            const title = document.getElementById('quranFeedbackTitle');
+            const text = document.getElementById('quranFeedbackText');
+
+            if (q.type === 'words') {
+                const slot = document.getElementById('quranWordsSlot');
+                slot.classList.remove('border-slate-300');
+                slot.classList.add(isCorrect ? 'border-emerald-500' : 'border-rose-400');
+            }
+
+            if (isCorrect) {
+                S.correctCount++;
+                S.streak++;
+                S.bestStreak = Math.max(S.bestStreak, S.streak);
+                state.quranStats.correct = (state.quranStats.correct || 0) + 1;
+                const rew = quranTypeRewards[q.type];
+                addRewards(rew[0], rew[1]);
+                fb.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+                title.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i> Masya Allah, hafalanmu tepat! (+${rew[0]}⭐ / +${rew[1]} XP) 🔥 Streak: ${S.streak}`;
+            } else {
+                S.streak = 0;
+                playSound('wrong');
+                fb.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
+                title.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 text-lg"></i> Belum tepat. Semangat, terus berlatih ya!`;
+            }
+            S.answeredCount++;
+            state.quranStats.attempted = (state.quranStats.attempted || 0) + 1;
+            saveState();
+            updateQuranSessionBar();
+
+            const showVerse = (q.type === 'next') ? q.correctAyah : q.ayah;
+            text.innerHTML = `<div class="mt-2 p-3 bg-white rounded-xl border border-emerald-100 text-center">
+                <p class="arab-text text-xl md:text-2xl text-slate-800">${showVerse.ar}</p>
+                <div class="text-center">${audioBtnHtml(showVerse)}</div>
+                <p class="text-xs text-slate-600 mt-2">${showVerse.id}</p>
+                <p class="text-[10px] text-slate-400 mt-1">(QS. ${showVerse.name} ayat ${showVerse.nomor} — Juz ${S.juz})</p>
+            </div>`;
+
+            document.getElementById('quranNextBtn').innerHTML = 'Soal Acak Berikutnya <i class="fa-solid fa-shuffle"></i>';
+
+            // Kategori Susun Kata: putar audio ayat otomatis SETELAH menjawab (jika autoplay aktif)
+            if (q.type === 'words' && document.getElementById('quranAutoplayCheck').checked) {
+                setTimeout(() => playVerseAudio(showVerse.surahNo, parseInt(showVerse.nomor)), 500);
+            }
+        }
+
+        // Sesi tanpa batas: tombol berikutnya selalu membuat soal baru sesuai kategori
+        function nextQuranQuestion() {
+            playSound('click');
+            if (!quranSession.active) { showQuranSetup(); return; }
+            renderQuranQuestion();
+        }
+
+        // Akhiri sesi kapan pun → tampilkan hasil sesi
+        function endQuranSession() {
+            playSound('click');
+            stopQuranAudio();
+            const S = quranSession;
+            if (!S.active || S.answeredCount === 0) { showQuranSetup(); return; }
+            S.active = false;
+            const pct = Math.round((S.correctCount / S.answeredCount) * 100);
+            document.getElementById('quranResultScore').innerText = `${S.correctCount} / ${S.answeredCount}`;
+            document.getElementById('quranResultPct').innerText = pct + '%';
+            document.getElementById('quranResultStreak').innerText = S.bestStreak;
+            document.getElementById('quranResultDetail').innerText = `Juz ${S.juz} • Kategori ${quranTypeNames[S.mode]} • soal acak (tak terbatas)`;
+            const msg = pct >= 80 ? 'Masya Allah, hafalanmu luar biasa! 🌟' : pct >= 50 ? 'Alhamdulillah, terus tingkatkan hafalanmu! 💪' : 'Jangan menyerah, ulangi latihannya sampai lancar ya! 🤲';
+            document.getElementById('quranResultMsg').innerText = msg;
+            document.getElementById('quranGamePanel').classList.add('hidden');
+            document.getElementById('quranResultPanel').classList.remove('hidden');
+            if (pct >= 50) confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            updateCertificate();
+        }
+
+        function showQuranSetup() {
+            quranSession.active = false;
+            stopQuranAudio();
+            document.getElementById('quranGamePanel').classList.add('hidden');
+            document.getElementById('quranResultPanel').classList.add('hidden');
+            document.getElementById('quranSetupPanel').classList.remove('hidden');
+            hideQuranError();
+        }
+
+        // ==========================================
+        // UI & GAME CONTROLLERS
+        // ==========================================
+        window.onload = function () {
+            const hasSave = loadState();
+            if (hasSave && state.playerName) {
+                document.getElementById('welcomeModal').classList.add('hidden');
+                document.getElementById('playerName').value = state.playerName;
+                document.getElementById('certPlayerName').innerText = state.playerName;
+                document.getElementById('certPlayerSchool').innerText = state.playerSchool;
+                if (Object.keys(state.mathAnswers).length >= 40) state.mathDone = true;
+                if (Object.keys(state.ipasAnswers).length >= 40) state.ipasDone = true;
+                if (Object.keys(state.kbcAnswers).length >= 40) state.kbcDone = true;
+                updateStarXpDisplay();
+            }
+            renderMathQuestion();
+            renderIpasQuestion();
+            renderKbcQuestion();
+            initQuranSetup();
+            updateCertificate();
+        };
+
+        function updateStarXpDisplay() {
+            document.getElementById('starScore').innerText = state.stars;
+            document.getElementById('xpScore').innerText = state.xp;
+        }
+
+        function switchTab(tabName) {
+            playSound('click');
+            if (tabName !== 'quran') stopQuranAudio();
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('bg-brand-blue', 'text-white', 'shadow-lg');
+                el.classList.add('bg-white', 'text-slate-600');
+            });
+
+            document.getElementById(`sec-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.remove('bg-white', 'text-slate-600');
+            activeBtn.classList.add('bg-brand-blue', 'text-white', 'shadow-lg');
+
+            if (tabName === 'evaluasi') {
+                updateCertificate();
+            }
+        }
+
+        function addRewards(stars, xp) {
+            state.stars += stars;
+            state.xp += xp;
+            updateStarXpDisplay();
+            playSound('star');
+            saveState();
+
+            confetti({
+                particleCount: 35,
+                spread: 55,
+                origin: { y: 0.8 }
+            });
+        }
+
+        // ==================== LAYAR PENUNTASAN & RESET MODUL ====================
+        function renderModuleComplete(mod) {
+            const cfg = {
+                math: { prefix: 'math', name: 'Modul Matematika Kasih Sayang', answers: state.mathAnswers, emoji: '🔢', btnClass: 'bg-brand-pink hover:bg-red-500' },
+                ipas: { prefix: 'ipas', name: 'Modul Detektif IPAS & Alam', answers: state.ipasAnswers, emoji: '🌱', btnClass: 'bg-brand-green hover:bg-emerald-600' },
+                kbc: { prefix: 'kbc', name: 'Modul Taman Cinta KBC', answers: state.kbcAnswers, emoji: '💖', btnClass: 'bg-brand-purple hover:bg-purple-700' }
+            }[mod];
+            const correct = Object.values(cfg.answers).filter(a => a.isCorrect).length;
+            document.getElementById(cfg.prefix + 'CurrentIndex').innerText = '40';
+            document.getElementById(cfg.prefix + 'QuestionText').innerText = `${cfg.emoji} HEBAT! Kamu telah menuntaskan seluruh 40 soal ${cfg.name}!`;
+            document.getElementById(cfg.prefix + 'OptionsContainer').innerHTML = `
+                <div class="md:col-span-2 text-center p-5 bg-white rounded-2xl border-2 border-emerald-200">
+                    <div class="text-4xl mb-2">🏆</div>
+                    <p class="font-fredoka text-lg font-bold text-slate-800 mb-1">Jawaban Benar: ${correct} / 40</p>
+                    <p class="text-xs text-slate-500 mb-4">Rapor & sertifikatmu sudah diperbarui otomatis. Kamu bisa mengulang modul ini untuk memperbaiki nilai!</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="resetModuleAnswers('${mod}')" class="px-5 py-2.5 ${cfg.btnClass} text-white font-fredoka font-bold text-xs rounded-xl shadow transition bounce-hover flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-left"></i> Ulangi Modul (Hapus Jawaban)
+                        </button>
+                        <button onclick="switchTab('evaluasi')" class="px-5 py-2.5 bg-amber-400 text-white font-fredoka font-bold text-xs rounded-xl shadow hover:bg-amber-500 transition bounce-hover flex items-center gap-2">
+                            <i class="fa-solid fa-award"></i> Lihat Rapor & Sertifikat
+                        </button>
+                    </div>
+                </div>`;
+            document.getElementById(cfg.prefix + 'FeedbackBox').classList.add('hidden');
+        }
+
+        function resetModuleAnswers(mod) {
+            playSound('click');
+            if (mod === 'math') { state.mathAnswers = {}; state.mathIdx = 0; state.mathDone = false; filterMathLevel(1); }
+            if (mod === 'ipas') { state.ipasAnswers = {}; state.ipasIdx = 0; state.ipasDone = false; filterIpasLevel(1); }
+            if (mod === 'kbc') { state.kbcAnswers = {}; state.kbcIdx = 0; state.kbcDone = false; filterKbcLevel(1); }
+            saveState();
+            updateCertificate();
+            confetti({ particleCount: 40, spread: 60, origin: { y: 0.7 } });
+        }
+
+        // ==================== MATEMATIKA CONTROLLER ====================
+        function filterMathLevel(lvl) {
+            playSound('click');
+            state.mathLvl = lvl;
+            state.mathIdx = (lvl - 1) * 10;
+            state.mathDone = false;
+
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`btn-math-lvl-${i}`);
+                btn.className = (i === lvl)
+                    ? "px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow"
+                    : "px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300";
+            }
+            renderMathQuestion();
+        }
+
+        function renderMathQuestion() {
+            if (state.mathDone) { renderModuleComplete('math'); return; }
+            const qData = mathQuestions[state.mathIdx];
+            document.getElementById('mathCurrentIndex').innerText = state.mathIdx + 1;
+            document.getElementById('mathQuestionText').innerText = qData.q;
+
+            const lvlBadge = document.getElementById('mathLevelBadge');
+            lvlBadge.innerText = getLevelName(qData.level);
+            lvlBadge.className = `level-badge ${getLevelBadgeClass(qData.level)}`;
+
+            // SVG Visual Pizza
+            const visualBox = document.getElementById('mathVisualContainer');
+            if (qData.pizza) {
+                visualBox.classList.remove('hidden');
+                drawPizzaSvg(qData.pizza.numerator, qData.pizza.denominator);
+            } else {
+                visualBox.classList.add('hidden');
+            }
+
+            const container = document.getElementById('mathOptionsContainer');
+            container.innerHTML = '';
+
+            const previousAnswer = state.mathAnswers[state.mathIdx];
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                let btnStyle = "w-full text-left p-3.5 bg-white border-2 border-pink-100 hover:border-brand-pink rounded-xl transition font-bold text-xs md:text-sm text-slate-700 flex items-center gap-3";
+
+                if (previousAnswer !== undefined) {
+                    btn.disabled = true;
+                    if (idx === qData.ans) {
+                        btnStyle = "w-full text-left p-3.5 bg-emerald-50 border-2 border-emerald-500 rounded-xl font-bold text-xs md:text-sm text-emerald-800 flex items-center gap-3";
+                    } else if (previousAnswer.selected === idx) {
+                        btnStyle = "w-full text-left p-3.5 bg-rose-50 border-2 border-rose-400 rounded-xl font-bold text-xs md:text-sm text-rose-800 flex items-center gap-3";
+                    } else {
+                        btnStyle = "w-full text-left p-3.5 bg-slate-50 border-2 border-slate-200 rounded-xl font-bold text-xs md:text-sm text-slate-400 opacity-60 flex items-center gap-3";
+                    }
+                }
+
+                btn.className = btnStyle;
+                btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-pink-100 text-brand-pink font-fredoka flex items-center justify-center text-xs shrink-0">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
+                btn.onclick = () => checkMathAnswer(idx);
+                container.appendChild(btn);
+            });
+
+            const feedbackBox = document.getElementById('mathFeedbackBox');
+            if (previousAnswer !== undefined) {
+                feedbackBox.classList.remove('hidden', 'bg-emerald-50', 'bg-red-50', 'border-emerald-200', 'border-red-200');
+                const feedbackTitle = document.getElementById('mathFeedbackTitle');
+                const feedbackText = document.getElementById('mathFeedbackText');
+                if (previousAnswer.isCorrect) {
+                    feedbackBox.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+                    feedbackTitle.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i> Jawaban Benar! Luar Biasa!`;
+                } else {
+                    feedbackBox.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
+                    feedbackTitle.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 text-lg"></i> Hampir Tepat, Pelajari Penjelasannya!`;
+                }
+                feedbackText.innerText = qData.explain;
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+        }
+
+        function drawPizzaSvg(num, den) {
+            const svg = document.getElementById('mathPizzaSvg');
+            svg.innerHTML = '';
+            const center = 50, radius = 45;
+
+            for (let i = 0; i < den; i++) {
+                const startAngle = (i * 360) / den;
+                const endAngle = ((i + 1) * 360) / den;
+                const x1 = center + radius * Math.cos((Math.PI * startAngle) / 180);
+                const y1 = center + radius * Math.sin((Math.PI * startAngle) / 180);
+                const x2 = center + radius * Math.cos((Math.PI * endAngle) / 180);
+                const y2 = center + radius * Math.sin((Math.PI * endAngle) / 180);
+
+                const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+                const pathData = `M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('stroke', '#F59E0B');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('fill', i < num ? '#FF6B6B' : '#FDE68A');
+                svg.appendChild(path);
+            }
+        }
+
+        function checkMathAnswer(selectedIdx) {
+            if (state.mathAnswers[state.mathIdx] !== undefined) return;
+
+            const qData = mathQuestions[state.mathIdx];
+            const isCorrect = (selectedIdx === qData.ans);
+
+            state.mathAnswers[state.mathIdx] = { selected: selectedIdx, isCorrect: isCorrect };
+            saveState();
+
+            if (isCorrect) {
+                playSound('correct');
+                addRewards(2, 20);
+            } else {
+                playSound('wrong');
+            }
+
+            renderMathQuestion();
+        }
+
+        function nextMathQuestion() {
+            playSound('click');
+            if (state.mathIdx < mathQuestions.length - 1) {
+                state.mathIdx++;
+                renderMathQuestion();
+            } else {
+                state.mathDone = true;
+                renderMathQuestion();
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            }
+        }
+
+        // ==================== IPAS CONTROLLER ====================
+        function filterIpasLevel(lvl) {
+            playSound('click');
+            state.ipasLvl = lvl;
+            state.ipasIdx = (lvl - 1) * 10;
+            state.ipasDone = false;
+
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`btn-ipas-lvl-${i}`);
+                btn.className = (i === lvl)
+                    ? "px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow"
+                    : "px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300";
+            }
+            renderIpasQuestion();
+        }
+
+        function renderIpasQuestion() {
+            if (state.ipasDone) { renderModuleComplete('ipas'); return; }
+            const qData = ipasQuestions[state.ipasIdx];
+            document.getElementById('ipasCurrentIndex').innerText = state.ipasIdx + 1;
+            document.getElementById('ipasQuestionText').innerText = qData.q;
+
+            const lvlBadge = document.getElementById('ipasLevelBadge');
+            lvlBadge.innerText = getLevelName(qData.level);
+            lvlBadge.className = `level-badge ${getLevelBadgeClass(qData.level)}`;
+
+            const container = document.getElementById('ipasOptionsContainer');
+            container.innerHTML = '';
+
+            const previousAnswer = state.ipasAnswers[state.ipasIdx];
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                let btnStyle = "w-full text-left p-3.5 bg-white border-2 border-emerald-100 hover:border-brand-green rounded-xl transition font-bold text-xs md:text-sm text-slate-700 flex items-center gap-3";
+
+                if (previousAnswer !== undefined) {
+                    btn.disabled = true;
+                    if (idx === qData.ans) {
+                        btnStyle = "w-full text-left p-3.5 bg-emerald-50 border-2 border-emerald-500 rounded-xl font-bold text-xs md:text-sm text-emerald-800 flex items-center gap-3";
+                    } else if (previousAnswer.selected === idx) {
+                        btnStyle = "w-full text-left p-3.5 bg-rose-50 border-2 border-rose-400 rounded-xl font-bold text-xs md:text-sm text-rose-800 flex items-center gap-3";
+                    } else {
+                        btnStyle = "w-full text-left p-3.5 bg-slate-50 border-2 border-slate-200 rounded-xl font-bold text-xs md:text-sm text-slate-400 opacity-60 flex items-center gap-3";
+                    }
+                }
+
+                btn.className = btnStyle;
+                btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-emerald-100 text-brand-green font-fredoka flex items-center justify-center text-xs shrink-0">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
+                btn.onclick = () => checkIpasAnswer(idx);
+                container.appendChild(btn);
+            });
+
+            const feedbackBox = document.getElementById('ipasFeedbackBox');
+            if (previousAnswer !== undefined) {
+                feedbackBox.classList.remove('hidden', 'bg-emerald-50', 'bg-red-50', 'border-emerald-200', 'border-red-200');
+                const feedbackTitle = document.getElementById('ipasFeedbackTitle');
+                const feedbackText = document.getElementById('ipasFeedbackText');
+                if (previousAnswer.isCorrect) {
+                    feedbackBox.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+                    feedbackTitle.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i> Detektif Alam Hebat! Jawaban Benar!`;
+                } else {
+                    feedbackBox.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
+                    feedbackTitle.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 text-lg"></i> Mari Pelajari Penjelasannya!`;
+                }
+                feedbackText.innerText = qData.explain;
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+        }
+
+        function checkIpasAnswer(selectedIdx) {
+            if (state.ipasAnswers[state.ipasIdx] !== undefined) return;
+
+            const qData = ipasQuestions[state.ipasIdx];
+            const isCorrect = (selectedIdx === qData.ans);
+
+            state.ipasAnswers[state.ipasIdx] = { selected: selectedIdx, isCorrect: isCorrect };
+            saveState();
+
+            if (isCorrect) {
+                playSound('correct');
+                addRewards(2, 20);
+            } else {
+                playSound('wrong');
+            }
+
+            renderIpasQuestion();
+        }
+
+        function nextIpasQuestion() {
+            playSound('click');
+            if (state.ipasIdx < ipasQuestions.length - 1) {
+                state.ipasIdx++;
+                renderIpasQuestion();
+            } else {
+                state.ipasDone = true;
+                renderIpasQuestion();
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            }
+        }
+
+        // ==================== KBC CONTROLLER ====================
+        function filterKbcLevel(lvl) {
+            playSound('click');
+            state.kbcLvl = lvl;
+            state.kbcIdx = (lvl - 1) * 10;
+            state.kbcDone = false;
+
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`btn-kbc-lvl-${i}`);
+                btn.className = (i === lvl)
+                    ? "px-3 py-1.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow"
+                    : "px-3 py-1.5 rounded-xl font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300";
+            }
+            renderKbcQuestion();
+        }
+
+        function renderKbcQuestion() {
+            if (state.kbcDone) { renderModuleComplete('kbc'); return; }
+            const qData = kbcQuestions[state.kbcIdx];
+            document.getElementById('kbcCurrentIndex').innerText = state.kbcIdx + 1;
+            document.getElementById('kbcQuestionText').innerText = qData.q;
+            document.getElementById('kbcPilarTag').innerText = `KBC: ${qData.pilar}`;
+
+            const lvlBadge = document.getElementById('kbcLevelBadge');
+            lvlBadge.innerText = getLevelName(qData.level);
+            lvlBadge.className = `level-badge ${getLevelBadgeClass(qData.level)}`;
+
+            const container = document.getElementById('kbcOptionsContainer');
+            container.innerHTML = '';
+
+            const previousAnswer = state.kbcAnswers[state.kbcIdx];
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                let btnStyle = "w-full text-left p-3.5 bg-white border-2 border-purple-100 hover:border-brand-purple rounded-xl transition font-bold text-xs md:text-sm text-slate-700 flex items-center gap-3";
+
+                if (previousAnswer !== undefined) {
+                    btn.disabled = true;
+                    if (idx === qData.ans) {
+                        btnStyle = "w-full text-left p-3.5 bg-purple-50 border-2 border-brand-purple rounded-xl font-bold text-xs md:text-sm text-purple-900 flex items-center gap-3";
+                    } else if (previousAnswer.selected === idx) {
+                        btnStyle = "w-full text-left p-3.5 bg-rose-50 border-2 border-rose-400 rounded-xl font-bold text-xs md:text-sm text-rose-800 flex items-center gap-3";
+                    } else {
+                        btnStyle = "w-full text-left p-3.5 bg-slate-50 border-2 border-slate-200 rounded-xl font-bold text-xs md:text-sm text-slate-400 opacity-60 flex items-center gap-3";
+                    }
+                }
+
+                btn.className = btnStyle;
+                btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-purple-100 text-brand-purple font-fredoka flex items-center justify-center text-xs shrink-0">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
+                btn.onclick = () => checkKbcAnswer(idx);
+                container.appendChild(btn);
+            });
+
+            const feedbackBox = document.getElementById('kbcFeedbackBox');
+            if (previousAnswer !== undefined) {
+                feedbackBox.classList.remove('hidden', 'bg-purple-50', 'bg-red-50', 'border-purple-200', 'border-red-200');
+                const feedbackTitle = document.getElementById('kbcFeedbackTitle');
+                const feedbackText = document.getElementById('kbcFeedbackText');
+                if (previousAnswer.isCorrect) {
+                    feedbackBox.classList.add('bg-purple-50', 'border-purple-200', 'text-purple-800');
+                    feedbackTitle.innerHTML = `<i class="fa-solid fa-heart text-brand-purple text-lg"></i> Pilihan Penuh Kasih Sayang & Bijak!`;
+                } else {
+                    feedbackBox.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
+                    feedbackTitle.innerHTML = `<i class="fa-solid fa-hand-holding-heart text-red-600 text-lg"></i> Mari Refleksikan Pilihan Karaktermu!`;
+                }
+                feedbackText.innerText = qData.explain;
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+        }
+
+        function checkKbcAnswer(selectedIdx) {
+            if (state.kbcAnswers[state.kbcIdx] !== undefined) return;
+
+            const qData = kbcQuestions[state.kbcIdx];
+            const isCorrect = (selectedIdx === qData.ans);
+
+            state.kbcAnswers[state.kbcIdx] = { selected: selectedIdx, isCorrect: isCorrect };
+            saveState();
+
+            if (isCorrect) {
+                playSound('correct');
+                addRewards(3, 25);
+            } else {
+                playSound('wrong');
+            }
+
+            renderKbcQuestion();
+        }
+
+        function nextKbcQuestion() {
+            playSound('click');
+            if (state.kbcIdx < kbcQuestions.length - 1) {
+                state.kbcIdx++;
+                renderKbcQuestion();
+            } else {
+                state.kbcDone = true;
+                renderKbcQuestion();
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            }
+        }
+
+        // ==================== KALKULASI RAPOR & SERTIFIKAT DINAMIS ====================
+        function calculateScores() {
+            // Matematika
+            const mathAttempted = Object.keys(state.mathAnswers).length;
+            const mathCorrect = Object.values(state.mathAnswers).filter(a => a.isCorrect).length;
+            const mathScore = mathAttempted > 0 ? Math.round((mathCorrect / mathAttempted) * 100) : 0;
+
+            // IPAS
+            const ipasAttempted = Object.keys(state.ipasAnswers).length;
+            const ipasCorrect = Object.values(state.ipasAnswers).filter(a => a.isCorrect).length;
+            const ipasScore = ipasAttempted > 0 ? Math.round((ipasCorrect / ipasAttempted) * 100) : 0;
+
+            // KBC
+            const kbcAttempted = Object.keys(state.kbcAnswers).length;
+            const kbcCorrect = Object.values(state.kbcAnswers).filter(a => a.isCorrect).length;
+            const kbcScore = kbcAttempted > 0 ? Math.round((kbcCorrect / kbcAttempted) * 100) : 0;
+
+            // Overall
+            const totalAttempted = mathAttempted + ipasAttempted + kbcAttempted;
+            const totalCorrect = mathCorrect + ipasCorrect + kbcCorrect;
+            const overallScore = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
+
+            return {
+                math: { attempted: mathAttempted, correct: mathCorrect, score: mathScore, grade: getGradeInfo(mathScore, mathAttempted) },
+                ipas: { attempted: ipasAttempted, correct: ipasCorrect, score: ipasScore, grade: getGradeInfo(ipasScore, ipasAttempted) },
+                kbc: { attempted: kbcAttempted, correct: kbcCorrect, score: kbcScore, grade: getGradeInfo(kbcScore, kbcAttempted) },
+                overall: { attempted: totalAttempted, correct: totalCorrect, score: overallScore, grade: getGradeInfo(overallScore, totalAttempted) }
+            };
+        }
+
+        function getGradeInfo(score, attempted) {
+            if (attempted === 0) {
+                return { letter: '-', index: '0.0', predikat: 'Belum Dikerjakan', badgeClass: 'bg-slate-100 text-slate-500 border-slate-300' };
+            }
+            if (score >= 88) {
+                return { letter: 'A', index: '4.0', predikat: 'SANGAT BAIK', badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-400' };
+            } else if (score >= 75) {
+                return { letter: 'B', index: '3.0', predikat: 'BAIK', badgeClass: 'bg-blue-100 text-blue-800 border-blue-400' };
+            } else if (score >= 60) {
+                return { letter: 'C', index: '2.0', predikat: 'CUKUP', badgeClass: 'bg-amber-100 text-amber-800 border-amber-400' };
+            } else {
+                return { letter: 'D', index: '1.0', predikat: 'PERLU BIMBINGAN', badgeClass: 'bg-rose-100 text-rose-800 border-rose-400' };
+            }
+        }
+
+        function updateCertificate() {
+            const name = state.playerName || 'Siswa Cerdas';
+            const school = state.playerSchool || 'Kelas 4 SD/MI';
+
+            document.getElementById('certPlayerName').innerText = name;
+            document.getElementById('certPlayerSchool').innerText = school;
+            document.getElementById('raportStudentInfo').innerText = `Nama: ${name} | Sekolah: ${school}`;
+
+            const scores = calculateScores();
+
+            // Tabel Rapor - Matematika
+            document.getElementById('rapMathAttempted').innerText = `${scores.math.attempted} / 40`;
+            document.getElementById('rapMathCorrect').innerText = scores.math.correct;
+            document.getElementById('rapMathScore').innerText = scores.math.score;
+            document.getElementById('rapMathLetter').innerText = scores.math.grade.letter;
+            const rapMathBadge = document.getElementById('rapMathBadge');
+            rapMathBadge.innerText = scores.math.grade.predikat;
+            rapMathBadge.className = `px-2 py-1 rounded-full text-[10px] font-bold border ${scores.math.grade.badgeClass}`;
+
+            // Tabel Rapor - IPAS
+            document.getElementById('rapIpasAttempted').innerText = `${scores.ipas.attempted} / 40`;
+            document.getElementById('rapIpasCorrect').innerText = scores.ipas.correct;
+            document.getElementById('rapIpasScore').innerText = scores.ipas.score;
+            document.getElementById('rapIpasLetter').innerText = scores.ipas.grade.letter;
+            const rapIpasBadge = document.getElementById('rapIpasBadge');
+            rapIpasBadge.innerText = scores.ipas.grade.predikat;
+            rapIpasBadge.className = `px-2 py-1 rounded-full text-[10px] font-bold border ${scores.ipas.grade.badgeClass}`;
+
+            // Tabel Rapor - KBC
+            document.getElementById('rapKbcAttempted').innerText = `${scores.kbc.attempted} / 40`;
+            document.getElementById('rapKbcCorrect').innerText = scores.kbc.correct;
+            document.getElementById('rapKbcScore').innerText = scores.kbc.score;
+            document.getElementById('rapKbcLetter').innerText = scores.kbc.grade.letter;
+            const rapKbcBadge = document.getElementById('rapKbcBadge');
+            rapKbcBadge.innerText = scores.kbc.grade.predikat;
+            rapKbcBadge.className = `px-2 py-1 rounded-full text-[10px] font-bold border ${scores.kbc.grade.badgeClass}`;
+
+            // Overall Total Rapor
+            document.getElementById('rapOverallAttempted').innerText = `${scores.overall.attempted} / 120`;
+            document.getElementById('rapOverallCorrect').innerText = scores.overall.correct;
+            document.getElementById('rapOverallScore').innerText = scores.overall.score;
+            document.getElementById('rapOverallLetter').innerText = scores.overall.grade.letter;
+            const rapOverallBadge = document.getElementById('rapOverallBadge');
+            rapOverallBadge.innerText = scores.overall.grade.predikat;
+            rapOverallBadge.className = `px-3 py-1 rounded-full text-xs font-extrabold border ${scores.overall.grade.badgeClass}`;
+
+            // Statistik & Sertifikat
+            document.getElementById('finalStars').innerText = `${state.stars} ⭐`;
+            document.getElementById('finalXP').innerText = `${state.xp} XP`;
+            document.getElementById('finalTitle').innerText = state.stars > 40 ? "Pahlawan KBC & 21CLD" : (state.stars > 15 ? "Duta Moderasi & Cendekia Cilik" : "Pengembara Cinta Ilmu");
+
+            // Statistik Hafalan Al-Qur'an
+            const qAtt = (state.quranStats && state.quranStats.attempted) || 0;
+            const qCor = (state.quranStats && state.quranStats.correct) || 0;
+            const qAcc = qAtt > 0 ? Math.round((qCor / qAtt) * 100) : 0;
+            document.getElementById('quranHeaderStats').innerText = qAtt;
+            document.getElementById('finalQuranStats').innerText = qAtt > 0 ? `${qAtt} soal • ${qAcc}% akurat` : 'Belum dikerjakan';
+            document.getElementById('certQuranLine').innerText = qAtt > 0
+                ? `Game Hafalan Al-Qur'an: ${qAtt} soal latihan • akurasi ${qAcc}% — Lanjutkan tahfizhmu!`
+                : `Game Hafalan Al-Qur'an: belum dikerjakan`;
+
+            document.getElementById('certNilaiAngka').innerText = scores.overall.score;
+
+            // Stempel Lencana Sertifikat Dinamis
+            const certBadgeBox = document.getElementById('certBadgeBox');
+            document.getElementById('certBadgePredikat').innerText = scores.overall.grade.predikat;
+            document.getElementById('certBadgeLetter').innerText = `Mutu: ${scores.overall.grade.letter} (${scores.overall.grade.index})`;
+            certBadgeBox.className = `w-28 h-28 rounded-full border-4 flex flex-col items-center justify-center font-bold text-xs p-1 shadow-md transition-all ${scores.overall.grade.badgeClass}`;
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+    </script>
+
+</body>
+
+</html>
